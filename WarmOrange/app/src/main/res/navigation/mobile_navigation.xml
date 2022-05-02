@@ -22,4 +22,29 @@
         android:name="com.example.warmorange.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_wizardFragment"
+        android:name="com.example.warmorange.WizardFragment"
+        android:label="fragment_wizard"
+        tools:layout="@layout/fragment_wizard" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.warmorange.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/compareFragment"
+        android:name="com.example.warmorange.CompareFragment"
+        android:label="fragment_compare"
+        tools:layout="@layout/fragment_compare" />
+    <fragment
+        android:id="@+id/demoFragment"
+        android:name="com.example.warmorange.DemoFragment"
+        android:label="fragment_demo"
+        tools:layout="@layout/fragment_demo" />
+    <fragment
+        android:id="@+id/qrFragment"
+        android:name="com.example.warmorange.QrFragment"
+        android:label="fragment_qr"
+        tools:layout="@layout/fragment_qr" />
 </navigation>
