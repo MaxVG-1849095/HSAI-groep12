@@ -72,6 +72,7 @@ public class QrFragment extends Fragment {
         btnTest.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View view) {
+            applicationData.getInstance().getwData().setWizardType("Television");
             Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_navigation_wizardFragment);
         }
     }

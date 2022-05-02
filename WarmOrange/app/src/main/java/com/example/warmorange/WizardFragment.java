@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.warmorange.databinding.FragmentWizardBinding;
 
@@ -31,6 +33,7 @@ public class WizardFragment extends Fragment {
     private String productType;
     private wizardData wData;
     private wizardInstance wInstance;
+    private applicationData appData = applicationData.getInstance();
     public WizardFragment() {
         // Required empty public constructor
     }
@@ -56,15 +59,16 @@ public class WizardFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
 //            productType = getArguments().getString(ARG_PARAM1);
-
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        productType= "Television";
-        wData = new wizardData();
+
+        wData = appData.getwData();
+        System.out.println(wData.getWizardType());
+        productType = appData.getwData().getWizardType();
         wInstance = wData.getInstance(productType);
         binding = FragmentWizardBinding.inflate(inflater,container,false);
         View view = inflater.inflate(R.layout.fragment_wizard,container,false);
@@ -75,10 +79,23 @@ public class WizardFragment extends Fragment {
         nextBtn.setOnClickListener(new View.OnClickListener(){
                                        @Override
                                        public void onClick(View view) {
-                                           if(wInstance.nextIndexInBounds()){
+                                           if(wInstance.nextIndexInBounds() && binding.radiogroup.getCheckedRadioButtonId() != -1){
+                                               checkRadio();
+                                               binding.radiogroup.clearCheck();
+                                               System.out.println(wInstance.getCurrentIndex());
                                                wInstance.incrementIndex();
+                                               if(wInstance.lastQuestion()){
+                                                   nextBtn.setText("Indienen");
+                                               }
+                                               else{
+                                                   nextBtn.setText("Volgende");
+                                               }
                                                setData();
-
+                                           }
+                                           else if(wInstance.lastIndex()){
+                                               checkRadio();
+                                               Toast toast=Toast.makeText(getActivity(),"Your score: " + wInstance.calcResponse(),Toast.LENGTH_SHORT);
+                                               toast.show();
                                            }
                                        }
                                    }
@@ -88,17 +105,34 @@ public class WizardFragment extends Fragment {
                                        @Override
                                        public void onClick(View view) {
                                            if(wInstance.prevIndexInBounds()){
+                                               binding.radiogroup.clearCheck();
                                                wInstance.decrementIndex();
                                                setData();
-
                                            }
                                        }
                                    }
         );
-        binding.getRoot();
+
         return binding.getRoot();
     }
 
+    /**
+     * Function that manually checks radio buttons, automatic check gave wrong ids
+     */
+    private void checkRadio(){
+        if(binding.Vraag1.isChecked()){
+            wInstance.addResponse(1);
+        }
+        else if(binding.Vraag2.isChecked()){
+            wInstance.addResponse(2);
+        }
+        else if(binding.Vraag3.isChecked()){
+            wInstance.addResponse(3);
+        }
+        else if(binding.Vraag4.isChecked()){
+            wInstance.addResponse(0);
+        }
+    }
     private void setData(){
         binding.wizardQuestion.setText(wInstance.getQuestionForIndex());
         ArrayList<String> questions =  wInstance.getAnswersForIndex();
@@ -107,5 +141,6 @@ public class WizardFragment extends Fragment {
         binding.Vraag2.setText(questions.get(1));
         binding.Vraag3.setText(questions.get(2));
         binding.Vraag4.setText(questions.get(3));
+
     }
 }

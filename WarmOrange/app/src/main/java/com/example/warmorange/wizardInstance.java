@@ -8,6 +8,7 @@ import java.util.Vector;
 public class wizardInstance {
     private Vector<String> questions = new Vector<>();
     private Map<String, ArrayList<String>> answers = new HashMap<>();
+    private ArrayList<Integer> responses = new ArrayList<>();
     private int currentIndex = 0;
     public wizardInstance(){
     }
@@ -73,8 +74,31 @@ public class wizardInstance {
     public boolean nextIndexInBounds(){
         return currentIndex+1<questions.size();
     }
+    public void addResponse(int r){
+        if(responses.size() > currentIndex){
+            responses.set(currentIndex,r);
+        }
+        else{
+            responses.add(currentIndex,r);
+        }
+        System.out.println(responses);
+    }
+    public int calcResponse(){
+        int total = 0;
+        for (int i:responses
+             ) {
+            total += i;
+        }
+        return total;
+    }
+    public boolean lastQuestion(){
+        return currentIndex==questions.size() - 1;
+    }
     public boolean prevIndexInBounds(){
         return 0<= currentIndex-1;
+    }
+    public boolean lastIndex(){
+        return currentIndex == questions.size()-1;
     }
 
 

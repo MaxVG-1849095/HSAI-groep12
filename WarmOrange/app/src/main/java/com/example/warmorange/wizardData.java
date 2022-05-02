@@ -5,8 +5,18 @@ import java.util.Objects;
 
 public class wizardData {
     private HashMap<String, wizardInstance> instances = new HashMap<>();
+    private String wizardType;
     public wizardData(){
         popMap();
+        wizardType = "blabla";
+    }
+
+    public String getWizardType() {
+        return wizardType;
+    }
+
+    public void setWizardType(String wizardType) {
+        this.wizardType = wizardType;
     }
 
     /**

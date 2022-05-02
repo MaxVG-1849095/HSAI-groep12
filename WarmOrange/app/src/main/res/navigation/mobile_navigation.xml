@@ -47,9 +47,12 @@
         android:name="com.example.warmorange.QrFragment"
         android:label="fragment_qr"
         tools:layout="@layout/fragment_qr" >
+        <argument
+            android:name="ProductType"
+            app:argType="string"
+            android:defaultValue="Television"/>
         <action
             android:id="@+id/action_qrFragment_to_navigation_wizardFragment"
-            app:destination="@id/navigation_wizardFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim" />
+            app:destination="@id/navigation_wizardFragment" />
     </fragment>
 </navigation>
