@@ -12,4 +12,5 @@
     <string name="qr_scanner">QR-Scanner</string>
     <string name="demo_boeken">Demo boeken</string>
     <string name="account">Account</string>
+    <string name="vorige">Vorige</string>
 </resources>

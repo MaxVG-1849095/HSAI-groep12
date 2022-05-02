@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -46,5 +46,10 @@
         android:id="@+id/qrFragment"
         android:name="com.example.warmorange.QrFragment"
         android:label="fragment_qr"
-        tools:layout="@layout/fragment_qr" />
+        tools:layout="@layout/fragment_qr" >
+        <action
+            android:id="@+id/action_qrFragment_to_navigation_wizardFragment"
+            app:destination="@id/navigation_wizardFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
+    </fragment>
 </navigation>
