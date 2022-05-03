@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_wizard">Wizard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder">Placeholder string</string>
+    <string name="next">Volgende</string>
+    <string name="compare">Compare</string>
+    <string name="qr_scanner">QR-Scanner</string>
+    <string name="demo_boeken">Demo boeken</string>
+    <string name="account">Account</string>
+    <string name="vorige">Vorige</string>
 </resources>
