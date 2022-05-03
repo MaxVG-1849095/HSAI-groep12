@@ -13,4 +13,11 @@
     <string name="demo_boeken">Demo boeken</string>
     <string name="account">Account</string>
     <string name="vorige">Vorige</string>
+    <string name="email">Email</string>
+    <string name="email_label">Voer hier uw email adres in.</string>
+    <string name="login">Log in</string>
+    <string name="password">Wachtwoord</string>
+    <string name="password_label">Voer hier uw wachtwoord in.</string>
+    <string name="no_account_yet">Nog geen account?</string>
+    <string name="make_account">Maak een account aan</string>
 </resources>
