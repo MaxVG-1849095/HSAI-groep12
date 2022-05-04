@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.warmorange.databinding.FragmentCompareBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CompareFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class CompareFragment extends Fragment {
-
+    private FragmentCompareBinding binding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

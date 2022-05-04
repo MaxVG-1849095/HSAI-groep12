@@ -65,22 +65,23 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater,container,false);
-
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         Button btnTest =(Button) binding.loginButton;
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("tag00", "Angry");
+//                Log.d("tag0", "Angry");
+                System.out.println("test");
                 login(view);
             }
         });
         Log.d("tag0", "Grr");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return binding.getRoot();
     }
 
     public void login(View view) {
         Log.d("tag", "Helllow");
-        Navigation.findNavController(view).navigate(R.id.action_accountFragment_to_accountFragment2);
+        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_accountFragment2);
     }
 }

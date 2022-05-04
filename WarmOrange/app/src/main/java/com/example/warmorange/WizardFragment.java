@@ -67,7 +67,7 @@ public class WizardFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         wData = appData.getwData();
-        System.out.println(wData.getWizardType());
+//        System.out.println(wData.getWizardType());
         productType = appData.getwData().getWizardType();
         wInstance = wData.getInstance(productType);
         binding = FragmentWizardBinding.inflate(inflater,container,false);

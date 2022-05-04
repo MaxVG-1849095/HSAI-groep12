@@ -3,23 +3,18 @@ package com.example.warmorange;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
-import com.example.warmorange.databinding.FragmentQrBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link QrFragment#newInstance} factory method to
+ * Use the {@link ProductFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class QrFragment extends Fragment {
+public class ProductFragment extends Fragment {
 
-    private FragmentQrBinding binding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +24,7 @@ public class QrFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public QrFragment() {
+    public ProductFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +34,11 @@ public class QrFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment QrFragment.
+     * @return A new instance of fragment ProductFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static QrFragment newInstance(String param1, String param2) {
-        QrFragment fragment = new QrFragment();
+    public static ProductFragment newInstance(String param1, String param2) {
+        ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,20 +59,6 @@ public class QrFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        binding = FragmentQrBinding.inflate(inflater,container,false);
-        View view = inflater.inflate(R.layout.fragment_qr, container,false);
-
-            Button btnTest = (Button) binding.testButtonQr;
-        btnTest.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            applicationData.getInstance().getwData().setWizardType("Television");
-            Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_navigation_wizardFragment);
-        }
-    }
-        );
-        System.out.println("Qr created");
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_product, container, false);
     }
 }
