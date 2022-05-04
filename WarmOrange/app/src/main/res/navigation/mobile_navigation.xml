@@ -30,8 +30,12 @@
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.warmorange.LoginFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        android:label="@string/login"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_accountFragment2"
+            app:destination="@id/accountFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/compareFragment"
         android:name="com.example.warmorange.CompareFragment"
@@ -55,4 +59,9 @@
             android:id="@+id/action_qrFragment_to_navigation_wizardFragment"
             app:destination="@id/navigation_wizardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/accountFragment2"
+        android:name="com.example.warmorange.AccountFragment"
+        android:label="@string/account"
+        tools:layout="@layout/fragment_account" />
 </navigation>
