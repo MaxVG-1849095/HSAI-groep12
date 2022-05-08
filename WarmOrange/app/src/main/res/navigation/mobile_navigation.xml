@@ -47,8 +47,8 @@
             app:argType="string"
             android:defaultValue="Television"/>
         <action
-            android:id="@+id/action_qrFragment_to_navigation_wizardFragment"
-            app:destination="@id/navigation_wizardFragment" />
+            android:id="@+id/action_qrFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment2"
@@ -68,5 +68,14 @@
         <action
             android:id="@+id/action_loginFragment_to_accountFragment2"
             app:destination="@id/accountFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/productPageFragment"
+        android:name="com.example.warmorange.ProductPageFragment"
+        android:label="fragment_product_page"
+        tools:layout="@layout/fragment_product_page" >
+        <action
+            android:id="@+id/action_productPageFragment_to_navigation_wizardFragment"
+            app:destination="@id/navigation_wizardFragment" />
     </fragment>
 </navigation>

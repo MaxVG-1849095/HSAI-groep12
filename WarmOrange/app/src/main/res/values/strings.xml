@@ -20,4 +20,5 @@
     <string name="password_label">Voer hier uw wachtwoord in.</string>
     <string name="no_account_yet">Nog geen account?</string>
     <string name="make_account">Maak een account aan</string>
+    <string name="add_to_wishlist">Voeg toe aan wishlist</string>
 </resources>

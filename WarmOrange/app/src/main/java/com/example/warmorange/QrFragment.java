@@ -73,7 +73,7 @@ public class QrFragment extends Fragment {
         @Override
         public void onClick(View view) {
             applicationData.getInstance().getwData().setWizardType("Television");
-            Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_navigation_wizardFragment);
+            Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_productPageFragment);
         }
     }
         );
