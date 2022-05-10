@@ -21,4 +21,7 @@
     <string name="no_account_yet">Nog geen account?</string>
     <string name="make_account">Maak een account aan</string>
     <string name="add_to_wishlist">Voeg toe aan wishlist</string>
+    <string name="leave_review">Review achterlaten</string>
+    <string name="place_review">Plaats review</string>
+    <string name="review_score">Score van je review?</string>
 </resources>
