@@ -8,13 +8,22 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.warmorange.databinding.FragmentProductPageBinding;
 import com.example.warmorange.databinding.FragmentQrBinding;
+import com.example.warmorange.model.Product;
+import com.example.warmorange.model.Review;
+
+import org.w3c.dom.Text;
+
+import java.util.Vector;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +40,10 @@ public class ProductPageFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    private applicationData appData = applicationData.getInstance();
+    private Product product = appData.getProductData().getCurrentProduct();
 
     public ProductPageFragment() {
         // Required empty public constructor
@@ -71,56 +84,96 @@ public class ProductPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_product_page, container,false);
 
         ImageView productImage = (ImageView) binding.imageView;
-        productImage.setImageResource(R.drawable.ic_baseline_account_circle_24);
+        productImage.setImageResource(product.getImageId());
         Button wishlistButton = (Button) binding.wishlistButton;
         wishlistButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.println("added to wishlist");
+                Toast toast=Toast.makeText(getActivity(),product.getName() + "toegevoegd aan wishlist", Toast.LENGTH_SHORT);
+                toast.setMargin(50,50);
+                toast.show();
             }
         });
         Button ARButton = (Button) binding.ARButton;
         ARButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.println("AR button");
+                Toast toast=Toast.makeText(getActivity(),"Augmented reality gestart!", Toast.LENGTH_SHORT);
+                toast.setMargin(50,50);
+                toast.show();
             }
         });
         ImageButton ARInfoButton = (ImageButton) binding.ARInfoButton;
         ARInfoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.println("AR info button");
+                Toast toast=Toast.makeText(getActivity(),"Info over de augmented reality", Toast.LENGTH_SHORT);
+                toast.setMargin(50,50);
+                toast.show();
             }
         });
         TextView NameText = (TextView) binding.nameText;
-        NameText.setText("Naam van product");
+        NameText.setText(product.getName());
         TextView SpecText = (TextView) binding.tagText;
-        SpecText.setText("Specs van product");
+
+        String specsString ="";
+        for(String j:product.getTags()){
+            specsString+="|" + j;
+        }
+        specsString +="|";
+        SpecText.setText(specsString);
         Button videoButton = (Button) binding.videoButton;
         videoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.println("video button");
+                Toast toast=Toast.makeText(getActivity(),"Hier hoort een video met uitleg", Toast.LENGTH_SHORT);
+                toast.setMargin(50,50);
+                toast.show();
             }
         });
 
         TextView availableText = (TextView) binding.availableText;
-        availableText.setText("Beschikbaar in Hasselt");
+        if(product.isAvailable()){
+            availableText.setText("Beschikbaar in Hasselt");
+        }
+        else{
+            availableText.setText("Niet beschikbaar in Hasselt");
+        }
 
         TextView inclText = (TextView) binding.includedListText;
-        inclText.setText("-ding 1 \n-ding2");
+        String inclString = "";
+        for(String i : product.getIncluded()){
+            inclString+="-" + i + "\n";
+        }
+        inclText.setText(inclString);
         TextView wizardText = (TextView) binding.WizardText;
-        wizardText.setText("Nog niet zeker welke ... je wilt? Doe de wizard!");
+        wizardText.setText("Nog niet zeker welke " + product.getType() + " je wilt? Doe de wizard!");
         Button wizardButton = (Button) binding.wizardButton;
         wizardButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                applicationData.getInstance().getwData().setWizardType("Television");
+                applicationData.getInstance().getwData().setWizardType(product.getType());
                 Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_navigation_wizardFragment);
             }
         });
-
+        ListView reviewlist = (ListView) binding.reviewList;
+        Vector<Review> productreviews = product.getReviews();
+        String[] reviewStrings = new String[productreviews.size()+1];
+        reviewStrings[0] = "Reviews:";
+        int index = 1;
+        String reviewString;
+        for(Review r:productreviews){
+            reviewString = "";
+            reviewString+=r.getText();
+            reviewString+=" | ";
+            reviewString+=r.getRating();
+            reviewString+="/5";
+            reviewStrings[index] = reviewString;
+            index++;
+        }
+        ArrayAdapter<String> arr;
+        arr = new ArrayAdapter<String>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,reviewStrings);
+        reviewlist.setAdapter(arr);
         return binding.getRoot();
     }
 }
