@@ -92,6 +92,7 @@ public class ProductPageFragment extends Fragment {
                 Toast toast=Toast.makeText(getActivity(),product.getName() + "toegevoegd aan wishlist", Toast.LENGTH_SHORT);
                 toast.setMargin(50,50);
                 toast.show();
+                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_mapFragment);
             }
         });
         Button ARButton = (Button) binding.ARButton;
@@ -159,7 +160,7 @@ public class ProductPageFragment extends Fragment {
         ListView reviewlist = (ListView) binding.reviewList;
         Vector<Review> productreviews = product.getReviews();
         String[] reviewStrings = new String[productreviews.size()+1];
-        reviewStrings[0] = "Reviews:";
+        reviewStrings[0] = "Reviews: (Average review score: " + product.getAverageReviewScore() + "/5)";
         int index = 1;
         String reviewString;
         for(Review r:productreviews){

@@ -72,4 +72,13 @@ public class Product {
     public Vector<Review> getReviews() {
         return reviews;
     }
+
+    public double getAverageReviewScore(){
+        double score = 0;
+        for(Review r : reviews){
+            score += r.getRating();
+
+        }
+        return score/ reviews.size();
+    }
 }
