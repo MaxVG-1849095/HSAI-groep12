@@ -37,4 +37,10 @@
     <string name="wizard_text2">Bij je past! Wil je naar de pagina van dit product navigeren?</string>
     <string name="wizard_confirm">Akkoord</string>
     <string name="wizard_deny">Probeer opnieuw</string>
+    <string name="nameless">Naamloos</string>
+    <string name="leaveReview">Laat een review achter!</string>
+    <string name="productImage">Productafbeelding</string>
+    <string name="warrantyRemaining">Resterende garantie:</string>
+    <string name="boughtWhen">Gekocht op:</string>
+    <string name="reviewThanks">Bedankt om een review achter te laten!</string>
 </resources>

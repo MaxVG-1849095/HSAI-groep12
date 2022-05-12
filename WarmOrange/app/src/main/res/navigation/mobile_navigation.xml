@@ -114,7 +114,11 @@
         android:id="@+id/boughtProductsFragment"
         android:name="com.example.warmorange.BoughtProductsFragment"
         android:label="@string/bought_products"
-        tools:layout="@layout/fragment_bought_products" />
+        tools:layout="@layout/fragment_bought_products" >
+        <action
+            android:id="@+id/action_boughtProductsFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/customerCardFragment"
         android:name="com.example.warmorange.CustomerCardFragment"

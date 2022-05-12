@@ -1,5 +1,8 @@
 package com.example.warmorange.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     public static long nextId = 0;
 
@@ -7,6 +10,7 @@ public class Account {
     private final String lastName;
     private final String password;
     private final String email;
+    private final List<Product> boughtProducts;
 
     private final long accountId;
 
@@ -16,6 +20,7 @@ public class Account {
         this.password = password;
         this.email = email;
         accountId = nextId++;
+        boughtProducts = new ArrayList<>();
     }
 
     public String getFirstName() { return firstName; }
@@ -24,4 +29,5 @@ public class Account {
     public String getEmail() { return email; }
     public String getPassword() { return password; }
     public long getAccountId() { return accountId; }
+    public List<Product> getBoughtProducts() { return boughtProducts; }
 }
