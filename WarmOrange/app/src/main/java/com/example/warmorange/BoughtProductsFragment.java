@@ -59,7 +59,7 @@ public class BoughtProductsFragment extends Fragment {
         p.add(applicationData.getInstance().getProductData().getProduct("SteelSeries Apex Pro Gaming"));
 
         RecyclerView recyclerView = binding.boughtProductsRecyclerView;
-//        BoughtProductsAdapter adapter = new BoughtProductsAdapter(applicationData.getInstance().getLoginData().getActiveUser().getBoughtProducts());
+//        BoughtProductsAdapter adapter = new BoughtProductsAdapter(applicationData.getInstance().getLoginData().getActiveUser().getOwnedProducts());
         BoughtProductsAdapter adapter = new BoughtProductsAdapter(p);
 
         recyclerView.setAdapter(adapter);

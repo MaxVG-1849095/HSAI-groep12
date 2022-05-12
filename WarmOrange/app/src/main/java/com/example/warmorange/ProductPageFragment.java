@@ -1,7 +1,10 @@
 package com.example.warmorange;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -93,7 +96,6 @@ public class ProductPageFragment extends Fragment {
                 Toast toast=Toast.makeText(getActivity(),product.getName() + "toegevoegd aan wishlist", Toast.LENGTH_SHORT);
                 toast.setMargin(50,50);
                 toast.show();
-                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_reviewFragment);
             }
         });
         Button ARButton = (Button) binding.ARButton;
@@ -109,9 +111,18 @@ public class ProductPageFragment extends Fragment {
         ARInfoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast toast=Toast.makeText(getActivity(),"Info over de augmented reality", Toast.LENGTH_SHORT);
-                toast.setMargin(50,50);
-                toast.show();
+                TextView message = new TextView(getContext());
+                message.setText(HtmlCompat.fromHtml("De AR-functionaliteit laat u toe om producten te tonen in uw eigen woonkamer! Richt uw camera op een plat vlak en laat de applicatie de rest doen", HtmlCompat.FROM_HTML_MODE_COMPACT));
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("AR-info");
+                dialog.setView(message);
+                dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
         TextView NameText = (TextView) binding.nameText;
@@ -129,6 +140,7 @@ public class ProductPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast toast=Toast.makeText(getActivity(),"Hier hoort een video met uitleg", Toast.LENGTH_SHORT);
+                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_warrantyFragment);
                 toast.setMargin(50,50);
                 toast.show();
             }
@@ -163,19 +175,22 @@ public class ProductPageFragment extends Fragment {
         });
         ListView reviewlist = (ListView) binding.reviewList;
         Vector<Review> productreviews = product.getReviews();
-        String[] reviewStrings = new String[productreviews.size()+1];
+        String[] reviewStrings = new String[product.getTextReviewAmount()+1];
         DecimalFormat df = new DecimalFormat("0.00");
         reviewStrings[0] = "Reviews: (Average review score: " + df.format(product.getAverageReviewScore()) + "/5)";
         int index = 1;
         String reviewString;
         for(Review r:productreviews){
-            reviewString = "";
-            reviewString+=r.getText();
-            reviewString+=" | ";
-            reviewString+=r.getRating();
-            reviewString+="/5";
-            reviewStrings[index] = reviewString;
-            index++;
+            if(!r.getText().equals("")){
+                System.out.println("reviewing" + r.getRating());
+                reviewString = "";
+                reviewString+=r.getText();
+                reviewString+=" | ";
+                reviewString+=r.getRating();
+                reviewString+="/5";
+                reviewStrings[index] = reviewString;
+                index++;
+            }
         }
         ArrayAdapter<String> arr;
         arr = new ArrayAdapter<String>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,reviewStrings);
