@@ -1,5 +1,7 @@
 package com.example.warmorange.model;
 
+import java.util.Vector;
+
 public class Account {
     public static long nextId = 0;
 
@@ -7,6 +9,8 @@ public class Account {
     private final String lastName;
     private final String password;
     private final String email;
+
+    Vector<Product> ownedProducts = new Vector<>();
 
     private final long accountId;
 
@@ -24,4 +28,11 @@ public class Account {
     public String getEmail() { return email; }
     public String getPassword() { return password; }
     public long getAccountId() { return accountId; }
+
+    public Vector<Product> getOwnedProducts() {
+        return ownedProducts;
+    }
+    public void addProduct(Product p){
+        ownedProducts.add(p);
+    }
 }

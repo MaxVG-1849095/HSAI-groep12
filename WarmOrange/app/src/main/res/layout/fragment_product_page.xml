@@ -131,7 +131,7 @@
         <Button
             android:id="@+id/ARButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="4dp"
             android:text="Bekijk in huiskamer"
             android:textSize="12sp"
@@ -142,13 +142,13 @@
         <ImageButton
             android:id="@+id/ARInfoButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:src="@drawable/ic_baseline_info_24"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ARButton"
             app:layout_constraintTop_toBottomOf="@+id/wishlistButton"
-            app:layout_constraintVertical_bias="0.61"
+            app:layout_constraintVertical_bias="0.44"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -247,6 +247,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/wizardButton"
             app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/compareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/compare"
+            app:layout_constraintBottom_toTopOf="@+id/view5"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

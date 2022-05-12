@@ -1,5 +1,8 @@
 package com.example.warmorange;
 
+import android.util.Log;
+
+import com.example.warmorange.model.Account;
 import com.example.warmorange.model.LoginData;
 import com.example.warmorange.model.ProductData;
 
@@ -8,8 +11,10 @@ public class applicationData {
     private final wizardData wData= new wizardData();
     private final ProductData productData = new ProductData();
     private final LoginData loginData = new LoginData();
+    private final Account testAccount = new Account("testNaam","testNaam2", "test", "Test@test.test");
     private applicationData(){
-
+        testAccount.addProduct(productData.getProduct("Samsung QLED 50Q64A (2021)"));
+        testAccount.addProduct(productData.getProduct("Iphone 13"));
     }
 
     public static applicationData getInstance(){
@@ -20,4 +25,8 @@ public class applicationData {
     }
     public ProductData getProductData(){return productData;}
     public LoginData getLoginData() { return loginData; }
+
+    public Account getTestAccount() {
+        return testAccount;
+    }
 }

@@ -12,14 +12,34 @@ public class Product {
     private String type;
     private Vector<String> included = new Vector<>();
     private Vector<Review> reviews = new Vector<>();
+    private int totalWarranty;
+    private int currentWarranty = 0;
 
     public Product(String name, boolean available, int imageId, String type) {
         this.name = name;
         this.available = available;
         this.imageId = imageId;
         this.type = type;
-
+        this.totalWarranty = 20;
+        this.currentWarranty = 10;
     }
+
+    public int getTotalWarranty() {
+        return totalWarranty;
+    }
+
+    public void setTotalWarranty(int totalWarranty) {
+        this.totalWarranty = totalWarranty;
+    }
+
+    public int getCurrentWarranty() {
+        return currentWarranty;
+    }
+
+    public void setCurrentWarranty(int currentWarranty) {
+        this.currentWarranty = currentWarranty;
+    }
+
     public Vector<String> getIncluded(){
         return included;
     }
@@ -80,5 +100,14 @@ public class Product {
 
         }
         return score/ reviews.size();
+    }
+    public int getTextReviewAmount(){
+        int count = 0;
+        for(Review r : reviews){
+            if(!r.getText().equals("")){
+                count++;
+            }
+        }
+        return count;
     }
 }

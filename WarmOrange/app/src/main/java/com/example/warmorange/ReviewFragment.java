@@ -1,8 +1,12 @@
 package com.example.warmorange;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -84,8 +88,27 @@ public class ReviewFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(reviewText.getText())){
-                    reviewText.setError("Review tekst is leeg");
+                if (TextUtils.isEmpty(reviewText.getText()) && checkRadio()) {
+                    TextView message = new TextView(getContext());
+                    message.setText(HtmlCompat.fromHtml("Wilt u een review achterlaten zonder uitleg?", HtmlCompat.FROM_HTML_MODE_COMPACT));
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                    dialog.setTitle("Review achterlaten");
+                    dialog.setView(message);
+                    dialog.setPositiveButton("Verder", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            product.addReview("", getRadio());
+                            Navigation.findNavController(view)
+                                    .navigate(R.id.action_reviewFragment_to_warrantyFragment);
+                        }
+                    });
+                    dialog.setNegativeButton("Uitleg achterlaten", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    dialog.show();
                 }
                 else if(!checkRadio()
                 ){
@@ -94,6 +117,8 @@ public class ReviewFragment extends Fragment {
                 }
                 else{
                     product.addReview(reviewText.getText().toString(), getRadio());
+                    Navigation.findNavController(view)
+                            .navigate(R.id.action_reviewFragment_to_warrantyFragment);
                 }
             }
         });
