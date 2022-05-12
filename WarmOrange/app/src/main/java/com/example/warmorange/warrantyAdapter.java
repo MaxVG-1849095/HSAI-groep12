@@ -43,7 +43,7 @@ public class warrantyAdapter extends ArrayAdapter<Product> {
 
 
         Button testbtn = convertView.findViewById(R.id.reviewButton);
-
+        TextView warrantyThanks = convertView.findViewById(R.id.reviewThanks);
         testbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +52,12 @@ public class warrantyAdapter extends ArrayAdapter<Product> {
                         .navigate(R.id.action_warrantyFragment_to_reviewFragment);
             }
         });
+        if(product.isReviewed()){
+            testbtn.setVisibility(View.GONE);
+        }
+        else{
+            warrantyThanks.setVisibility(View.GONE);
+        }
         TextView titleText = (TextView) convertView.findViewById(R.id.warrantyTitle);
         titleText.setText(product.getName());
 

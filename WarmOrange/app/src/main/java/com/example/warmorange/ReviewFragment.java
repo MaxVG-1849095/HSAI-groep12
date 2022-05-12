@@ -98,6 +98,7 @@ public class ReviewFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             product.addReview("", getRadio());
+                            product.setReviewed(true);
                             Navigation.findNavController(view)
                                     .navigate(R.id.action_reviewFragment_to_warrantyFragment);
                         }
@@ -117,6 +118,7 @@ public class ReviewFragment extends Fragment {
                 }
                 else{
                     product.addReview(reviewText.getText().toString(), getRadio());
+                    product.setReviewed(true);
                     Navigation.findNavController(view)
                             .navigate(R.id.action_reviewFragment_to_warrantyFragment);
                 }

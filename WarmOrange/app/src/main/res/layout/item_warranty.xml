@@ -93,4 +93,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/ic_baseline_access_time_24" />
+
+    <TextView
+        android:id="@+id/reviewThanks"
+        android:layout_width="163dp"
+        android:layout_height="32dp"
+        android:text="Bedankt voor een review achter te laten!"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/reviewButton"
+        app:layout_constraintStart_toEndOf="@+id/warrantyImage"
+        app:layout_constraintTop_toBottomOf="@+id/warrantyTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

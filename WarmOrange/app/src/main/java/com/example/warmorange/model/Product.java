@@ -14,6 +14,7 @@ public class Product {
     private Vector<Review> reviews = new Vector<>();
     private int totalWarranty;
     private int currentWarranty = 0;
+    private boolean reviewed = false;
 
     public Product(String name, boolean available, int imageId, String type) {
         this.name = name;
@@ -22,6 +23,14 @@ public class Product {
         this.type = type;
         this.totalWarranty = 20;
         this.currentWarranty = 10;
+    }
+
+    public boolean isReviewed() {
+        return reviewed;
+    }
+
+    public void setReviewed(boolean reviewed) {
+        this.reviewed = reviewed;
     }
 
     public int getTotalWarranty() {
