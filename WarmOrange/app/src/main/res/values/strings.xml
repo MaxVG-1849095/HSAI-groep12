@@ -29,4 +29,12 @@
     <string name="logout">Uitloggen</string>
     <string name="customer_card_sub">Laat deze code scannen aan de kassa!</string>
     <string name="customer_nr">Klantennummer:</string>
+    <string name="leave_review">Review achterlaten</string>
+    <string name="place_review">Plaats review</string>
+    <string name="review_score">Score van je review?</string>
+    <string name="wizard_title">Uitslag van de wizard</string>
+    <string name="wizard_text1">De wizard berekende dat de</string>
+    <string name="wizard_text2">Bij je past! Wil je naar de pagina van dit product navigeren?</string>
+    <string name="wizard_confirm">Akkoord</string>
+    <string name="wizard_deny">Probeer opnieuw</string>
 </resources>

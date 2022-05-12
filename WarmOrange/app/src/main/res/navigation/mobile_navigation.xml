@@ -26,7 +26,11 @@
         android:id="@+id/navigation_wizardFragment"
         android:name="com.example.warmorange.WizardFragment"
         android:label="fragment_wizard"
-        tools:layout="@layout/fragment_wizard" />
+        tools:layout="@layout/fragment_wizard" >
+        <action
+            android:id="@+id/action_navigation_wizardFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/compareFragment"
         android:name="com.example.warmorange.CompareFragment"
@@ -90,9 +94,15 @@
         <action
             android:id="@+id/action_productPageFragment_to_navigation_wizardFragment"
             app:destination="@id/navigation_wizardFragment" />
+        <action
+            android:id="@+id/action_productPageFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_productPageFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createAccountFragment"
+      android:id="@+id/createAccountFragment"
         android:name="com.example.warmorange.CreateAccountFragment"
         android:label="Maak een account aan"
         tools:layout="@layout/fragment_create_account" >
@@ -110,4 +120,14 @@
         android:name="com.example.warmorange.CustomerCardFragment"
         android:label="@string/customer_card"
         tools:layout="@layout/fragment_customer_card" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.warmorange.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.warmorange.ReviewFragment"
+        android:label="fragment_review"
+        tools:layout="@layout/fragment_review" />
 </navigation>
