@@ -7,6 +7,7 @@ public class applicationData {
     private static final applicationData instance = new applicationData();
     private final wizardData wData= new wizardData();
     private final ProductData productData = new ProductData();
+    private final LoginData loginData = new LoginData();
     private applicationData(){
 
     }
@@ -18,4 +19,5 @@ public class applicationData {
         return wData;
     }
     public ProductData getProductData(){return productData;}
+    public LoginData getLoginData() { return loginData; }
 }

@@ -64,11 +64,7 @@ public class CreateAccountFragment extends Fragment {
         if (validate(name, email, pw1, pw2)) {
             Account newAccount = new Account(name, "", pw1, email);
             LoginData.addAccount(newAccount);
-
-            SharedPreferences.Editor editor
-                    = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-            editor.putLong("activeUser", newAccount.getAccountId());
-            editor.apply();
+            applicationData.getInstance().getLoginData().setActiveUser(email);
 
             Navigation.findNavController(view).navigate(R.id.action_createAccountFragment_to_accountFragment);
             Toast.makeText(getContext(),

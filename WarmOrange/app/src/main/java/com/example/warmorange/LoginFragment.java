@@ -50,9 +50,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginData = new LoginData(getContext());
-        //temp
-        loginData.clearActiveUser();
+        loginData = applicationData.getInstance().getLoginData();
     }
 
     @Override
