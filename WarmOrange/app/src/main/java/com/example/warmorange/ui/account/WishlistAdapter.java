@@ -11,47 +11,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.warmorange.R;
 import com.example.warmorange.applicationData;
-import com.example.warmorange.databinding.BoughtProductLayoutBinding;
+import com.example.warmorange.databinding.WishlistItemLayoutBinding;
 import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 
-public class BoughtProductsAdapter extends RecyclerView.Adapter<BoughtProductsAdapter.ViewHolder> {
+public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        BoughtProductLayoutBinding binding;
+        WishlistItemLayoutBinding binding;
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
 
-            binding = BoughtProductLayoutBinding.bind(view);
+            binding = WishlistItemLayoutBinding.bind(view);
         }
 
-        public void setViewData(Product product, Account account) {
+        public void setViewData(Product product, Account account, WishlistAdapter adapter) {
             binding.productImage.setImageResource(product.getImageId());
             binding.productNameText.setText(product.getName());
+            binding.ratingBar.setRating((float)product.getAverageReviewScore());
+            binding.deleteButton.setOnClickListener(v -> {
+                int index = account.getWishlist().indexOf(product);
+                account.getWishlist().remove(index);
+                adapter.notifyItemRemoved(index);
 
-            reviewSetup(product);
-        }
-
-        @SuppressWarnings("ConstantConditions")
-        private void reviewSetup(Product product) {
-            // TODO: Determine whether user reviewed product
-            boolean reviewed = false;
-            if (reviewed)
-                binding.reviewThanksText.setVisibility(View.VISIBLE);
-            else {
-                Button button = binding.leaveReviewButton;
-                button.setVisibility(View.VISIBLE);
-                button.setOnClickListener(v -> {
-                    applicationData.getInstance().getProductData().setCurrentProduct(product.getName());
-                    // TODO: redirect to review page instead of product page
-                    Navigation.findNavController(v).navigate(R.id.action_boughtProductsFragment_to_productPageFragment);
+                Snackbar snackbar = Snackbar.make(v, product.getName() + " verwijderd uit wishlist.", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Ongedaan maken", s_v -> {
+                    account.getWishlist().insertElementAt(product, index);
+                    adapter.notifyItemInserted(index);
                 });
-            }
+                snackbar.show();
+            });
         }
     }
 
@@ -63,7 +57,7 @@ public class BoughtProductsAdapter extends RecyclerView.Adapter<BoughtProductsAd
      * @param products Product[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public BoughtProductsAdapter(List<Product> products) {
+    public WishlistAdapter(List<Product> products) {
         this.products = products;
     }
 
@@ -71,7 +65,7 @@ public class BoughtProductsAdapter extends RecyclerView.Adapter<BoughtProductsAd
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.bought_product_layout, viewGroup, false);
+                .inflate(R.layout.wishlist_item_layout, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -81,10 +75,10 @@ public class BoughtProductsAdapter extends RecyclerView.Adapter<BoughtProductsAd
         Product product = products.get(position);
         Account account = applicationData.getInstance().getLoginData().getActiveUser();
 
-        viewHolder.setViewData(product, account);
+        viewHolder.setViewData(product, account, this);
         viewHolder.itemView.setOnClickListener(v -> {
             applicationData.getInstance().getProductData().setCurrentProduct(product.getName());
-            Navigation.findNavController(v).navigate(R.id.action_boughtProductsFragment_to_productPageFragment);
+            Navigation.findNavController(v).navigate(R.id.action_wishlistFragment_to_productPageFragment);
         });
     }
 

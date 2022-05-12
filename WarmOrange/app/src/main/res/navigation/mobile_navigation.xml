@@ -60,14 +60,17 @@
         android:label="@string/account"
         tools:layout="@layout/fragment_account" >
         <action
-            android:id="@+id/action_accountFragment_to_boughtProductsFragment"
-            app:destination="@id/boughtProductsFragment" />
-        <action
             android:id="@+id/action_accountFragment_to_customerCardFragment"
             app:destination="@id/customerCardFragment" />
         <action
             android:id="@+id/action_accountFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_accountFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_warrantyFragment"
+            app:destination="@id/warrantyFragment" />
     </fragment>
     <fragment
         android:id="@+id/productFragment"
@@ -111,15 +114,6 @@
             app:destination="@id/accountFragment" />
     </fragment>
     <fragment
-        android:id="@+id/boughtProductsFragment"
-        android:name="com.example.warmorange.ui.account.BoughtProductsFragment"
-        android:label="@string/bought_products"
-        tools:layout="@layout/fragment_bought_products" >
-        <action
-            android:id="@+id/action_boughtProductsFragment_to_productPageFragment"
-            app:destination="@id/productPageFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/customerCardFragment"
         android:name="com.example.warmorange.ui.account.CustomerCardFragment"
         android:label="@string/customer_card"
@@ -146,5 +140,14 @@
         <action
             android:id="@+id/action_warrantyFragment_to_reviewFragment"
             app:destination="@id/reviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.example.warmorange.ui.account.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishlistFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
     </fragment>
 </navigation>

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.warmorange.databinding.FragmentProductPageBinding;
 import com.example.warmorange.databinding.FragmentQrBinding;
+import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.Review;
 
@@ -93,9 +94,18 @@ public class ProductPageFragment extends Fragment {
         wishlistButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                // Assumes wishlist doesn't already contain the product
+                Account activeUser = appData.getLoginData().getActiveUser();
+                if (activeUser == null) {
+                    Toast.makeText(getActivity(),"Log in om producten aan uw persoonlijke wishlist toe te voegen.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                activeUser.getWishlist().add(product);
                 Toast toast=Toast.makeText(getActivity(),product.getName() + "toegevoegd aan wishlist", Toast.LENGTH_SHORT);
                 toast.setMargin(50,50);
                 toast.show();
+                binding.wishlistButton.setEnabled(false);
+                binding.wishlistButton.setText(R.string.inWishlist);
             }
         });
         Button ARButton = (Button) binding.ARButton;

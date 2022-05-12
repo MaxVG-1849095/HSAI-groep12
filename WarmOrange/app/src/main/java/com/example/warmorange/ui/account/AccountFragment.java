@@ -56,7 +56,7 @@ public class AccountFragment extends Fragment {
         binding = FragmentAccountBinding.inflate(inflater, container, false);
 
         binding.boughtProductsButton.setOnClickListener(v -> Navigation.findNavController(v)
-                        .navigate(R.id.action_accountFragment_to_boughtProductsFragment)
+                        .navigate(R.id.action_accountFragment_to_warrantyFragment)
         );
 
         binding.customerCardButton.setOnClickListener(v -> {
@@ -67,7 +67,7 @@ public class AccountFragment extends Fragment {
         });
 
         binding.wishlistButton.setOnClickListener(v -> Navigation.findNavController(v)
-                .navigate(R.id.action_accountFragment_to_customerCardFragment));
+                .navigate(R.id.action_accountFragment_to_wishlistFragment));
 
         binding.logoutButton.setOnClickListener(v -> {
             loginData.clearActiveUser();

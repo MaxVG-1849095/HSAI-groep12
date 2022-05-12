@@ -45,4 +45,8 @@
     <string name="reviewThanks">Bedankt om een review achter te laten!</string>
     <string name="warrantyExpired">Garantie verlopen</string>
     <string name="myWishlist">Mijn wishlist</string>
+    <string name="deleteFromWishlist">Verwijder product uit wishlist</string>
+    <string name="emptyWishlist">Lege wishlist</string>
+    <string name="emptyWishlistLabel">Nog niets te vinden hier!</string>
+    <string name="inWishlist">In wishlist</string>
 </resources>

@@ -12,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.warmorange.R;
 import com.example.warmorange.applicationData;
-import com.example.warmorange.databinding.FragmentBoughtProductsBinding;
+import com.example.warmorange.databinding.FragmentWishlistBinding;
 import com.example.warmorange.model.Product;
 
 import java.util.ArrayList;
@@ -21,13 +22,13 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BoughtProductsFragment#newInstance} factory method to
+ * Use the {@link WishlistFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BoughtProductsFragment extends Fragment {
-    private FragmentBoughtProductsBinding binding;
+public class WishlistFragment extends Fragment {
+    private FragmentWishlistBinding binding;
 
-    public BoughtProductsFragment() {
+    public WishlistFragment() {
         // Required empty public constructor
     }
 
@@ -38,8 +39,8 @@ public class BoughtProductsFragment extends Fragment {
      * @return A new instance of fragment BoughtProductsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BoughtProductsFragment newInstance() {
-        return new BoughtProductsFragment();
+    public static WishlistFragment newInstance() {
+        return new WishlistFragment();
     }
 
     @Override
@@ -50,18 +51,24 @@ public class BoughtProductsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentBoughtProductsBinding.inflate(inflater, container, false);
+        List<Product> wishlist = applicationData.getInstance().getLoginData().getActiveUser().getWishlist();
 
-        List<Product> p = new ArrayList<>();
-        p.add(applicationData.getInstance().getProductData().getProduct("Apple magic keyboard"));
-        p.add(applicationData.getInstance().getProductData().getProduct("OPPO Find X5 Pro"));
-        p.add(applicationData.getInstance().getProductData().getProduct("Iphone 13"));
-        p.add(applicationData.getInstance().getProductData().getProduct("Samsung QLED 50Q64A (2021)"));
-        p.add(applicationData.getInstance().getProductData().getProduct("SteelSeries Apex Pro Gaming"));
+        if (wishlist.isEmpty())
+            return inflater.inflate(R.layout.fragment_wishlist_empty, container, false);
+
+//        List<Product> p = new ArrayList<>();
+//        p.add(applicationData.getInstance().getProductData().getProduct("Apple magic keyboard"));
+//        p.add(applicationData.getInstance().getProductData().getProduct("OPPO Find X5 Pro"));
+//        p.add(applicationData.getInstance().getProductData().getProduct("Iphone 13"));
+//        p.add(applicationData.getInstance().getProductData().getProduct("Samsung QLED 50Q64A (2021)"));
+//        p.add(applicationData.getInstance().getProductData().getProduct("SteelSeries Apex Pro Gaming"));
+
+//        WishlistAdapter adapter = new WishlistAdapter(p);
+        binding = FragmentWishlistBinding.inflate(inflater, container, false);
+
+        WishlistAdapter adapter = new WishlistAdapter(wishlist);
 
         RecyclerView recyclerView = binding.boughtProductsRecyclerView;
-//        BoughtProductsAdapter adapter = new BoughtProductsAdapter(applicationData.getInstance().getLoginData().getActiveUser().getOwnedProducts());
-        BoughtProductsAdapter adapter = new BoughtProductsAdapter(p);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
