@@ -42,7 +42,6 @@
         android:id="@+id/reviewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
         android:text="Plaats review"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -51,22 +50,27 @@
 
     <TextView
         android:id="@+id/boughtText"
-        android:layout_width="226dp"
+        android:layout_width="match_parent"
         android:layout_height="32dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/warrantyImage" />
+        android:textColor="#000000"
+        app:drawableLeftCompat="@drawable/ic_baseline_calendar_today_24"
+        app:layout_constraintTop_toBottomOf="@+id/warrantyImage"
+        tools:layout_editor_absoluteX="31dp" />
 
     <TextView
         android:id="@+id/warrantyText"
-        android:layout_width="379dp"
+        android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/boughtText" />
+        android:textColor="#000000"
+        app:drawableLeftCompat="@drawable/ic_baseline_access_time_24"
+        app:layout_constraintTop_toBottomOf="@+id/boughtText"
+        tools:layout_editor_absoluteX="32dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -77,28 +81,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/warrantyText" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/warrantyImage"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@drawable/ic_baseline_access_time_24" />
-
     <TextView
         android:id="@+id/reviewThanks"
         android:layout_width="163dp"
         android:layout_height="32dp"
         android:text="Bedankt voor een review achter te laten!"
+
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/reviewButton"
         app:layout_constraintStart_toEndOf="@+id/warrantyImage"
