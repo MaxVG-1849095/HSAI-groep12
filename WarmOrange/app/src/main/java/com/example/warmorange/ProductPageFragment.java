@@ -154,8 +154,11 @@ public class ProductPageFragment extends Fragment {
         wizardButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                applicationData.getInstance().getwData().setWizardType(product.getType());
-                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_navigation_wizardFragment);
+                if(applicationData.getInstance().getProductData().getCurrentProduct().getType() == "Televisie"){
+                    applicationData.getInstance().getwData().setWizardType(product.getType());
+                    Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_navigation_wizardFragment);
+
+                }
             }
         });
         ListView reviewlist = (ListView) binding.reviewList;

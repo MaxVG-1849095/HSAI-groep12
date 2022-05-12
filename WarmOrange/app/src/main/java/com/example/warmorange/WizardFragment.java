@@ -1,7 +1,10 @@
 package com.example.warmorange;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -9,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.warmorange.databinding.FragmentWizardBinding;
@@ -93,9 +96,25 @@ public class WizardFragment extends Fragment {
                                                setData();
                                            }
                                            else if(wInstance.lastIndex()){
-                                               checkRadio();
-                                               Toast toast=Toast.makeText(getActivity(),"Your score: " + wInstance.calcResponse(),Toast.LENGTH_SHORT);
-                                               toast.show();
+                                               TextView message = new TextView(getContext());
+                                               message.setText(HtmlCompat.fromHtml(getString(R.string.wizard_text1) + wInstance.calcResponse() + getString(R.string.wizard_text2), HtmlCompat.FROM_HTML_MODE_COMPACT));
+                                               AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                                               dialog.setTitle(R.string.wizard_title);
+                                               dialog.setView(message);
+                                               dialog.setPositiveButton(R.string.wizard_confirm, new DialogInterface.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(DialogInterface dialogInterface, int i) {
+                                                       applicationData.getInstance().getProductData().setCurrentProduct(wInstance.calcResponse());
+                                                       Navigation.findNavController(view).navigate(R.id.action_navigation_wizardFragment_to_productPageFragment);
+                                                   }
+                                               });
+                                               dialog.setNegativeButton(R.string.wizard_deny, new DialogInterface.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(DialogInterface dialogInterface, int i) {
+                                                       binding.radiogroup.clearCheck();
+                                                       setData();
+                                                   }});
+                                               dialog.show();
                                            }
                                        }
                                    }

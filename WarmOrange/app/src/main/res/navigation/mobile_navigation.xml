@@ -26,7 +26,11 @@
         android:id="@+id/navigation_wizardFragment"
         android:name="com.example.warmorange.WizardFragment"
         android:label="fragment_wizard"
-        tools:layout="@layout/fragment_wizard" />
+        tools:layout="@layout/fragment_wizard" >
+        <action
+            android:id="@+id/action_navigation_wizardFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/compareFragment"
         android:name="com.example.warmorange.CompareFragment"

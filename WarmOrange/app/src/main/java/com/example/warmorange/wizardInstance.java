@@ -83,13 +83,32 @@ public class wizardInstance {
         }
         System.out.println(responses);
     }
-    public int calcResponse(){
+    public int calcScore(){
         int total = 0;
         for (int i:responses
              ) {
             total += i;
         }
         return total;
+    }
+    public String calcResponse(){
+        currentIndex = 0;
+        if(applicationData.getInstance().getProductData().getCurrentProduct().getType() == "Televisie"){
+            int score = calcScore();
+            if(score <= 3){
+                applicationData.getInstance().getProductData().setCurrentProduct("Samsung QLED 50Q64A (2021)");
+                return "Samsung QLED 50Q64A (2021)";
+            }
+            else if(score <= 6){
+                applicationData.getInstance().getProductData().setCurrentProduct("Philips The One (50PUS8506) - Ambilight (2021)");
+                return "Philips The One (50PUS8506) - Ambilight (2021)";
+            }
+            else if(score <= 9){
+                applicationData.getInstance().getProductData().setCurrentProduct("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021");
+                return "LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021";
+            }
+        }
+        return "wizard failed";
     }
     public boolean lastQuestion(){
         return currentIndex==questions.size() - 1;
