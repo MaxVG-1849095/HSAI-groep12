@@ -2,6 +2,7 @@ package com.example.warmorange;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -82,6 +84,10 @@ public class ReviewFragment extends Fragment {
 
 
         EditText reviewText = (EditText) binding.editTextTextMultiLine;
+
+        ImageView image = (ImageView) binding.imageView3;
+        image.setImageResource(product.getImageId());
+
 
         Button submitButton = (Button) binding.submitButton;
 
