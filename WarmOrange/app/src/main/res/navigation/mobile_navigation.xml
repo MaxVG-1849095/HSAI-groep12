@@ -51,10 +51,20 @@
             app:destination="@id/productPageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/accountFragment2"
+        android:id="@+id/accountFragment"
         android:name="com.example.warmorange.AccountFragment"
         android:label="@string/account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_boughtProductsFragment"
+            app:destination="@id/boughtProductsFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_customerCardFragment"
+            app:destination="@id/customerCardFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/productFragment"
         android:name="com.example.warmorange.ProductFragment"
@@ -63,11 +73,14 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.warmorange.LoginFragment"
-        android:label="fragment_login"
+        android:label="Log in"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_accountFragment2"
-            app:destination="@id/accountFragment2" />
+            android:id="@+id/action_loginFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_createAccountFragment"
+            app:destination="@id/createAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/productPageFragment"
@@ -78,4 +91,23 @@
             android:id="@+id/action_productPageFragment_to_navigation_wizardFragment"
             app:destination="@id/navigation_wizardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="com.example.warmorange.CreateAccountFragment"
+        android:label="Maak een account aan"
+        tools:layout="@layout/fragment_create_account" >
+        <action
+            android:id="@+id/action_createAccountFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/boughtProductsFragment"
+        android:name="com.example.warmorange.BoughtProductsFragment"
+        android:label="@string/bought_products"
+        tools:layout="@layout/fragment_bought_products" />
+    <fragment
+        android:id="@+id/customerCardFragment"
+        android:name="com.example.warmorange.CustomerCardFragment"
+        android:label="@string/customer_card"
+        tools:layout="@layout/fragment_customer_card" />
 </navigation>

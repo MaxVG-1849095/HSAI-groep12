@@ -2,11 +2,21 @@ package com.example.warmorange;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.warmorange.databinding.FragmentAccountBinding;
+import com.example.warmorange.databinding.FragmentCreateAccountBinding;
+import com.example.warmorange.model.Account;
+import com.example.warmorange.model.LoginData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,15 +24,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AccountFragment extends Fragment {
+    private FragmentAccountBinding binding;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
+    private LoginData loginData;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -32,33 +36,56 @@ public class AccountFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
      * @return A new instance of fragment AccountFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AccountFragment newInstance(/*String param1, String param2*/) {
-        AccountFragment fragment = new AccountFragment();
-        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static AccountFragment newInstance() {
+        return new AccountFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        loginData = new LoginData(getContext());
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        hideBackButton();
+        binding = FragmentAccountBinding.inflate(inflater, container, false);
+
+        binding.boughtProductsButton.setOnClickListener(
+                v -> Navigation.findNavController(v)
+                        .navigate(R.id.action_accountFragment_to_boughtProductsFragment)
+        );
+
+        binding.customerCardButton.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putLong(CustomerCardFragment.ARG_CUSTOMER_ID, loginData.getActiveUser().getAccountId());
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_accountFragment_to_customerCardFragment, bundle);
+        });
+
+        binding.logoutButton.setOnClickListener(v -> {
+            loginData.clearActiveUser();
+            Navigation.findNavController(v)
+                    .navigate(R.id.action_accountFragment_to_navigation_home);
+            Toast.makeText(getContext(),
+                    "Succesvol uitgelogd",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        });
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        return binding.getRoot();
+    }
+
+    private void hideBackButton() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity == null) return;
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar == null) return;
+        actionBar.setDisplayHomeAsUpEnabled(false);
     }
 }

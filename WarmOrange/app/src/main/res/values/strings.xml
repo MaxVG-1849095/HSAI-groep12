@@ -15,10 +15,18 @@
     <string name="vorige">Vorige</string>
     <string name="email">Email</string>
     <string name="email_label">Voer hier uw email adres in.</string>
+    <string name="name_label">Voer hier uw naam in.</string>
     <string name="login">Log in</string>
+    <string name="name">Naam</string>
     <string name="password">Wachtwoord</string>
     <string name="password_label">Voer hier uw wachtwoord in.</string>
     <string name="no_account_yet">Nog geen account?</string>
     <string name="make_account">Maak een account aan</string>
     <string name="add_to_wishlist">Voeg toe aan wishlist</string>
+    <string name="passwordRepeat">Herhaal wachtwoord</string>
+    <string name="customer_card">Klantenkaart</string>
+    <string name="bought_products">Gekochte producten</string>
+    <string name="logout">Uitloggen</string>
+    <string name="customer_card_sub">Laat deze code scannen aan de kassa!</string>
+    <string name="customer_nr">Klantennummer:</string>
 </resources>

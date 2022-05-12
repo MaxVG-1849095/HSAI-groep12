@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/customerCardButton"
+            android:layout_width="319dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="45dp"
+            android:backgroundTint="#F1EEEE"
+            android:foregroundTint="#000000"
+            android:shadowColor="#FFFFFF"
+            android:text="@string/customer_card"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            app:icon="@drawable/ic_baseline_credit_card_24"
+            app:iconSize="100dp"
+            app:iconTint="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#FFFFFF"
+            app:strokeColor="#000000" />
+
+        <Button
+            android:id="@+id/boughtProductsButton"
+            android:layout_width="319dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F1EEEE"
+            android:foregroundTint="#000000"
+            android:shadowColor="#FFFFFF"
+            android:text="@string/bought_products"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            app:icon="@drawable/ic_baseline_shopping_bag_24"
+            app:iconSize="100dp"
+            app:iconTint="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerCardButton"
+            app:rippleColor="#FFFFFF"
+            app:strokeColor="#000000" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:text="@string/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
