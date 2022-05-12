@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.warmorange.AccountFragment"
+        android:name="com.example.warmorange.ui.account.AccountFragment"
         android:label="@string/account"
         tools:layout="@layout/fragment_account" >
         <action
@@ -76,7 +76,7 @@
         tools:layout="@layout/fragment_product" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.warmorange.LoginFragment"
+        android:name="com.example.warmorange.ui.account.LoginFragment"
         android:label="Log in"
         tools:layout="@layout/fragment_login" >
         <action
@@ -103,7 +103,7 @@
     </fragment>
     <fragment
       android:id="@+id/createAccountFragment"
-        android:name="com.example.warmorange.CreateAccountFragment"
+        android:name="com.example.warmorange.ui.account.CreateAccountFragment"
         android:label="Maak een account aan"
         tools:layout="@layout/fragment_create_account" >
         <action
@@ -112,7 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/boughtProductsFragment"
-        android:name="com.example.warmorange.BoughtProductsFragment"
+        android:name="com.example.warmorange.ui.account.BoughtProductsFragment"
         android:label="@string/bought_products"
         tools:layout="@layout/fragment_bought_products" >
         <action
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/customerCardFragment"
-        android:name="com.example.warmorange.CustomerCardFragment"
+        android:name="com.example.warmorange.ui.account.CustomerCardFragment"
         android:label="@string/customer_card"
         tools:layout="@layout/fragment_customer_card" />
     <fragment

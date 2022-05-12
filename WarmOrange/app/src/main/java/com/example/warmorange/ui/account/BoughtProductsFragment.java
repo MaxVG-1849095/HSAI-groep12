@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.warmorange.applicationData;
 import com.example.warmorange.databinding.FragmentBoughtProductsBinding;
 import com.example.warmorange.model.Product;
 

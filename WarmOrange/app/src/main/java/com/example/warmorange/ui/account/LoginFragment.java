@@ -1,23 +1,20 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavOptions;
-import androidx.navigation.NavOptionsBuilder;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.applicationData;
 import com.example.warmorange.databinding.FragmentLoginBinding;
-import com.example.warmorange.databinding.FragmentQrBinding;
 import com.example.warmorange.model.LoginData;
 
 /**

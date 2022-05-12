@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.os.Bundle;
 
@@ -8,15 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.applicationData;
 import com.example.warmorange.databinding.FragmentAccountBinding;
-import com.example.warmorange.databinding.FragmentCreateAccountBinding;
-import com.example.warmorange.model.Account;
 import com.example.warmorange.model.LoginData;
 
 /**
@@ -56,8 +55,7 @@ public class AccountFragment extends Fragment {
         hideBackButton();
         binding = FragmentAccountBinding.inflate(inflater, container, false);
 
-        binding.boughtProductsButton.setOnClickListener(
-                v -> Navigation.findNavController(v)
+        binding.boughtProductsButton.setOnClickListener(v -> Navigation.findNavController(v)
                         .navigate(R.id.action_accountFragment_to_boughtProductsFragment)
         );
 
@@ -67,6 +65,9 @@ public class AccountFragment extends Fragment {
             Navigation.findNavController(v)
                     .navigate(R.id.action_accountFragment_to_customerCardFragment, bundle);
         });
+
+        binding.wishlistButton.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(R.id.action_accountFragment_to_customerCardFragment));
 
         binding.logoutButton.setOnClickListener(v -> {
             loginData.clearActiveUser();

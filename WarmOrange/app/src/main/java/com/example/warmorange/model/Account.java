@@ -10,6 +10,7 @@ public class Account {
     private final String password;
     private final String email;
     private final Vector<Product> ownedProducts;
+    private final Vector<Product> wishlist;
 
     private final long accountId;
 
@@ -20,6 +21,7 @@ public class Account {
         this.email = email;
         accountId = nextId++;
         ownedProducts = new Vector<>();
+        wishlist = new Vector<>();
     }
 
     public String getFirstName() { return firstName; }
@@ -30,6 +32,9 @@ public class Account {
     public long getAccountId() { return accountId; }
     public Vector<Product> getOwnedProducts() {
         return ownedProducts;
+    }
+    public Vector<Product> getWishlist() {
+        return wishlist;
     }
     public void addProduct(Product p){
         ownedProducts.add(p);

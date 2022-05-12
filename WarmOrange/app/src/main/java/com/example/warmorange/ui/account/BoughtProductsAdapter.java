@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.warmorange.R;
+import com.example.warmorange.applicationData;
 import com.example.warmorange.databinding.BoughtProductLayoutBinding;
 import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;

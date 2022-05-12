@@ -44,4 +44,5 @@
     <string name="boughtWhen">Gekocht op:</string>
     <string name="reviewThanks">Bedankt om een review achter te laten!</string>
     <string name="warrantyExpired">Garantie verlopen</string>
+    <string name="myWishlist">Mijn wishlist</string>
 </resources>

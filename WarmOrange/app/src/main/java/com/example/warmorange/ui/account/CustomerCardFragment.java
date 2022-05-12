@@ -1,19 +1,15 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.warmorange.databinding.FragmentCustomerCardBinding;
-import com.example.warmorange.databinding.FragmentLoginBinding;
-
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.

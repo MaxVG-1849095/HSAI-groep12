@@ -1,18 +1,18 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.applicationData;
 import com.example.warmorange.databinding.FragmentCreateAccountBinding;
 import com.example.warmorange.databinding.FragmentLoginBinding;
 import com.example.warmorange.model.Account;
