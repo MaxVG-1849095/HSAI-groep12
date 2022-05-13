@@ -49,4 +49,7 @@
     <string name="emptyWishlist">Lege wishlist</string>
     <string name="emptyWishlistLabel">Nog niets te vinden hier!</string>
     <string name="inWishlist">In wishlist</string>
+    <string name="comparison_empty">Lege vergelijking</string>
+    <string name="comparison_empty_label">Geen producten om te vergelijken!</string>
+    <string name="addSecondItem">Voeg een tweede item toe om te vergelijken</string>
 </resources>

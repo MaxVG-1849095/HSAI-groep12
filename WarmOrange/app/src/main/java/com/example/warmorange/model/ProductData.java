@@ -3,10 +3,12 @@ package com.example.warmorange.model;
 import com.example.warmorange.R;
 
 import java.util.HashMap;
+import java.util.Vector;
 
 public class ProductData {
     private HashMap<String,Product> productMap = new HashMap<>();
     private Product currentProduct;
+    private Vector<Product> comparisonList = new Vector<>();
     public ProductData(){
         fillProductData();
         currentProduct = productMap.get("Iphone 13");
@@ -23,6 +25,10 @@ public class ProductData {
         productMap.get("Samsung QLED 50Q64A (2021)").addReview("Niet zo handig om mee te nemen",3);
         productMap.get("Samsung QLED 50Q64A (2021)").setTotalWarranty(24);
         productMap.get("Samsung QLED 50Q64A (2021)").setCurrentWarranty(25);
+        productMap.get("Samsung QLED 50Q64A (2021)").addAttribute("Grootte", "Groot");
+        productMap.get("Samsung QLED 50Q64A (2021)").addAttribute("Diagonaal", "56 inch");
+        productMap.get("Samsung QLED 50Q64A (2021)").addAttribute("Paneeltype", "LED-LCD");
+        productMap.get("Samsung QLED 50Q64A (2021)").addAttribute("Resolutie", "4K");
 
         productMap.put("Philips The One (50PUS8506) - Ambilight (2021)", new Product("Philips The One (50PUS8506) - Ambilight (2021)",false,R.drawable.philips_tv,"Televisie"));
         productMap.get("Philips The One (50PUS8506) - Ambilight (2021)").addTag("50Hz");
@@ -50,6 +56,10 @@ public class ProductData {
         productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addReview("Perfecte grootte!",2);
         productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").setTotalWarranty(24);
         productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").setCurrentWarranty(13);
+        productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Grootte", "Groot");
+        productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Diagonaal", "55 inch");
+        productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Paneeltype", "OLED");
+        productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Verversingssnelheid", "100Hz");
 
         productMap.put("Iphone 13", new Product("Iphone 13",true, R.drawable.iphone_13,"Smartphone"));
         productMap.get("Iphone 13").addTag("Prachtig beeld");
@@ -117,4 +127,5 @@ public class ProductData {
     public Product getCurrentProduct(){
         return currentProduct;
     }
+    public Vector<Product> getComparisonList() { return comparisonList; }
 }
