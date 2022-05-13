@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -187,24 +188,15 @@ public class ProductPageFragment extends Fragment {
         Vector<Review> productreviews = product.getReviews();
         String[] reviewStrings = new String[product.getTextReviewAmount()+1];
         DecimalFormat df = new DecimalFormat("0.00");
-        reviewStrings[0] = "Reviews: (Average review score: " + df.format(product.getAverageReviewScore()) + "/5)";
-        int index = 1;
-        String reviewString;
-        for(Review r:productreviews){
-            if(!r.getText().equals("")){
-                System.out.println("reviewing" + r.getRating());
-                reviewString = "";
-                reviewString+=r.getText();
-                reviewString+=" | ";
-                reviewString+=r.getRating();
-                reviewString+="/5";
-                reviewStrings[index] = reviewString;
-                index++;
-            }
-        }
-        ArrayAdapter<String> arr;
-        arr = new ArrayAdapter<String>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,reviewStrings);
-        reviewlist.setAdapter(arr);
+        reviewAdapter ra = new reviewAdapter(getContext());
+        reviewlist.setAdapter(ra);
+
+
+        RatingBar ratingBar = (RatingBar) binding.ratingBar3;
+        ratingBar.setRating((float) product.getAverageReviewScore());
+
+        TextView ratingText = (TextView) binding.ratingText;
+        ratingText.setText("Gemiddelde review score: " + product.getAverageReviewScore() + "/5");
         return binding.getRoot();
     }
 }
