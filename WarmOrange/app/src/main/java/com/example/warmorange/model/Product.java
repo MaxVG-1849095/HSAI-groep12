@@ -2,10 +2,13 @@ package com.example.warmorange.model;
 
 import com.example.warmorange.R;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class Product {
     private Vector<String> tags = new Vector<>();
+    private final Map<String, String> attributes = new HashMap<>();
     private String name;
     private boolean available;
     private int imageId;
@@ -118,5 +121,12 @@ public class Product {
             }
         }
         return count;
+    }
+
+    public Map<String, String> getAttributes() {
+        return attributes;
+    }
+    public void addAttribute(String key, String value) {
+        attributes.put(key, value);
     }
 }
