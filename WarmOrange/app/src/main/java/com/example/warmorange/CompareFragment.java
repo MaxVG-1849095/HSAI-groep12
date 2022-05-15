@@ -1,13 +1,17 @@
 package com.example.warmorange;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -25,6 +29,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 import java.util.zip.Inflater;
 
 /**
@@ -38,7 +43,7 @@ public class CompareFragment extends Fragment {
     public static final String ARG_PRODUCT_NAMES = "productNames";
 
     // TODO: Rename and change types of parameters
-    private Product[] products;
+    private List<Product> products;
 
     public CompareFragment() {
         // Required empty public constructor
@@ -48,53 +53,49 @@ public class CompareFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param productNames names of the products to be compared.
      * @return A new instance of fragment CompareFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CompareFragment newInstance(String[] productNames) {
-        CompareFragment fragment = new CompareFragment();
-        Bundle args = new Bundle();
-        args.putStringArray(ARG_PRODUCT_NAMES, productNames);
-        fragment.setArguments(args);
-        return fragment;
+    public static CompareFragment newInstance() {
+        return new CompareFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ProductData productData = applicationData.getInstance().getProductData();
-        if (getArguments() != null) {
-            String[] productNames = getArguments().getStringArray(ARG_PRODUCT_NAMES);
-            products = new Product[productNames.length];
-            for (int i = 0; i < productNames.length; ++i)
-                products[i] = productData.getProduct(productNames[i]);
-        }
+        Vector<Product> wholeList = productData.getComparisonList();
+        products = wholeList.subList(0, Integer.min(2, wholeList.size()));
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (products == null || products.length == 0)
+        if (products == null || products.size() == 0)
             return inflater.inflate(R.layout.fragment_compare_empty, container, false);
 
         binding = FragmentCompareBinding.inflate(inflater, container, false);
-
-        setHeader();
-        String[] attributes = getAttributes();
-        View[] views = createAttributeViews(inflater, container, attributes.length);
-        fillAttributeViews(attributes, views);
+        initComparison(inflater, container);
 
         return binding.getRoot();
     }
 
+    private void initComparison(LayoutInflater inflater, ViewGroup container) {
+        setHeader();
+        String[] attributes = getAttributes();
+        View[] views = createAttributeViews(inflater, container, attributes.length);
+        fillAttributeViews(attributes, views);
+    }
+
     private void fillAttributeViews(String[] attributes, View[] views) {
-        if (products.length == 0) return;
+        assert attributes.length == views.length;
+
+        if (products.size() == 0) return;
         // product 1
-        Map<String, String> values1 = products[0].getAttributes();
+        Map<String, String> values1 = products.get(0).getAttributes();
         Map<String, String> values2 = new HashMap<>();
-        if (products.length >= 2)
-            values2 = products[1].getAttributes();
+        if (products.size() >= 2)
+            values2 = products.get(1).getAttributes();
 
         for (int i = 0; i < attributes.length; ++i) {
             String a = attributes[i];
@@ -102,25 +103,27 @@ public class CompareFragment extends Fragment {
             v.findViewById(R.id.attributeRow).setBackgroundResource(i % 2 == 0 ? R.color.table_accent1 : R.color.table_accent2);
             ((TextView)v.findViewById(R.id.attributeName)).setText(a);
             ((TextView)v.findViewById(R.id.product1Attribute)).setText(values1.getOrDefault(a, "-"));
-            if (products.length >= 2)
+            if (products.size() >= 2)
                 ((TextView)v.findViewById(R.id.product2Attribute)).setText(values2.getOrDefault(a, "-"));
         }
     }
 
     private void setHeader() {
-        if (products.length > 0) {
-            binding.product1Image.setImageResource(products[0].getImageId());
-            binding.product1NameTextView.setText(products[0].getName());
-            binding.product1Image.setOnClickListener(v -> onProductClick(products[0], v));
-            binding.product1NameTextView.setOnClickListener(v -> onProductClick(products[0], v));
-            binding.deleteButton1.setOnClickListener(v -> onProductDeleted(products[0], v));
+        if (products.size() > 0) {
+            Product p1 = products.get(0);
+            binding.product1Image.setImageResource(p1.getImageId());
+            binding.product1NameTextView.setText(p1.getName());
+            binding.product1Image.setOnClickListener(v -> onProductClick(p1, v));
+            binding.product1NameTextView.setOnClickListener(v -> onProductClick(p1, v));
+            binding.deleteButton1.setOnClickListener(v -> onProductDeleted(p1, v));
         }
-        if (products.length > 1) {
-            binding.product2Image.setImageResource(products[1].getImageId());
-            binding.product2NameTextView.setText(products[1].getName());
-            binding.product2Image.setOnClickListener(v -> onProductClick(products[1], v));
-            binding.product2NameTextView.setOnClickListener(v -> onProductClick(products[1], v));
-            binding.deleteButton2.setOnClickListener(v -> onProductDeleted(products[1], v));
+        if (products.size() > 1) {
+            Product p2 = products.get(1);
+            binding.product2Image.setImageResource(p2.getImageId());
+            binding.product2NameTextView.setText(p2.getName());
+            binding.product2Image.setOnClickListener(v -> onProductClick(p2, v));
+            binding.product2NameTextView.setOnClickListener(v -> onProductClick(p2, v));
+            binding.deleteButton2.setOnClickListener(v -> onProductDeleted(p2, v));
         } else {
             binding.product2Image.setImageResource(R.drawable.ic_baseline_library_add_24);
             binding.product2Image.getLayoutParams().height = 100;
@@ -136,7 +139,20 @@ public class CompareFragment extends Fragment {
     }
 
     private void onProductDeleted(Product p, View v) {
+        int i = products.indexOf(p);
+        products.remove(i);
 
+        if (i <= 1)
+            binding.compareTable.setColumnCollapsed(i + 1, true);
+        if (products.size() == 0) {
+            binding.compareTable.setColumnCollapsed(0, true);
+            binding.emptyView.getRoot().setVisibility(View.VISIBLE);
+            binding.addItemTextView.setVisibility(View.INVISIBLE);
+            binding.compareScrollView.setVisibility(View.GONE);
+        }
+        else if (products.size() == 1) {
+            binding.addItemTextView.setVisibility(View.VISIBLE);
+        }
     }
 
     private void onProductClick(Product p, View v) {
@@ -155,14 +171,14 @@ public class CompareFragment extends Fragment {
     }
 
     private String[] getAttributes() {
-        if (products.length == 0) return new String[0];
+        if (products.size() == 0) return new String[0];
 
-        Map<String, String> map1 = products[0].getAttributes();
+        Map<String, String> map1 = products.get(0).getAttributes();
         ArrayList<String> attributes = new ArrayList<>(map1.keySet());
-        if (products.length == 1)
+        if (products.size() == 1)
             return attributes.toArray(new String[0]);
 
-        Map<String, String> map2 = products[1].getAttributes();
+        Map<String, String> map2 = products.get(1).getAttributes();
 
         for (String k : map2.keySet()) {
             if (!attributes.contains(k))

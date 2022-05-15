@@ -1,141 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/compareScrollView"
+    android:id="@+id/frameLayout9"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CompareFragment">
+    android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/compareTable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TableRow
+    <TextView
+        android:id="@+id/addItemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addSecondItem"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <include
+        android:id="@+id/emptyView"
+        layout="@layout/fragment_compare_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/compareScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".CompareFragment">
+
+        <TableLayout
+            android:id="@+id/compareTable"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <View
-                android:id="@+id/compareEmpty1"
+            <TableRow
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="100" />
+                android:layout_height="match_parent"
+                android:weightSum="100">
 
-            <ImageButton
-                android:id="@+id/deleteButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
-                android:contentDescription="@string/deleteFromWishlist"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:src="@drawable/ic_baseline_close_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageButton
-                android:id="@+id/deleteButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
-                android:contentDescription="@string/deleteFromWishlist"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:src="@drawable/ic_baseline_close_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/compareTableImages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100">
-
-            <View
-                android:id="@+id/compareEmpty2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="100" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp">
-
-                <ImageView
-                    android:id="@+id/product1Image"
-                    android:layout_width="wrap_content"
+                <View
+                    android:id="@+id/compareEmpty1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="100"
-                    android:scaleType="fitEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_weight="33" />
+
+                <ImageButton
+                    android:id="@+id/deleteButton1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:backgroundTint="#FFFFFF"
+                    android:contentDescription="@string/deleteFromWishlist"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_close_24"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    tools:src="@tools:sample/avatars" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="125dp"
-                android:layout_height="125dp">
-
-                <ImageView
-                    android:id="@+id/product2Image"
-                    android:layout_width="wrap_content"
+                <ImageButton
+                    android:id="@+id/deleteButton2"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:backgroundTint="#FFFFFF"
+                    android:contentDescription="@string/deleteFromWishlist"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:src="@drawable/ic_baseline_close_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/compareTableImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="100">
+
+                <View
+                    android:id="@+id/compareEmpty2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_weight="100"
-                    android:scaleType="fitEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_weight="33">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </TableRow>
+                    <ImageView
+                        android:id="@+id/product1Image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:scaleType="fitEnd"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:src="@tools:sample/avatars" />
 
-        <TableRow
-            android:id="@+id/compareTableProductNames"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="100"
-            android:gravity="start">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/textView10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="100"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_weight="33">
 
-            <TextView
-                android:id="@+id/product1NameTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="Product 1"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/product2Image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="100"
+                        android:scaleType="fitEnd"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:src="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/product2NameTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="Product2"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </TableRow>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </TableRow>
 
-    </TableLayout>
-</ScrollView>
+            <TableRow
+                android:id="@+id/compareTableProductNames"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:weightSum="100">
+
+                <View
+                    android:id="@+id/textView10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33" />
+
+                <TextView
+                    android:id="@+id/product1NameTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="33"
+                    android:text="Product 1"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/product2NameTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="33"
+                    android:text="Product2"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

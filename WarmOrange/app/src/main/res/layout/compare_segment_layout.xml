@@ -4,7 +4,6 @@
     android:id="@+id/attributeRow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="end"
     android:padding="5dp"
     android:weightSum="100">
 
@@ -13,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
-        android:layout_weight="100"
+        android:layout_weight="33"
         android:drawablePadding="3dp"
         android:gravity="center_vertical"
         app:drawableEndCompat="@drawable/ic_baseline_info_24" />
@@ -23,11 +22,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp" />
+        android:layout_marginEnd="5dp"
+        android:layout_weight="33" />
 
     <TextView
         android:id="@+id/product2Attribute"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp" />
+        android:layout_marginStart="5dp"
+        android:layout_weight="33" />
 </TableRow>
