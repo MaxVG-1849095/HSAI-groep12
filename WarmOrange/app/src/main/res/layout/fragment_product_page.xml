@@ -10,9 +10,17 @@
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProductPageFragment" >
+        tools:context=".ui.productPage.ProductPageFragment" >
 
 
+        <View
+            android:id="@+id/view11"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/wizardButton"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-2dp" />
 
         <View
             android:id="@+id/TopFiller"
@@ -28,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Inbegrepen"
+            android:gravity="center"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view6"
@@ -57,6 +66,7 @@
             android:id="@+id/imageView"
             android:layout_width="313dp"
             android:layout_height="230dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +76,7 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="248dp"
+            android:layout_marginTop="264dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
@@ -131,7 +141,7 @@
         <Button
             android:id="@+id/ARButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="4dp"
             android:text="Bekijk in huiskamer"
             android:textSize="12sp"
@@ -142,13 +152,13 @@
         <ImageButton
             android:id="@+id/ARInfoButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:src="@drawable/ic_baseline_info_24"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ARButton"
             app:layout_constraintTop_toBottomOf="@+id/wishlistButton"
-            app:layout_constraintVertical_bias="0.61"
+            app:layout_constraintVertical_bias="0.44"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -156,6 +166,7 @@
             android:layout_width="170dp"
             android:layout_height="98dp"
             android:text="@string/placeholder"
+            android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintEnd_toStartOf="@+id/view4"
@@ -223,7 +234,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Doe de keuzewizard!"
-            app:layout_constraintBottom_toTopOf="@+id/view8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/WizardText" />
@@ -245,8 +255,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wizardButton"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar3"
             app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/compareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/compare"
+            app:layout_constraintBottom_toTopOf="@+id/view5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/ratingText"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wizardButton" />
+
+        <RatingBar
+            android:id="@+id/ratingBar3"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="180dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="12dp"
+            android:numStars="5"
+            android:progressTint="@color/orange1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wizardButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

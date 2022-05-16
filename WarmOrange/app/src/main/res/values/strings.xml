@@ -2,13 +2,13 @@
     <string name="app_name">WarmOrange</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Notificaties</string>
     <string name="title_wizard">Wizard</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="placeholder">Placeholder string</string>
     <string name="next">Volgende</string>
-    <string name="compare">Compare</string>
+    <string name="compare">Vergelijk</string>
     <string name="qr_scanner">QR-Scanner</string>
     <string name="demo_boeken">Demo boeken</string>
     <string name="account">Account</string>
@@ -44,4 +44,19 @@
     <string name="scan_qr_dialogoption_continue">Ga naar productpagina</string>
     <string name="home_suggestions">Suggesties</string>
     <string name="home_compare">Vergelijk</string>
+    <string name="nameless">Naamloos</string>
+    <string name="leaveReview">Laat een review achter!</string>
+    <string name="productImage">Productafbeelding</string>
+    <string name="warrantyRemaining">Resterende garantie:</string>
+    <string name="boughtWhen">Gekocht op:</string>
+    <string name="reviewThanks">Bedankt om een review achter te laten!</string>
+    <string name="warrantyExpired">Garantie verlopen</string>
+    <string name="myWishlist">Mijn wishlist</string>
+    <string name="deleteFromWishlist">Verwijder product uit wishlist</string>
+    <string name="emptyWishlist">Lege wishlist</string>
+    <string name="emptyWishlistLabel">Nog niets te vinden hier!</string>
+    <string name="inWishlist">In wishlist</string>
+    <string name="comparison_empty">Lege vergelijking</string>
+    <string name="comparison_empty_label">Geen producten om te vergelijken!</string>
+    <string name="addSecondItem">Voeg een tweede item toe om te vergelijken</string>
 </resources>

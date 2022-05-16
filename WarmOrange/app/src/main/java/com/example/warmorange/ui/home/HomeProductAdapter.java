@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.warmorange.CompareFragment;
 import com.example.warmorange.R;
-import com.example.warmorange.applicationData;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.HomeSuggestionLayoutBinding;
 import com.example.warmorange.model.Product;
 
@@ -38,12 +38,12 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
             binding.productImage.setImageResource(product.getImageId());
             binding.ratingBar.setRating((float)product.getAverageReviewScore());
             binding.compareButton.setOnClickListener(v -> {
-                System.out.print("comparing ");
-                System.out.println(product.getName());
-//                Bundle products = new Bundle();
-//                products.putStringArray(CompareFragment.ARG_PRODUCT_NAMES,
-//                        new String[]{product.getName()});
-//                Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_compareFragment, products);
+//                System.out.print("comparing ");
+//                System.out.println(product.getName());
+                Bundle products = new Bundle();
+                products.putStringArray(CompareFragment.ARG_PRODUCT_NAMES,
+                        new String[]{product.getName()});
+                Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_compareFragment, products);
             });
         }
     }

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.warmorange.databinding.FragmentQrBinding;
+import com.example.warmorange.model.applicationData;
 
 import kotlin.Suppress;
 

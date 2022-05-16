@@ -1,27 +1,30 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.productPage;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
 import com.example.warmorange.databinding.FragmentProductPageBinding;
-import com.example.warmorange.databinding.FragmentQrBinding;
+import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.Review;
-
-import org.w3c.dom.Text;
+import com.example.warmorange.model.applicationData;
 
 import java.text.DecimalFormat;
 import java.util.Vector;
@@ -90,10 +93,18 @@ public class ProductPageFragment extends Fragment {
         wishlistButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                // Assumes wishlist doesn't already contain the product
+                Account activeUser = appData.getLoginData().getActiveUser();
+                if (activeUser == null) {
+                    Toast.makeText(getActivity(),"Log in om producten aan uw persoonlijke wishlist toe te voegen.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                activeUser.getWishlist().add(product);
                 Toast toast=Toast.makeText(getActivity(),product.getName() + "toegevoegd aan wishlist", Toast.LENGTH_SHORT);
                 toast.setMargin(50,50);
                 toast.show();
-                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_reviewFragment);
+                binding.wishlistButton.setEnabled(false);
+                binding.wishlistButton.setText(R.string.inWishlist);
             }
         });
         Button ARButton = (Button) binding.ARButton;
@@ -109,9 +120,18 @@ public class ProductPageFragment extends Fragment {
         ARInfoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast toast=Toast.makeText(getActivity(),"Info over de augmented reality", Toast.LENGTH_SHORT);
-                toast.setMargin(50,50);
-                toast.show();
+                TextView message = new TextView(getContext());
+                message.setText(HtmlCompat.fromHtml("De AR-functionaliteit laat u toe om producten te tonen in uw eigen woonkamer! Richt uw camera op een plat vlak en laat de applicatie de rest doen", HtmlCompat.FROM_HTML_MODE_COMPACT));
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("AR-info");
+                dialog.setView(message);
+                dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
         TextView NameText = (TextView) binding.nameText;
@@ -129,6 +149,7 @@ public class ProductPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast toast=Toast.makeText(getActivity(),"Hier hoort een video met uitleg", Toast.LENGTH_SHORT);
+                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_warrantyFragment);
                 toast.setMargin(50,50);
                 toast.show();
             }
@@ -163,23 +184,18 @@ public class ProductPageFragment extends Fragment {
         });
         ListView reviewlist = (ListView) binding.reviewList;
         Vector<Review> productreviews = product.getReviews();
-        String[] reviewStrings = new String[productreviews.size()+1];
+        String[] reviewStrings = new String[product.getTextReviewAmount()+1];
         DecimalFormat df = new DecimalFormat("0.00");
-        reviewStrings[0] = "Reviews: (Average review score: " + df.format(product.getAverageReviewScore()) + "/5)";
-        int index = 1;
-        String reviewString;
-        for(Review r:productreviews){
-            reviewString = "";
-            reviewString+=r.getText();
-            reviewString+=" | ";
-            reviewString+=r.getRating();
-            reviewString+="/5";
-            reviewStrings[index] = reviewString;
-            index++;
-        }
-        ArrayAdapter<String> arr;
-        arr = new ArrayAdapter<String>(getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,reviewStrings);
-        reviewlist.setAdapter(arr);
+        reviewAdapter ra = new reviewAdapter(getContext());
+        reviewlist.setAdapter(ra);
+
+
+        RatingBar ratingBar = (RatingBar) binding.ratingBar3;
+        ratingBar.setRating((float) product.getAverageReviewScore());
+
+        DecimalFormat f = new DecimalFormat("##.00");
+        TextView ratingText = (TextView) binding.ratingText;
+        ratingText.setText("Gemiddelde review score: " + f.format(product.getAverageReviewScore()) + "/5");
         return binding.getRoot();
     }
 }

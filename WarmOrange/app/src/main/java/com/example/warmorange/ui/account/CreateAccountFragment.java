@@ -1,20 +1,19 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentCreateAccountBinding;
-import com.example.warmorange.databinding.FragmentLoginBinding;
 import com.example.warmorange.model.Account;
 import com.example.warmorange.model.LoginData;
 
@@ -64,11 +63,7 @@ public class CreateAccountFragment extends Fragment {
         if (validate(name, email, pw1, pw2)) {
             Account newAccount = new Account(name, "", pw1, email);
             LoginData.addAccount(newAccount);
-
-            SharedPreferences.Editor editor
-                    = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-            editor.putLong("activeUser", newAccount.getAccountId());
-            editor.apply();
+            applicationData.getInstance().getLoginData().setActiveUser(email);
 
             Navigation.findNavController(view).navigate(R.id.action_createAccountFragment_to_accountFragment);
             Toast.makeText(getContext(),

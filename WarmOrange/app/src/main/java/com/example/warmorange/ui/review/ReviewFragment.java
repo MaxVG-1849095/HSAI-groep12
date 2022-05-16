@@ -1,22 +1,27 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.review;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentReviewBinding;
 import com.example.warmorange.model.Product;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,13 +84,37 @@ public class ReviewFragment extends Fragment {
 
         EditText reviewText = (EditText) binding.editTextTextMultiLine;
 
+        ImageView image = (ImageView) binding.imageView3;
+        image.setImageResource(product.getImageId());
+
+
         Button submitButton = (Button) binding.submitButton;
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(reviewText.getText())){
-                    reviewText.setError("Review tekst is leeg");
+                if (TextUtils.isEmpty(reviewText.getText()) && checkRadio()) {
+                    TextView message = new TextView(getContext());
+                    message.setText(HtmlCompat.fromHtml("Wilt u een review achterlaten zonder uitleg?", HtmlCompat.FROM_HTML_MODE_COMPACT));
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                    dialog.setTitle("Review achterlaten");
+                    dialog.setView(message);
+                    dialog.setPositiveButton("Verder", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            product.addReview("", getRadio());
+                            product.setReviewed(true);
+                            Navigation.findNavController(view)
+                                    .navigate(R.id.action_reviewFragment_to_warrantyFragment);
+                        }
+                    });
+                    dialog.setNegativeButton("Uitleg achterlaten", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    dialog.show();
                 }
                 else if(!checkRadio()
                 ){
@@ -94,6 +123,9 @@ public class ReviewFragment extends Fragment {
                 }
                 else{
                     product.addReview(reviewText.getText().toString(), getRadio());
+                    product.setReviewed(true);
+                    Navigation.findNavController(view)
+                            .navigate(R.id.action_reviewFragment_to_warrantyFragment);
                 }
             }
         });

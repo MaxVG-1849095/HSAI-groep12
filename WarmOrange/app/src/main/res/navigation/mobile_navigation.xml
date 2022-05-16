@@ -11,6 +11,9 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
+            android:id="@+id/action_navigation_home_to_compareFragment"
+            app:destination="@id/compareFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_productPageFragment"
             app:destination="@id/productPageFragment" />
     </fragment>
@@ -39,7 +42,11 @@
         android:id="@+id/compareFragment"
         android:name="com.example.warmorange.CompareFragment"
         android:label="fragment_compare"
-        tools:layout="@layout/fragment_compare" />
+        tools:layout="@layout/fragment_compare" >
+        <action
+            android:id="@+id/action_compareFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/demoFragment"
         android:name="com.example.warmorange.DemoFragment"
@@ -60,18 +67,21 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.warmorange.AccountFragment"
+        android:name="com.example.warmorange.ui.account.AccountFragment"
         android:label="@string/account"
         tools:layout="@layout/fragment_account" >
-        <action
-            android:id="@+id/action_accountFragment_to_boughtProductsFragment"
-            app:destination="@id/boughtProductsFragment" />
         <action
             android:id="@+id/action_accountFragment_to_customerCardFragment"
             app:destination="@id/customerCardFragment" />
         <action
             android:id="@+id/action_accountFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_accountFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_warrantyFragment"
+            app:destination="@id/warrantyFragment" />
     </fragment>
     <fragment
         android:id="@+id/productFragment"
@@ -80,7 +90,7 @@
         tools:layout="@layout/fragment_product" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.warmorange.LoginFragment"
+        android:name="com.example.warmorange.ui.account.LoginFragment"
         android:label="Log in"
         tools:layout="@layout/fragment_login" >
         <action
@@ -92,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/productPageFragment"
-        android:name="com.example.warmorange.ProductPageFragment"
+        android:name="com.example.warmorange.ui.productPage.ProductPageFragment"
         android:label="fragment_product_page"
         tools:layout="@layout/fragment_product_page" >
         <action
@@ -102,12 +112,12 @@
             android:id="@+id/action_productPageFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
         <action
-            android:id="@+id/action_productPageFragment_to_reviewFragment"
-            app:destination="@id/reviewFragment" />
+            android:id="@+id/action_productPageFragment_to_warrantyFragment"
+            app:destination="@id/warrantyFragment" />
     </fragment>
     <fragment
       android:id="@+id/createAccountFragment"
-        android:name="com.example.warmorange.CreateAccountFragment"
+        android:name="com.example.warmorange.ui.account.CreateAccountFragment"
         android:label="Maak een account aan"
         tools:layout="@layout/fragment_create_account" >
         <action
@@ -115,13 +125,8 @@
             app:destination="@id/accountFragment" />
     </fragment>
     <fragment
-        android:id="@+id/boughtProductsFragment"
-        android:name="com.example.warmorange.BoughtProductsFragment"
-        android:label="@string/bought_products"
-        tools:layout="@layout/fragment_bought_products" />
-    <fragment
         android:id="@+id/customerCardFragment"
-        android:name="com.example.warmorange.CustomerCardFragment"
+        android:name="com.example.warmorange.ui.account.CustomerCardFragment"
         android:label="@string/customer_card"
         tools:layout="@layout/fragment_customer_card" />
     <fragment
@@ -131,7 +136,29 @@
         tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/reviewFragment"
-        android:name="com.example.warmorange.ReviewFragment"
+        android:name="com.example.warmorange.ui.review.ReviewFragment"
         android:label="fragment_review"
-        tools:layout="@layout/fragment_review" />
+        tools:layout="@layout/fragment_review" >
+        <action
+            android:id="@+id/action_reviewFragment_to_warrantyFragment"
+            app:destination="@id/warrantyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/warrantyFragment"
+        android:name="com.example.warmorange.ui.warranty.WarrantyFragment"
+        android:label="fragment_warranty"
+        tools:layout="@layout/fragment_warranty" >
+        <action
+            android:id="@+id/action_warrantyFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.example.warmorange.ui.account.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishlistFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
 </navigation>

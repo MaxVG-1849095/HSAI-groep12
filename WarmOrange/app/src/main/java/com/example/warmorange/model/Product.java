@@ -2,24 +2,56 @@ package com.example.warmorange.model;
 
 import com.example.warmorange.R;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class Product {
     private Vector<String> tags = new Vector<>();
+    private final Map<String, String> attributes = new HashMap<>();
     private String name;
     private boolean available;
     private int imageId;
     private String type;
     private Vector<String> included = new Vector<>();
     private Vector<Review> reviews = new Vector<>();
+    private int totalWarranty;
+    private int currentWarranty = 0;
+    private boolean reviewed = false;
 
     public Product(String name, boolean available, int imageId, String type) {
         this.name = name;
         this.available = available;
         this.imageId = imageId;
         this.type = type;
-
+        this.totalWarranty = 20;
+        this.currentWarranty = 10;
     }
+
+    public boolean isReviewed() {
+        return reviewed;
+    }
+
+    public void setReviewed(boolean reviewed) {
+        this.reviewed = reviewed;
+    }
+
+    public int getTotalWarranty() {
+        return totalWarranty;
+    }
+
+    public void setTotalWarranty(int totalWarranty) {
+        this.totalWarranty = totalWarranty;
+    }
+
+    public int getCurrentWarranty() {
+        return currentWarranty;
+    }
+
+    public void setCurrentWarranty(int currentWarranty) {
+        this.currentWarranty = currentWarranty;
+    }
+
     public Vector<String> getIncluded(){
         return included;
     }
@@ -80,5 +112,21 @@ public class Product {
 
         }
         return score/ reviews.size();
+    }
+    public int getTextReviewAmount(){
+        int count = 0;
+        for(Review r : reviews){
+            if(!r.getText().equals("")){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Map<String, String> getAttributes() {
+        return attributes;
+    }
+    public void addAttribute(String key, String value) {
+        attributes.put(key, value);
     }
 }

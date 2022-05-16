@@ -15,11 +15,9 @@ import java.util.stream.Stream;
 
 public class LoginData {
     private Account currentAccount;
-    private final SharedPreferences preferences;
 
-    public LoginData(Context context) {
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        retrieveActiveUser();
+    public LoginData() {
+        currentAccount = null;
     }
 
     public Account getActiveUser() {
@@ -30,38 +28,17 @@ public class LoginData {
     public void setActiveUser(String email) {
         accounts.stream()
                 .filter(a -> a.getEmail().equals(email)).findFirst()
-                .ifPresent( account -> {
-                    currentAccount = account;
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putLong("activeUser", account.getAccountId());
-                    editor.apply();
-                });
+                .ifPresent( account -> currentAccount = account );
     }
 
     public void setActiveUser(long userId) {
         accounts.stream()
                 .filter(a -> a.getAccountId() == userId).findFirst()
-                .ifPresent( account -> {
-                    currentAccount = account;
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putLong("activeUser", userId);
-                    editor.apply();
-                });
+                .ifPresent( account -> currentAccount = account );
     }
 
     public void clearActiveUser() {
         currentAccount = null;
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.remove("activeUser");
-        editor.apply();
-    }
-
-    private void retrieveActiveUser() {
-        long userId = preferences.getLong("activeUser", -1);
-        if (userId != -1)
-            setActiveUser(userId);
-        else
-            currentAccount = null;
     }
 
     public boolean isAccount(String email) {

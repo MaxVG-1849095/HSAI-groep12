@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    tools:context=".ui.account.AccountFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,6 +49,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customerCardButton"
+            app:rippleColor="#FFFFFF"
+            app:strokeColor="#000000" />
+
+        <Button
+            android:id="@+id/wishlistButton"
+            android:layout_width="319dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F1EEEE"
+            android:foregroundTint="#000000"
+            android:shadowColor="#FFFFFF"
+            android:text="@string/myWishlist"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            app:icon="@drawable/ic_baseline_favorite_24"
+            app:iconSize="100dp"
+            app:iconTint="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/boughtProductsButton"
             app:rippleColor="#FFFFFF"
             app:strokeColor="#000000" />
 

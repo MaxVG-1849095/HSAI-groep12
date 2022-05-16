@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.os.Bundle;
 
@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentAccountBinding;
-import com.example.warmorange.databinding.FragmentCreateAccountBinding;
-import com.example.warmorange.model.Account;
 import com.example.warmorange.model.LoginData;
 
 /**
@@ -46,7 +46,7 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginData = new LoginData(getContext());
+        loginData = applicationData.getInstance().getLoginData();
     }
 
     @Override
@@ -55,9 +55,8 @@ public class AccountFragment extends Fragment {
         hideBackButton();
         binding = FragmentAccountBinding.inflate(inflater, container, false);
 
-        binding.boughtProductsButton.setOnClickListener(
-                v -> Navigation.findNavController(v)
-                        .navigate(R.id.action_accountFragment_to_boughtProductsFragment)
+        binding.boughtProductsButton.setOnClickListener(v -> Navigation.findNavController(v)
+                        .navigate(R.id.action_accountFragment_to_warrantyFragment)
         );
 
         binding.customerCardButton.setOnClickListener(v -> {
@@ -66,6 +65,9 @@ public class AccountFragment extends Fragment {
             Navigation.findNavController(v)
                     .navigate(R.id.action_accountFragment_to_customerCardFragment, bundle);
         });
+
+        binding.wishlistButton.setOnClickListener(v -> Navigation.findNavController(v)
+                .navigate(R.id.action_accountFragment_to_wishlistFragment));
 
         binding.logoutButton.setOnClickListener(v -> {
             loginData.clearActiveUser();

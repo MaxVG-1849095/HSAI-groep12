@@ -1,23 +1,20 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.account;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavOptions;
-import androidx.navigation.NavOptionsBuilder;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentLoginBinding;
-import com.example.warmorange.databinding.FragmentQrBinding;
 import com.example.warmorange.model.LoginData;
 
 /**
@@ -50,9 +47,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginData = new LoginData(getContext());
-        //temp
-        loginData.clearActiveUser();
+        loginData = applicationData.getInstance().getLoginData();
     }
 
     @Override
@@ -77,20 +72,20 @@ public class LoginFragment extends Fragment {
     public void login(View view) {
         String email = binding.editTextTextEmailAddress.getText().toString();
         String password = binding.editTextTextPassword.getText().toString();
-
-        if (!loginData.isAccount(email)) {
-            Toast.makeText(getContext(),
-                    "Het ingevoerd email adres is nog niet aan een account gebonden.",
-                    Toast.LENGTH_SHORT)
-                    .show();
-        } else if (!loginData.matchingPassword(email, password)) {
-            Toast.makeText(getContext(),
-                    "Het ingevoerd wachtwoord komt niet overeen met het ingevoerd email adres.",
-                    Toast.LENGTH_SHORT)
-                    .show();
-        } else {
+        
+        if (!loginData.isAccount(email) && !email.isEmpty()) {
+            binding.editTextTextEmailAddress.setError("Het ingevoerd email adres is nog niet aan een account gebonden.");
+        } else if (!loginData.matchingPassword(email, password)  && !password.isEmpty()) {
+            binding.editTextTextPassword.setError("Het ingevoerd wachtwoord komt niet overeen met het ingevoerd email adres.");
+        } else if(loginData.matchingPassword(email, password)) {
             loginData.setActiveUser(email);
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_accountFragment);
+        }
+        if(email.isEmpty()) {
+            binding.editTextTextEmailAddress.setError("Gelieve een mailadres in te voeren");
+        }
+        if(password.isEmpty()){
+            binding.editTextTextPassword.setError("Gelieve een passwoord in te voeren");
         }
     }
 }
