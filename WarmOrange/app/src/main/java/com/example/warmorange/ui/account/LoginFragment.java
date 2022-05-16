@@ -72,7 +72,7 @@ public class LoginFragment extends Fragment {
     public void login(View view) {
         String email = binding.editTextTextEmailAddress.getText().toString();
         String password = binding.editTextTextPassword.getText().toString();
-        
+
         if (!loginData.isAccount(email) && !email.isEmpty()) {
             binding.editTextTextEmailAddress.setError("Het ingevoerd email adres is nog niet aan een account gebonden.");
         } else if (!loginData.matchingPassword(email, password)  && !password.isEmpty()) {

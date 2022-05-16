@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.warmorange.R;
 import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentWishlistBinding;
 import com.example.warmorange.model.Product;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -64,7 +66,13 @@ public class WishlistFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
+        FloatingActionButton mapButton = (FloatingActionButton) binding.mapButton;
+        mapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.action_wishlistFragment_to_mapFragment);
+            }
+        });
         return binding.getRoot();
     }
 }
