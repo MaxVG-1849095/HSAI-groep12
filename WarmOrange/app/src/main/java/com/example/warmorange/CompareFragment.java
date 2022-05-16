@@ -1,6 +1,6 @@
 package com.example.warmorange;
 
-import android.graphics.Typeface;
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -88,15 +88,35 @@ public class CompareFragment extends Fragment {
         if (products.size() >= 2)
             values2 = products.get(1).getAttributes();
 
+        Map<String, String> attributeExp = applicationData.getInstance().getAttributeExplanations();
         for (int i = 0; i < attributes.length; ++i) {
             String a = attributes[i];
             View v = views[i];
             v.findViewById(R.id.attributeRow).setBackgroundResource(i % 2 == 0 ? R.color.table_accent1 : R.color.table_accent2);
             ((TextView)v.findViewById(R.id.attributeName)).setText(a);
+            if (attributeExp.containsKey(a))
+                v.findViewById(R.id.attributeName).setOnClickListener(vw -> onClickAttribute(a, attributeExp.get(a)));
+            else
+                ((TextView)v.findViewById(R.id.attributeName)).setCompoundDrawables(null, null, null, null);
+
             ((TextView)v.findViewById(R.id.product1Attribute)).setText(values1.getOrDefault(a, "-"));
             if (products.size() >= 2)
                 ((TextView)v.findViewById(R.id.product2Attribute)).setText(values2.getOrDefault(a, "-"));
         }
+    }
+
+    private void onClickAttribute(String name, String msg) {
+        TextView message = new TextView(getContext());
+        message.setText(msg);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+        dialog.setTitle(name);
+        dialog.setView(message);
+//        dialog.setPositiveButton("Oké", (dialogInterface, i) -> {
+//                Toast toast = Toast.makeText(getActivity(),"Toast message",Toast.LENGTH_SHORT);
+//                toast.show();
+//        });
+        dialog.setNegativeButton("Oké", null);
+        dialog.show();
     }
 
     private void setHeader() {
@@ -116,16 +136,18 @@ public class CompareFragment extends Fragment {
             binding.product2NameTextView.setOnClickListener(v -> onProductClick(p2, v));
             binding.deleteButton2.setOnClickListener(v -> onProductDeleted(p2, v));
         } else {
-            binding.product2Image.setImageResource(R.drawable.ic_baseline_library_add_24);
-            binding.product2Image.getLayoutParams().height = 100;
-            binding.product2Image.getLayoutParams().width = 100;
-            binding.product2Image.requestLayout();
-            TextView title = binding.product2NameTextView;
-            title.setTypeface(null, Typeface.NORMAL);
-            title.setText(R.string.addSecondItem);
-            title.setTextSize(12.0f);
-            title.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            binding.deleteButton2.setVisibility(View.INVISIBLE);
+            binding.compareTable.setColumnCollapsed(2, true);
+            binding.addItemView.getRoot().setVisibility(View.VISIBLE);
+//            binding.product2Image.setImageResource(R.drawable.ic_baseline_library_add_24);
+//            binding.product2Image.getLayoutParams().height = 100;
+//            binding.product2Image.getLayoutParams().width = 100;
+//            binding.product2Image.requestLayout();
+//            TextView title = binding.product2NameTextView;
+//            title.setTypeface(null, Typeface.NORMAL);
+//            title.setText(R.string.addSecondItem);
+//            title.setTextSize(12.0f);
+//            title.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//            binding.deleteButton2.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -140,11 +162,11 @@ public class CompareFragment extends Fragment {
         if (products.size() == 0) {
             binding.compareTable.setColumnCollapsed(0, true);
             binding.emptyView.getRoot().setVisibility(View.VISIBLE);
-            binding.addItemTextView.setVisibility(View.INVISIBLE);
+            binding.addItemView.getRoot().setVisibility(View.INVISIBLE);
             binding.compareScrollView.setVisibility(View.GONE);
         }
         else if (products.size() == 1) {
-            binding.addItemTextView.setVisibility(View.VISIBLE);
+            binding.addItemView.getRoot().setVisibility(View.VISIBLE);
         }
     }
 

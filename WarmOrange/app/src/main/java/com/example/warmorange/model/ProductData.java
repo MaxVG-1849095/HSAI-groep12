@@ -61,7 +61,7 @@ public class ProductData {
         productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Grootte", "Groot");
         productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Diagonaal", "55 inch");
         productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Paneeltype", "OLED");
-        productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Verversingssnelheid", "100Hz");
+        productMap.get("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021").addAttribute("Verversings-\nsnelheid", "100Hz");
 
         productMap.put("Iphone 13", new Product("Iphone 13",true, R.drawable.iphone_13,"Smartphone"));
         productMap.get("Iphone 13").addTag("Prachtig beeld");
