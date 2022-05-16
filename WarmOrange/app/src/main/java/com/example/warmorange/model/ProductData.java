@@ -2,7 +2,9 @@ package com.example.warmorange.model;
 
 import com.example.warmorange.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ProductData {
     private HashMap<String,Product> productMap = new HashMap<>();
@@ -100,5 +102,9 @@ public class ProductData {
     }
     public Product getCurrentProduct(){
         return currentProduct;
+    }
+    public int getAmountOfProducts() { return productMap.size(); }
+    public List<Product> getAllProducts() {
+        return new ArrayList<>(productMap.values());
     }
 }

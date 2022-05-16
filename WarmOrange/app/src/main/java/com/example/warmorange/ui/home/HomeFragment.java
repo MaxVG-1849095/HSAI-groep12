@@ -4,15 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.warmorange.applicationData;
 import com.example.warmorange.databinding.FragmentHomeBinding;
+import com.example.warmorange.model.Product;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -24,12 +28,18 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+        List<Product> products = applicationData.getInstance().getProductData().getAllProducts();
 
-        return root;
+        HomeProductAdapter adapter = new HomeProductAdapter(products);
+
+        RecyclerView recyclerView = binding.homeSuggestionsRecyclerView;
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
+        return binding.getRoot();
     }
 
     @Override

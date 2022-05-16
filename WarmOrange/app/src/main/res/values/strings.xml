@@ -37,4 +37,11 @@
     <string name="wizard_text2">Bij je past! Wil je naar de pagina van dit product navigeren?</string>
     <string name="wizard_confirm">Akkoord</string>
     <string name="wizard_deny">Probeer opnieuw</string>
+    <string name="scan_qr">Scan!</string>
+    <string name="scan_qr_dialogtitle">Product Gescanned</string>
+    <string name="scan_qr_dialogmessage">U heeft de code van <b><i>%1$s</i></b> gescanned. Wilt u naar de pagina van dit product gaan?</string>
+    <string name="scan_qr_dialogoption_cancel">Terug naar scanner</string>
+    <string name="scan_qr_dialogoption_continue">Ga naar productpagina</string>
+    <string name="home_suggestions">Suggesties</string>
+    <string name="home_compare">Vergelijk</string>
 </resources>

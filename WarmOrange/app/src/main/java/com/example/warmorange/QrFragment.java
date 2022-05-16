@@ -1,16 +1,23 @@
 package com.example.warmorange;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.warmorange.databinding.FragmentQrBinding;
+
+import kotlin.Suppress;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,16 +75,48 @@ public class QrFragment extends Fragment {
         binding = FragmentQrBinding.inflate(inflater,container,false);
         View view = inflater.inflate(R.layout.fragment_qr, container,false);
 
-            Button btnTest = (Button) binding.testButtonQr;
-        btnTest.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            applicationData.getInstance().getwData().setWizardType("Television");
-            Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_productPageFragment);
-        }
-    }
-        );
+        Button scanButton = (Button) binding.QrScanButton;
+        scanButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                TextView message = new TextView(getContext());
+                message.setText(HtmlCompat.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam"), HtmlCompat.FROM_HTML_MODE_COMPACT));
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle(getString(R.string.scan_qr_dialogtitle));
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam"), Html.FROM_HTML_MODE_LEGACY));
+                } else {
+                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam")));
+                }
+                dialog.setPositiveButton(R.string.scan_qr_dialogoption_continue, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        applicationData.getInstance().getwData().setWizardType("Television");
+                        Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_productPageFragment);
+                    }
+                });
+                dialog.setNegativeButton(R.string.scan_qr_dialogoption_cancel, null);
+                dialog.show();
+            }
+        });
         System.out.println("Qr created");
         return binding.getRoot();
+    }
+
+    private void showDialog(LayoutInflater inflater, ViewGroup container) {
+        View view = inflater.inflate(R.layout.fragment_qr, container,false);
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+        dialog.setTitle(getString(R.string.scan_qr_dialogtitle));
+        dialog.setMessage(HtmlCompat.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam"), HtmlCompat.FROM_HTML_MODE_COMPACT));
+        dialog.setPositiveButton(R.string.scan_qr_dialogoption_continue, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                applicationData.getInstance().getwData().setWizardType("Television");
+                Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_productPageFragment);
+            }
+        });
+        dialog.setNegativeButton(R.string.scan_qr_dialogoption_cancel, null);
+        dialog.show();
     }
 }
