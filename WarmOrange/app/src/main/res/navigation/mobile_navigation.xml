@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/compareFragment"
         android:name="com.example.warmorange.CompareFragment"
-        android:label="fragment_compare"
+        android:label="Vergelijk producten"
         tools:layout="@layout/fragment_compare" >
         <action
             android:id="@+id/action_compareFragment_to_productPageFragment"
@@ -50,12 +50,12 @@
     <fragment
         android:id="@+id/demoFragment"
         android:name="com.example.warmorange.DemoFragment"
-        android:label="fragment_demo"
+        android:label="Demo pagina"
         tools:layout="@layout/fragment_demo" />
     <fragment
         android:id="@+id/qrFragment"
         android:name="com.example.warmorange.QrFragment"
-        android:label="fragment_qr"
+        android:label="Scan een qr-code"
         tools:layout="@layout/fragment_qr" >
         <argument
             android:name="ProductType"
@@ -86,7 +86,7 @@
     <fragment
         android:id="@+id/productFragment"
         android:name="com.example.warmorange.ProductFragment"
-        android:label="fragment_product"
+        android:label="Product"
         tools:layout="@layout/fragment_product" />
     <fragment
         android:id="@+id/loginFragment"
@@ -103,14 +103,11 @@
     <fragment
         android:id="@+id/productPageFragment"
         android:name="com.example.warmorange.ui.productPage.ProductPageFragment"
-        android:label="fragment_product_page"
+        android:label="Productpagina"
         tools:layout="@layout/fragment_product_page" >
         <action
             android:id="@+id/action_productPageFragment_to_navigation_wizardFragment"
             app:destination="@id/navigation_wizardFragment" />
-        <action
-            android:id="@+id/action_productPageFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
         <action
             android:id="@+id/action_productPageFragment_to_warrantyFragment"
             app:destination="@id/warrantyFragment" />
@@ -132,12 +129,12 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.warmorange.MapFragment"
-        android:label="fragment_map"
+        android:label="Kaart met wishlist"
         tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/reviewFragment"
         android:name="com.example.warmorange.ui.review.ReviewFragment"
-        android:label="fragment_review"
+        android:label="Review"
         tools:layout="@layout/fragment_review" >
         <action
             android:id="@+id/action_reviewFragment_to_warrantyFragment"
@@ -146,7 +143,7 @@
     <fragment
         android:id="@+id/warrantyFragment"
         android:name="com.example.warmorange.ui.warranty.WarrantyFragment"
-        android:label="fragment_warranty"
+        android:label="Gekochte producten"
         tools:layout="@layout/fragment_warranty" >
         <action
             android:id="@+id/action_warrantyFragment_to_reviewFragment"
@@ -155,10 +152,13 @@
     <fragment
         android:id="@+id/wishlistFragment"
         android:name="com.example.warmorange.ui.account.WishlistFragment"
-        android:label="fragment_wishlist"
+        android:label="Wishlist"
         tools:layout="@layout/fragment_wishlist" >
         <action
             android:id="@+id/action_wishlistFragment_to_productPageFragment"
             app:destination="@id/productPageFragment" />
+        <action
+            android:id="@+id/action_wishlistFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
 </navigation>

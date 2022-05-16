@@ -155,6 +155,12 @@ public class WizardFragment extends Fragment {
         }
     }
     private void setData(){
+        if(wInstance.getCurrentIndex() == 0){
+            binding.prevButton.setVisibility(View.GONE);
+        }
+        else{
+            binding.prevButton.setVisibility(View.VISIBLE);
+        }
         binding.wizardQuestion.setText(wInstance.getQuestionForIndex());
         ArrayList<String> questions =  wInstance.getAnswersForIndex();
 

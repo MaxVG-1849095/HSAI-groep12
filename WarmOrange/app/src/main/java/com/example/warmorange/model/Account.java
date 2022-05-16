@@ -33,6 +33,16 @@ public class Account {
     public Vector<Product> getOwnedProducts() {
         return ownedProducts;
     }
+    public void removeProduct(String name){
+        wishlist.removeIf(p -> p.getName() == name);
+    }
+    public boolean productInWishlist(String name){
+        for(Product p : wishlist){
+            if(p.getName().equals(name))
+                return true;
+        }
+        return false;
+    }
     public Vector<Product> getWishlist() {
         return wishlist;
     }

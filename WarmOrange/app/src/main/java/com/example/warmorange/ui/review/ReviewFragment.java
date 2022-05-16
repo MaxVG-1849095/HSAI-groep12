@@ -78,7 +78,7 @@ public class ReviewFragment extends Fragment {
         // Inflate the layout for this fragment
         product = applicationData.getInstance().getProductData().getCurrentProduct();
 
-        TextView productname = (TextView) binding.reviewProductText;
+        TextView productname = (TextView) binding.productText;
         productname.setText(product.getName());
 
 
