@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.warmorange.databinding.FragmentQrBinding;
+import com.example.warmorange.model.applicationData;
 
 /**
  * A simple {@link Fragment} subclass.

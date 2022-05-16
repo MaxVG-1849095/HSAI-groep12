@@ -13,11 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.warmorange.R;
-import com.example.warmorange.applicationData;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentWishlistBinding;
 import com.example.warmorange.model.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

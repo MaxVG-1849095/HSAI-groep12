@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.warranty;
 
 import android.os.Bundle;
 
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.warmorange.databinding.FragmentWarrantyBinding;
+import com.example.warmorange.model.applicationData;
 
 /**
  * A simple {@link Fragment} subclass.

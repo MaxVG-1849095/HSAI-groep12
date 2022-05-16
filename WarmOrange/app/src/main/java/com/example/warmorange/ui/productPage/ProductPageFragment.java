@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.productPage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,13 +19,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
 import com.example.warmorange.databinding.FragmentProductPageBinding;
-import com.example.warmorange.databinding.FragmentQrBinding;
 import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.Review;
-
-import org.w3c.dom.Text;
+import com.example.warmorange.model.applicationData;
 
 import java.text.DecimalFormat;
 import java.util.Vector;
@@ -195,8 +193,9 @@ public class ProductPageFragment extends Fragment {
         RatingBar ratingBar = (RatingBar) binding.ratingBar3;
         ratingBar.setRating((float) product.getAverageReviewScore());
 
+        DecimalFormat f = new DecimalFormat("##.00");
         TextView ratingText = (TextView) binding.ratingText;
-        ratingText.setText("Gemiddelde review score: " + product.getAverageReviewScore() + "/5");
+        ratingText.setText("Gemiddelde review score: " + f.format(product.getAverageReviewScore()) + "/5");
         return binding.getRoot();
     }
 }

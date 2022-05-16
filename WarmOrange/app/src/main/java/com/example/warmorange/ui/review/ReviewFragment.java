@@ -1,8 +1,7 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.review;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
@@ -19,10 +18,10 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.warmorange.R;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentReviewBinding;
 import com.example.warmorange.model.Product;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
