@@ -130,6 +130,13 @@ public class ProductData {
         return currentProduct;
     }
     public Vector<Product> getComparisonList() { return comparisonList; }
+    public boolean addToComparisonList(Product product) {
+        if (comparisonList.size() < 2) {
+            comparisonList.addElement(product);
+            return true;
+        }
+        return false;
+    }
     public List<Product> getAllProducts() {
         return new ArrayList<>(productMap.values());
     }
