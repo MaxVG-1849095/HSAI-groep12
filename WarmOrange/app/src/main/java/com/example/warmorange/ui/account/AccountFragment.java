@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.warmorange.R;
-import com.example.warmorange.applicationData;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentAccountBinding;
 import com.example.warmorange.model.LoginData;
 

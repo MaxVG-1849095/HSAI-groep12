@@ -1,4 +1,6 @@
-package com.example.warmorange;
+package com.example.warmorange.model;
+
+import com.example.warmorange.model.applicationData;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -2,8 +2,10 @@ package com.example.warmorange.model;
 
 import com.example.warmorange.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.List;
 
 public class ProductData {
     private HashMap<String,Product> productMap = new HashMap<>();
@@ -128,4 +130,7 @@ public class ProductData {
         return currentProduct;
     }
     public Vector<Product> getComparisonList() { return comparisonList; }
+    public List<Product> getAllProducts() {
+        return new ArrayList<>(productMap.values());
+    }
 }

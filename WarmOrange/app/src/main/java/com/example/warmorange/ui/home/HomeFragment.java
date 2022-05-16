@@ -4,20 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.warmorange.CompareFragment;
 import com.example.warmorange.R;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.warmorange.applicationData;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentHomeBinding;
 import com.example.warmorange.model.Product;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -29,22 +29,18 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
-        // temp, tot nu toe gaat ge zo naar vergelijken
-        // Kga het zo doen dat ge gewoon moet toevoegen aan productData.comparisonList
-        binding.testButton.setOnClickListener(v -> {
-            Product p1 = applicationData.getInstance().getProductData().getProduct("LG C1 OLED55C16LA - 55 inch - 4K OLED - 2021");
-            applicationData.getInstance().getProductData().getComparisonList().addElement(p1);
-            Product p2 = applicationData.getInstance().getProductData().getProduct("Samsung QLED 50Q64A (2021)");
-            applicationData.getInstance().getProductData().getComparisonList().addElement(p2);
-            Navigation.findNavController(v)
-                .navigate(R.id.action_navigation_home_to_compareFragment);
-        });
+        List<Product> products = applicationData.getInstance().getProductData().getAllProducts();
 
-        return root;
+        HomeProductAdapter adapter = new HomeProductAdapter(products);
+
+        RecyclerView recyclerView = binding.homeSuggestionsRecyclerView;
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
+        return binding.getRoot();
     }
 
     @Override

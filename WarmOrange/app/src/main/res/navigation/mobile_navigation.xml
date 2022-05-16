@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_compareFragment"
             app:destination="@id/compareFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
     </fragment>
 
     <fragment
@@ -99,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/productPageFragment"
-        android:name="com.example.warmorange.ProductPageFragment"
+        android:name="com.example.warmorange.ui.productPage.ProductPageFragment"
         android:label="fragment_product_page"
         tools:layout="@layout/fragment_product_page" >
         <action
@@ -133,7 +136,7 @@
         tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/reviewFragment"
-        android:name="com.example.warmorange.ReviewFragment"
+        android:name="com.example.warmorange.ui.review.ReviewFragment"
         android:label="fragment_review"
         tools:layout="@layout/fragment_review" >
         <action
@@ -142,7 +145,7 @@
     </fragment>
     <fragment
         android:id="@+id/warrantyFragment"
-        android:name="com.example.warmorange.WarrantyFragment"
+        android:name="com.example.warmorange.ui.warranty.WarrantyFragment"
         android:label="fragment_warranty"
         tools:layout="@layout/fragment_warranty" >
         <action

@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.warmorange.databinding.FragmentWizardBinding;
+import com.example.warmorange.model.applicationData;
+import com.example.warmorange.model.wizardData;
+import com.example.warmorange.model.wizardInstance;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,6 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.warranty;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 
+import com.example.warmorange.R;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.ProductData;
-
-import org.w3c.dom.Text;
+import com.example.warmorange.model.applicationData;
 
 import java.util.Vector;
 
@@ -25,7 +23,7 @@ public class warrantyAdapter extends ArrayAdapter<Product> {
     Vector<Product> products = new Vector<>();
     private Context context;
     public warrantyAdapter(Context c, ProductData p) {
-        super(c, 0,applicationData.getInstance().getTestAccount().getOwnedProducts());
+        super(c, 0, applicationData.getInstance().getTestAccount().getOwnedProducts());
         products = applicationData.getInstance().getTestAccount().getOwnedProducts();
         context = c;
     }

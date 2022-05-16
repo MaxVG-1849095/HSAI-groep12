@@ -1,7 +1,6 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.productPage;
 
 import android.content.Context;
-import android.media.Rating;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.warmorange.model.ProductData;
+import com.example.warmorange.R;
+import com.example.warmorange.model.applicationData;
 import com.example.warmorange.model.Review;
-
-import org.w3c.dom.Text;
 
 import java.util.Vector;
 

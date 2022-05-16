@@ -1,10 +1,4 @@
-package com.example.warmorange;
-
-import android.util.Log;
-
-import com.example.warmorange.model.Account;
-import com.example.warmorange.model.LoginData;
-import com.example.warmorange.model.ProductData;
+package com.example.warmorange.model;
 
 import java.util.HashMap;
 import java.util.Map;

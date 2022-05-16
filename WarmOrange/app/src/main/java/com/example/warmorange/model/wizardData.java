@@ -1,4 +1,4 @@
-package com.example.warmorange;
+package com.example.warmorange.model;
 
 import java.util.HashMap;
 import java.util.Objects;

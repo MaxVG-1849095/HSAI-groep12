@@ -10,6 +10,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#009E0F</color>
+    <color name="red">#cf2a27</color>
     <color name="table_accent1">#FFAE95</color>
     <color name="table_accent2">#FFD6C9</color>
 </resources>
