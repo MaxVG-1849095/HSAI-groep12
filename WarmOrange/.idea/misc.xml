@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bought_item_layout.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/bought_product_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/compare_add_item_layout.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/compare_segment_layout.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.378125" />
         <entry key="app/src/main/res/layout/fragment_bought_products.xml" value="0.3541666666666667" />

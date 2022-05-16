@@ -6,6 +6,9 @@ import com.example.warmorange.model.Account;
 import com.example.warmorange.model.LoginData;
 import com.example.warmorange.model.ProductData;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class applicationData {
     private static final applicationData instance = new applicationData();
     private final wizardData wData= new wizardData();
@@ -20,6 +23,9 @@ public class applicationData {
     public static applicationData getInstance(){
         return instance;
     }
+    public Map<String, String> getAttributeExplanations() {
+        return attributeExplanations;
+    }
     public wizardData getwData(){
         return wData;
     }
@@ -29,4 +35,16 @@ public class applicationData {
     public Account getTestAccount() {
         return testAccount;
     }
+
+    private static final Map<String, String> attributeExplanations = new HashMap<String, String>()
+    {{
+            put("Paneeltype", "Schermen komen in verschillende soorten en maten, elk met hun eigen voor- en nadelen. De meest voorkomende paneeltypes zijn:\n" +
+                    "\n" +
+                    "*OLED:* OLED Schermen zijn kleurrijk en kunnen een diep zwart tonen. Meestal zijn dit soort schermen echter minder licht en duurder.\n" +
+                    "\n" +
+                    "*IPS:* Een goed allround type. Helder en redelijk veel diepgang in kleur.\n" +
+                    "\n" +
+                    "...");
+            put("exmp", "exmp");
+    }};
 }
