@@ -70,25 +70,13 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/reviewText"
+        android:id="@+id/productText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
         android:text="@string/leave_review"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/reviewProductText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/placeholder"
-        android:textColor="#000000"
-        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
@@ -98,10 +86,11 @@
         android:layout_height="97dp"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="@string/reviewBox"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewProductText" />
+        app:layout_constraintTop_toBottomOf="@+id/productText" />
 
     <Button
         android:id="@+id/submitButton"
@@ -125,9 +114,11 @@
         android:id="@+id/imageView3"
         android:layout_width="190dp"
         android:layout_height="151dp"
+        android:layout_marginTop="72dp"
         android:src="@drawable/ic_baseline_account_circle_24"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

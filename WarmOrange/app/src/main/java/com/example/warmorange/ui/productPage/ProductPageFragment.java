@@ -2,6 +2,7 @@ package com.example.warmorange.ui.productPage;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
@@ -25,6 +26,7 @@ import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.Review;
 import com.example.warmorange.model.applicationData;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
 import java.util.Vector;
@@ -87,6 +89,13 @@ public class ProductPageFragment extends Fragment {
         binding = FragmentProductPageBinding.inflate(inflater,container,false);
         View view = inflater.inflate(R.layout.fragment_product_page, container,false);
 
+        if(applicationData.getInstance().getLoginData().getActiveUser() != null){
+            if(applicationData.getInstance().getLoginData().getActiveUser().productInWishlist(product.getName())){
+                binding.wishlistButton.setEnabled(false);
+                binding.wishlistButton.setText(R.string.inWishlist);
+            }
+        }
+
         ImageView productImage = (ImageView) binding.imageView;
         productImage.setImageResource(product.getImageId());
         Button wishlistButton = (Button) binding.wishlistButton;
@@ -100,11 +109,20 @@ public class ProductPageFragment extends Fragment {
                     return;
                 }
                 activeUser.getWishlist().add(product);
-                Toast toast=Toast.makeText(getActivity(),product.getName() + "toegevoegd aan wishlist", Toast.LENGTH_SHORT);
-                toast.setMargin(50,50);
-                toast.show();
+                Snackbar mySnackbar = Snackbar.make(getView(), product.getName() + "toegevoegd aan wishlist.", Snackbar.LENGTH_SHORT);
+                mySnackbar.setAction(R.string.undo_string,new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        applicationData.getInstance().getLoginData().getActiveUser().removeProduct(product.getName());
+                        Snackbar undoSnackbar = Snackbar.make(getView(), "Uit wishlist gehaald", Snackbar.LENGTH_SHORT);
+                        undoSnackbar.show();
+                        binding.wishlistButton.setEnabled(true);
+                        binding.wishlistButton.setText(R.string.add_to_wishlist);
+                        applicationData.getInstance().getLoginData().getActiveUser().removeProduct(product.getName());
+                    }});
                 binding.wishlistButton.setEnabled(false);
                 binding.wishlistButton.setText(R.string.inWishlist);
+                mySnackbar.show();
             }
         });
         Button ARButton = (Button) binding.ARButton;
@@ -114,6 +132,8 @@ public class ProductPageFragment extends Fragment {
                 Toast toast=Toast.makeText(getActivity(),"Augmented reality gestart!", Toast.LENGTH_SHORT);
                 toast.setMargin(50,50);
                 toast.show();
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(intent);
             }
         });
         ImageButton ARInfoButton = (ImageButton) binding.ARInfoButton;
@@ -149,7 +169,6 @@ public class ProductPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast toast=Toast.makeText(getActivity(),"Hier hoort een video met uitleg", Toast.LENGTH_SHORT);
-                Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_warrantyFragment);
                 toast.setMargin(50,50);
                 toast.show();
             }

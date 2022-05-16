@@ -1,5 +1,7 @@
 package com.example.warmorange.model;
 
+import android.hardware.camera2.CameraOfflineSession;
+
 import com.example.warmorange.R;
 
 import java.util.ArrayList;
@@ -11,8 +13,10 @@ public class ProductData {
     private HashMap<String,Product> productMap = new HashMap<>();
     private Product currentProduct;
     private Vector<Product> comparisonList = new Vector<>();
+    private final Vector<Category> categories = new Vector<>();
     public ProductData(){
         fillProductData();
+        fillCategories();
         currentProduct = productMap.get("Iphone 13");
     }
     private void fillProductData(){
@@ -120,6 +124,11 @@ public class ProductData {
         productMap.get("SteelSeries Apex Pro Gaming").setTotalWarranty(12);
         productMap.get("SteelSeries Apex Pro Gaming").setTotalWarranty(13);
     }
+    private void fillCategories() {
+        categories.add(new Category("Televisie", "Televisies", R.drawable.televisions));
+        categories.add(new Category("Smartphone", "Smartphones", R.drawable.smartphones));
+        categories.add(new Category("Keyboard", "Toetsenborden", R.drawable.keyboards));
+    }
     public Product getProduct(String productname) {
         return productMap.get(productname);
     }
@@ -130,6 +139,9 @@ public class ProductData {
         return currentProduct;
     }
     public Vector<Product> getComparisonList() { return comparisonList; }
+    public List<Category> getCategories() {
+        return categories;
+    }
     public boolean addToComparisonList(Product product) {
         if (comparisonList.size() < 2) {
             comparisonList.addElement(product);
@@ -145,4 +157,5 @@ public class ProductData {
     public List<Product> getAllProducts() {
         return new ArrayList<>(productMap.values());
     }
+
 }
