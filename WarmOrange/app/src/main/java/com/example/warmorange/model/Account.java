@@ -11,6 +11,7 @@ public class Account {
     private final String email;
     private final Vector<Product> ownedProducts;
     private final Vector<Product> wishlist;
+    private final Vector<Product> wizardOutcomes;
 
     private final long accountId;
 
@@ -22,6 +23,7 @@ public class Account {
         accountId = nextId++;
         ownedProducts = new Vector<>();
         wishlist = new Vector<>();
+        wizardOutcomes = new Vector<>();
     }
 
     public String getFirstName() { return firstName; }
@@ -48,5 +50,12 @@ public class Account {
     }
     public void addProduct(Product p){
         ownedProducts.add(p);
+    }
+
+    public Vector<Product> getWizardOutcomes() {
+        return wizardOutcomes;
+    }
+    public void addWizardOutcome(String s){
+        wizardOutcomes.add(applicationData.getInstance().getProductData().getProduct(s));
     }
 }
