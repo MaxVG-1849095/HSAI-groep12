@@ -2,7 +2,9 @@ package com.example.warmorange.model;
 
 import com.example.warmorange.R;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -62,6 +64,7 @@ public class Product {
     public Vector<String> getTags() {
         return tags;
     }
+    public List<String> getTagList() {return Collections.list(tags.elements());}
 
     public void addTag(String tag) {
         tags.add(tag);

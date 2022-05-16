@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/demoFragment"
-        android:name="com.example.warmorange.DemoFragment"
+        android:name="com.example.warmorange.ui.demo.DemoFragment"
         android:label="fragment_demo"
         tools:layout="@layout/fragment_demo" />
     <fragment

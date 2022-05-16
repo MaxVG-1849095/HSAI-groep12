@@ -13,13 +13,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.warmorange.CompareFragment;
 import com.example.warmorange.R;
 import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.HomeSuggestionLayoutBinding;
 import com.example.warmorange.model.Product;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -42,6 +47,16 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
             binding.productName.setText(product.getName());
             binding.productImage.setImageResource(product.getImageId());
             binding.ratingBar.setRating((float)product.getAverageReviewScore());
+            List<String> tags = product.getTagList();
+
+            ProductTagAdapter tagAdapter = new ProductTagAdapter(tags);
+
+            RecyclerView recyclerView = binding.productTags;
+
+            recyclerView.setAdapter(tagAdapter);
+//            recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+
+            recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
 
             if (product.isInComparison()) {
                 binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.red));
@@ -53,6 +68,12 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
                 if (product.isInComparison()) {
                     applicationData.getInstance().getProductData().removeFromComparison(product);
                     binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.green));
+                    Snackbar snackbar = Snackbar.make(v, product.getName() + context.getResources().getString(R.string.removedFromComparison), Snackbar.LENGTH_LONG);
+                    snackbar.setAction(context.getResources().getString(R.string.revertChanges), s_v -> {
+                        applicationData.getInstance().getProductData().addToComparisonList(product);
+                        binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.red));
+                    });
+                    snackbar.show();
                 } else {
                     applicationData.getInstance().getProductData().addToComparisonList(product);
                     binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.red));
