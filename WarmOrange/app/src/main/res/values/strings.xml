@@ -59,6 +59,7 @@
     <string name="comparison_empty">Lege vergelijking</string>
     <string name="comparison_empty_label">Geen producten om te vergelijken!</string>
     <string name="addSecondItem">Voeg een tweede item toe om te vergelijken</string>
+    <string name="whatYouLookingFor">Waar ben je naar op zoek?</string>
     <string name="reviewBox">Laat een text achter bij je review (optioneel)</string>
     <string name="undo_string">undo</string>
 </resources>
