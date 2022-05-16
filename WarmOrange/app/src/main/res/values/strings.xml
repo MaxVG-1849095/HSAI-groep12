@@ -72,5 +72,10 @@
     <string name="cancel">Annuleer</string>
     <string name="cancelled">Geannuleerd</string>
     <string name="move">Verplaats</string>
-    <string name="at"> om </string>
+    <string name="cancelDemo">Annuleer demo</string>
+    <string name="cancelDemoProductMessage">Weet u zeker dat u de demo voor het product %1$s wilt annuleren?</string>
+    <string name="cancelDemoWizzardMessage">Weet u zeker dat u de demo voor de wizzard %1$s wilt annuleren?</string>
+    <string name="yes">ja</string>
+    <string name="no">nee</string>
+
 </resources>

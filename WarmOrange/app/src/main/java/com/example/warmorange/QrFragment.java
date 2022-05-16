@@ -85,9 +85,9 @@ public class QrFragment extends Fragment {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 dialog.setTitle(getString(R.string.scan_qr_dialogtitle));
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam"), Html.FROM_HTML_MODE_LEGACY));
+                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "Samsung QLED 50Q64A (2021)"), Html.FROM_HTML_MODE_LEGACY));
                 } else {
-                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam")));
+                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "Samsung QLED 50Q64A (2021)")));
                 }
                 dialog.setPositiveButton(R.string.scan_qr_dialogoption_continue, new DialogInterface.OnClickListener() {
                     @Override
