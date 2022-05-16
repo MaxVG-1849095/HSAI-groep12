@@ -133,9 +133,14 @@ public class ProductData {
     public boolean addToComparisonList(Product product) {
         if (comparisonList.size() < 2) {
             comparisonList.addElement(product);
+            product.addToComparison();
             return true;
         }
         return false;
+    }
+    public void removeFromComparison(Product product) {
+        product.removeFromComparison();
+        comparisonList.remove(product);
     }
     public List<Product> getAllProducts() {
         return new ArrayList<>(productMap.values());

@@ -18,6 +18,7 @@ public class Product {
     private int totalWarranty;
     private int currentWarranty = 0;
     private boolean reviewed = false;
+    private boolean inComparison = false;
 
     public Product(String name, boolean available, int imageId, String type) {
         this.name = name;
@@ -122,6 +123,10 @@ public class Product {
         }
         return count;
     }
+
+    public boolean isInComparison() { return inComparison; }
+    public void addToComparison() { inComparison = true; }
+    public void removeFromComparison() { inComparison = false; }
 
     public Map<String, String> getAttributes() {
         return attributes;
