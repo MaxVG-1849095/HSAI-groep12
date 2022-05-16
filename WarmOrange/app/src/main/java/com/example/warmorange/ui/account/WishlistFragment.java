@@ -55,14 +55,6 @@ public class WishlistFragment extends Fragment {
         if (wishlist.isEmpty())
             return inflater.inflate(R.layout.fragment_wishlist_empty, container, false);
 
-//        List<Product> p = new ArrayList<>();
-//        p.add(applicationData.getInstance().getProductData().getProduct("Apple magic keyboard"));
-//        p.add(applicationData.getInstance().getProductData().getProduct("OPPO Find X5 Pro"));
-//        p.add(applicationData.getInstance().getProductData().getProduct("Iphone 13"));
-//        p.add(applicationData.getInstance().getProductData().getProduct("Samsung QLED 50Q64A (2021)"));
-//        p.add(applicationData.getInstance().getProductData().getProduct("SteelSeries Apex Pro Gaming"));
-
-//        WishlistAdapter adapter = new WishlistAdapter(p);
         binding = FragmentWishlistBinding.inflate(inflater, container, false);
 
         WishlistAdapter adapter = new WishlistAdapter(wishlist);
