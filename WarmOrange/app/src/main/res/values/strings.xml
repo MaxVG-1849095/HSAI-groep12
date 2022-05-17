@@ -115,4 +115,6 @@
     <string name="loginDemo">Log in om een demo te boeken</string>
     <string name="noWizards">Er zijn geen wizards om demos van te boeken</string>
     <string name="noDemo">Er zijn nog geen geboekte demos</string>
+    <string name="no_products">Geen producten</string>
+    <string name="no_products_found">Geen producten gevonden.</string>
 </resources>

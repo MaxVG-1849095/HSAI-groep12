@@ -193,6 +193,11 @@ public class SearchListFragment extends Fragment {
                             adapterList.size()
                     ));
         binding.listSearchView.setQuery(searchField, false);
+
+        if (adapterList.size() > 0)
+            binding.emptyProducts.getRoot().setVisibility(View.INVISIBLE);
+        else
+            binding.emptyProducts.getRoot().setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("NotifyDataSetChanged")
