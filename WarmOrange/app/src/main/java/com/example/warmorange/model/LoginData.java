@@ -64,4 +64,7 @@ public class LoginData {
             new Account("admin", "man", "123", "admin@a")
     ));
 
+    public void fillAdmin(Product p){
+        accounts.get(3).addProduct(p);
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.warmorange.ui.warranty;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +25,8 @@ public class warrantyAdapter extends ArrayAdapter<Product> {
     Vector<Product> products = new Vector<>();
     private Context context;
     public warrantyAdapter(Context c, ProductData p) {
-        super(c, 0, applicationData.getInstance().getTestAccount().getOwnedProducts());
-        products = applicationData.getInstance().getTestAccount().getOwnedProducts();
+        super(c, 0, applicationData.getInstance().getLoginData().getActiveUser().getOwnedProducts());
+        products = applicationData.getInstance().getLoginData().getActiveUser().getOwnedProducts();
         context = c;
     }
 
@@ -64,10 +66,23 @@ public class warrantyAdapter extends ArrayAdapter<Product> {
 
         TextView warrantyText = (TextView) convertView.findViewById(R.id.warrantyText);
         if(product.getTotalWarranty() >= product.getCurrentWarranty())
-            warrantyText.setText("Resterende garantie: " + product.getCurrentWarranty() + "/" + product.getTotalWarranty() + " maanden");
+            warrantyText.setText("Resterende garantie: " + (product.getTotalWarranty() - product.getCurrentWarranty()) + "/" + product.getTotalWarranty() + " maanden");
         else
             warrantyText.setText(R.string.warrantyExpired);
         ProgressBar pBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+        if(product.getTotalWarranty() < product.getCurrentWarranty()){
+            pBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+        else if((double)product.getCurrentWarranty()/(double)product.getTotalWarranty() <0.3){
+            pBar.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+        }
+        else if((double)product.getCurrentWarranty()/(double)product.getTotalWarranty() < 0.6)
+        {
+            pBar.setProgressTintList(ColorStateList.valueOf(Color.CYAN));
+        }
+        else{
+            pBar.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+        }
         pBar.setMax(product.getTotalWarranty());
         pBar.setProgress(product.getCurrentWarranty());
 
