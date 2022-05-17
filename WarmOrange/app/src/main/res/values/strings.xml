@@ -62,6 +62,12 @@
     <string name="whatYouLookingFor">Waar ben je naar op zoek?</string>
     <string name="reviewBox">Laat een text achter bij je review (optioneel)</string>
     <string name="undo_string">undo</string>
+    <string name="added_to_wishlist">werd toegevoegd aan je wishlist</string>
+    <string name="removed_from_wishlist">werd uit je wishlist verwijderd</string>
+    <string name="in_comparison">In vergelijking</string>
+    <string name="log_in_to_add_to_wishlist">Log in om producten aan je wishlist toe te voegen.</string>
+    <string name="produts_list_category_title">%2$s - %1$d resultaten</string>
+    <string name="produts_list_title">%1$d resultaten</string>
     <string name="removedFromComparison"> is verwijderd uit de vergelijking!</string>
     <string name="comparisonFull">De vergelijking bevat al twee producten, verwijder één product alvorens een ander toe te voegen</string>
     <string name="revertChanges">Ongedaan maken</string>
@@ -87,5 +93,4 @@
     <string name="notAvailable">Niet beschikbaar in Hasselt</string>
     <string name="wizardLimit">Wizard enkel geimplementeerd voor televisies</string>
     <string name="compareFull">Je bent al twee producten aan het vergelijken!</string>
-
 </resources>
