@@ -13,6 +13,7 @@ import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.WishlistItemLayoutBinding;
 import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Product;
+import com.example.warmorange.ui.demo.BookDemoDialog;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -44,6 +45,10 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
                     adapter.notifyItemInserted(index);
                 });
                 snackbar.show();
+            });
+            binding.bookDemoButton.setOnClickListener(v -> {
+                BookDemoDialog dialog = new BookDemoDialog(v.getContext());
+                dialog.showDialog(product);
             });
         }
     }

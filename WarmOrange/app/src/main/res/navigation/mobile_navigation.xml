@@ -57,7 +57,14 @@
         android:id="@+id/demoFragment"
         android:name="com.example.warmorange.ui.demo.DemoFragment"
         android:label="Demo pagina"
-        tools:layout="@layout/fragment_demo" />
+        tools:layout="@layout/fragment_demo" >
+        <action
+            android:id="@+id/action_demoFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_demoFragment_self"
+            app:destination="@id/demoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/qrFragment"
         android:name="com.example.warmorange.QrFragment"

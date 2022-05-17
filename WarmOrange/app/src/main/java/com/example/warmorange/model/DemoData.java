@@ -15,17 +15,17 @@ public class DemoData {
         fillData();
     }
     private void fillData() {
-        Demo demo = new Demo("naam", true, 18, 11, 2002, 2, 0);
+        Demo demo = new Demo("Iphone 13", true, 7, 6, 2022, 12, 0);
         addDemo(demo);
-        demo = new Demo("qsldkjf sldfk jdsmj mlfd ", false, 12, 05, 2022, 15, 36);
+        demo = new Demo("Samsung Galaxy S22", true, 12, 05, 2022, 15, 36);
         demo.cancel();
         addDemo(demo);
-        demo = new Demo("nog een demo over een random product", false, 15, 12, 2023, 14, 00);
+        demo = new Demo("Samsung QLED 50Q64A (2021)", false, 25, 5, 2022, 14, 30);
         addDemo(demo);
     }
     public void addDemo(Demo demo) {
         demo.setID(++lastID);
-        demos.add(demo);
+        demos.add(0, demo);
     }
     public Demo getDemo(int id) {
         return demos.get(id);

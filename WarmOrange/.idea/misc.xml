@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.3287037037037037" />
+        <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/drawable/round_dialog.xml" value="0.231" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/activity_main.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/book_demo_layout.xml" value="0.365625" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/booked_demo_layout.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_account.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_bought_products.xml" value="0.16893115942028986" />
@@ -26,21 +28,28 @@
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/home_suggestion_item.xml" value="0.16" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/home_suggestion_layout.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/home_suggestion_layout2.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/move_demo_date.xml" value="0.2734375" />
         <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/product_tag_layout.xml" value="0.20018115942028986" />
-        <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/wishlist_item_layout.xml" value="0.1" />
-        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/drawable/qr_code_background.xml" value="0.3165" />
+        <entry key="..\:/Users/Korneel/Documents/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/wishlist_item_layout.xml" value="0.264" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/book_demo_layout.xml" value="0.31354166666666666" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/book_wizard_dialog.xml" value="0.553125" />
         <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/booked_demo_layout.xml" value="0.31354166666666666" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/compare_add_item_layout.xml" value="0.31354166666666666" />
         <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_demo.xml" value="0.31354166666666666" />
-        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_home.xml" value="0.31354166666666666" />
-        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_product.xml" value="0.31354166666666666" />
-        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_product_page.xml" value="0.31354166666666666" />
-        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/product_tag_layout.xml" value="0.31354166666666666" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_product.xml" value="0.3671875" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_product_page.xml" value="0.3671875" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_wishlist.xml" value="0.5541666666666667" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/fragment_wishlist_empty.xml" value="0.5541666666666667" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/home_suggestion_layout.xml" value="0.3671875" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/move_demo_date.xml" value="0.31354166666666666" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/product_tag_layout.xml" value="0.3671875" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/wishlist_item_layout.xml" value="0.5541666666666667" />
+        <entry key="..\:/data/GitHub/HSAI-groep12/WarmOrange/app/src/main/res/layout/wizard_layout.xml" value="0.553125" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.349" />
-        <entry key="app/src/main/res/drawable/televisions.xml" value="0.1895" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/filter_tag_layout.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.378125" />

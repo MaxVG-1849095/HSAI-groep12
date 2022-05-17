@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class applicationData {
     private static final applicationData instance = new applicationData();
-    private final wizardData wData= new wizardData();
+    private final WizardData wData= new WizardData();
     private final ProductData productData = new ProductData();
     private final DemoData demoData = new DemoData();
     private final LoginData loginData = new LoginData();
@@ -20,7 +20,7 @@ public class applicationData {
     public Map<String, String> getAttributeExplanations() {
         return attributeExplanations;
     }
-    public wizardData getwData(){
+    public WizardData getwData(){
         return wData;
     }
     public ProductData getProductData(){return productData;}

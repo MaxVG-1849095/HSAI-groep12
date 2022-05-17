@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/wizardResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/result" />
+
+    <TextView
+        android:id="@+id/bookDemoName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/wizardResult"
+        app:layout_constraintStart_toStartOf="@+id/wizardResult"
+        app:layout_constraintTop_toBottomOf="@+id/wizardResult"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/wizardOf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="wizard of"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/bookDemoName"
+        app:layout_constraintStart_toStartOf="@+id/bookDemoName"
+        app:layout_constraintTop_toBottomOf="@+id/bookDemoName" />
+
+    <TextView
+        android:id="@+id/bookDemoChooseDatetime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/wizardOf"
+        app:layout_constraintStart_toStartOf="@+id/wizardOf"
+        app:layout_constraintTop_toBottomOf="@+id/wizardOf"
+        tools:text="@string/chooseDateTime" />
+
+    <TextView
+        android:id="@+id/bookDemoDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/bookDemoChooseDatetime"
+        app:layout_constraintTop_toBottomOf="@+id/bookDemoChooseDatetime"
+        tools:text="@string/date" />
+
+    <EditText
+        android:id="@+id/editWizardDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="date"
+        app:layout_constraintEnd_toStartOf="@id/editWizardTime"
+        app:layout_constraintStart_toStartOf="@+id/bookDemoDate"
+        app:layout_constraintTop_toBottomOf="@+id/bookDemoDate" />
+
+    <EditText
+        android:id="@+id/editWizardTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="@+id/bookDemoChooseDatetime"
+        app:layout_constraintStart_toEndOf="@+id/editWizardDate"
+        app:layout_constraintTop_toBottomOf="@+id/bookDemoTime" />
+
+    <TextView
+        android:id="@+id/bookDemoTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/editWizardDate"
+        app:layout_constraintTop_toTopOf="@+id/bookDemoDate"
+        tools:text="@string/time" />
+
+    <Button
+        android:id="@+id/bookButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:text="@string/book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editWizardTime"
+        app:layout_constraintStart_toStartOf="@+id/editWizardDate"
+        app:layout_constraintTop_toBottomOf="@+id/editWizardDate" />
+</androidx.constraintlayout.widget.ConstraintLayout>
