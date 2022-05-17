@@ -90,8 +90,8 @@
     <string name="cancelDemoWizardMessage">Weet u zeker dat u de demo voor de wizard %1$s wilt annuleren?</string>
     <string name="yes">ja</string>
     <string name="no">nee</string>
-    <string name="bookDemoProductTitle">Boek een demo over je keuzewizard:</string>
-    <string name="bookDemoWizardTitle">Boek een demo over dit product:</string>
+    <string name="bookDemoWizardTitle">Boek een demo over je keuzewizard:</string>
+    <string name="bookDemoProductTitle">Boek een demo over dit product:</string>
     <string name="result">Uitslag:</string>
     <string name="wizardOf">wizard van %1$s</string>
     <string name="chooseDateTime">Kies een datum en tijdstip:</string>
@@ -111,4 +111,7 @@
     <string name="compareFull">Je bent al twee producten aan het vergelijken!</string>
     <string name="applied_filters">Toegepaste filters:</string>
     <string name="emptyWarranty">Nog niets te vinden hier! Laat je klantenkaart zeker scannen wanneer je iets koopt!</string>
+    <string name="loginDemo">Log in om een demo te boeken</string>
+    <string name="noWizards">Er zijn geen wizards om demos van te boeken</string>
+    <string name="noDemo">Er zijn nog geen geboekte demos</string>
 </resources>

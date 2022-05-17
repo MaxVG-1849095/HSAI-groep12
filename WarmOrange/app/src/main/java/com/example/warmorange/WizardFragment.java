@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.example.warmorange.databinding.FragmentWizardBinding;
 import com.example.warmorange.model.applicationData;
-import com.example.warmorange.model.wizardData;
-import com.example.warmorange.model.wizardInstance;
+import com.example.warmorange.model.WizardData;
+import com.example.warmorange.model.WizardInstance;
 
 import java.util.ArrayList;
 
@@ -36,8 +36,8 @@ public class WizardFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String productType;
-    private wizardData wData;
-    private wizardInstance wInstance;
+    private WizardData wData;
+    private WizardInstance wInstance;
     private applicationData appData = applicationData.getInstance();
     public WizardFragment() {
         // Required empty public constructor
@@ -100,6 +100,7 @@ public class WizardFragment extends Fragment {
                                            else if(wInstance.lastIndex()){
                                                TextView message = new TextView(getContext());
                                                message.setText(HtmlCompat.fromHtml(getString(R.string.wizard_text1) + wInstance.calcResponse() + getString(R.string.wizard_text2), HtmlCompat.FROM_HTML_MODE_COMPACT));
+                                               applicationData.getInstance().getwData().addWizardData(wInstance);
                                                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                                                dialog.setTitle(R.string.wizard_title);
                                                dialog.setView(message);

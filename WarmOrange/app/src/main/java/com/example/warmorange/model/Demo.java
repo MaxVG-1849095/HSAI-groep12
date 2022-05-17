@@ -8,7 +8,7 @@ public class Demo {
     private int hour, minute;
     private int id;
     private Product product;
-    private wizardInstance wizzard;
+    private Wizard wizard;
     public Demo(String name, boolean forProduct, int day, int month, int year, int hour, int minute) {
         demoName = name;
         this.forProduct = forProduct;
@@ -22,9 +22,9 @@ public class Demo {
         this(product.getName(), true, day, month, year, hour, minute);
         this.product = product;
     }
-    public Demo(wizardInstance wizzard, int day, int month, int year, int hour, int minute) {
-        this(wizzard.getResult(), false, day, month, year, hour, minute);
-        this.wizzard = wizzard;
+    public Demo(Wizard wizard, int day, int month, int year, int hour, int minute) {
+        this(wizard.getResult(), false, day, month, year, hour, minute);
+        this.wizard = wizard;
     }
 
     public void setDate(int day, int month, int year, int hour, int minute) {

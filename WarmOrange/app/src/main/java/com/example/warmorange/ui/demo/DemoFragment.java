@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.warmorange.R;
 import com.example.warmorange.databinding.FragmentDemoBinding;
@@ -85,6 +87,28 @@ public class DemoFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
+        if (applicationData.getInstance().getDemoData().getAllDemos().size() == 0) {
+            binding.noDemos.setVisibility(View.VISIBLE);
+        } else {
+            binding.noDemos.setVisibility(View.GONE);
+        }
+        binding.bookProductButton.setOnClickListener(v -> {
+            if (applicationData.getInstance().getLoginData().getActiveUser() != null) {
+                Navigation.findNavController(v).navigate(R.id.action_demoFragment_to_wishlistFragment);
+            } else {
+                Toast.makeText(getContext(), R.string.loginDemo, Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.bookWizzardButton.setOnClickListener(v -> {
+            if (applicationData.getInstance().getLoginData().getActiveUser() == null) {
+                Toast.makeText(getContext(), R.string.loginDemo, Toast.LENGTH_SHORT).show();
+            } else if (applicationData.getInstance().getwData().getWizardList().size() <= 0) {
+                Toast.makeText(getContext(), R.string.noWizards, Toast.LENGTH_SHORT).show();
+            } else {
+                BookWizardDialog dialog = new BookWizardDialog(getContext(), binding.getRoot());
+                dialog.showDialog();
+            }
+        });
 
         return binding.getRoot();
     }

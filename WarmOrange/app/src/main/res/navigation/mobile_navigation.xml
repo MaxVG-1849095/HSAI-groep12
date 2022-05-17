@@ -59,6 +59,9 @@
         android:label="Demo pagina"
         tools:layout="@layout/fragment_demo" >
         <action
+            android:id="@+id/action_demoFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment" />
+        <action
             android:id="@+id/action_demoFragment_self"
             app:destination="@id/demoFragment" />
     </fragment>

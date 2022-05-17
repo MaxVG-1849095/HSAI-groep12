@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-public class wizardInstance {
+public class WizardInstance {
     private Vector<String> questions = new Vector<>();
     private Map<String, ArrayList<String>> answers = new HashMap<>();
     private ArrayList<Integer> responses = new ArrayList<>();
     private int currentIndex = 0;
     private String result = "";
     private String date = "";
-    public wizardInstance(){
+    public WizardInstance(){
     }
 
     /**
@@ -134,6 +134,9 @@ public class wizardInstance {
     }
     public String getDate(){
         return date;
+    }
+    public ArrayList<Integer> getResponses(){
+        return responses;
     }
 
 

@@ -1,12 +1,17 @@
 package com.example.warmorange.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
+import java.util.Vector;
 
-public class wizardData {
-    private HashMap<String, wizardInstance> instances = new HashMap<>();
+public class WizardData {
+    private HashMap<String, WizardInstance> instances = new HashMap<>();
+    private Vector<Wizard> wizards = new Vector<>();
     private String wizardType;
-    public wizardData(){
+    public WizardData(){
         popMap();
         wizardType = "blabla";
     }
@@ -23,7 +28,7 @@ public class wizardData {
      * Functie die data in de hashmap stopt voor de vragen
      */
     private void popMap(){
-        instances.put("Televisie", new wizardInstance());
+        instances.put("Televisie", new WizardInstance());
         //vraag 1 tv
         instances.get("Televisie").addQuestion("Hoe groot moet de televisie zijn?");
         Objects.requireNonNull(instances.get("Televisie")).addAnswersForQuestion("Hoe groot moet de televisie zijn?", "Klein");
@@ -43,7 +48,14 @@ public class wizardData {
         Objects.requireNonNull(instances.get("Televisie")).addAnswersForQuestion("Heeft u een voorkeur aan resolutie?", "Ultra-HD");
         Objects.requireNonNull(instances.get("Televisie")).addAnswersForQuestion("Heeft u een voorkeur aan resolutie?", "Geen mening");
     }
-    public wizardInstance getInstance(String type){
+    public WizardInstance getInstance(String type){
         return instances.get(type);
+    }
+    public List<Wizard>  getWizardList() {
+        return Collections.list(wizards.elements());
+    }
+    public void addWizardData(WizardInstance wizardInstance){
+        Wizard wizard = new Wizard(wizardInstance);
+        wizards.add(wizard);
     }
 }
