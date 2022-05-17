@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchListItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <RatingBar
+        android:id="@+id/searchItemRating"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:progressTint="@color/orange1"
+        app:layout_constraintStart_toEndOf="@+id/searchItemImage"
+        app:layout_constraintTop_toBottomOf="@+id/searchItemTitle" />
+
+    <Button
+        android:id="@+id/searchItemCompare"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:backgroundTint="@color/green"
+        android:text="@string/home_compare"
+        android:drawableLeft="@drawable/ic_baseline_add_24"
+        android:drawableTint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/searchItemImage"
+        app:layout_constraintStart_toStartOf="@+id/searchItemImage"
+        app:layout_constraintTop_toBottomOf="@+id/searchItemImage" />
+
+    <ImageView
+        android:id="@+id/searchItemImage"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintHeight_max="150dp"
+        app:layout_constraintHeight_min="113dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/philips_tv" />
+
+    <TextView
+        android:id="@+id/searchItemTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Philips The One (50PUS8506) - Ambilight (2021)"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/searchWishlistButton"
+        app:layout_constraintStart_toEndOf="@+id/searchItemImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/searchWishlistButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/add_to_wishlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchItemTagList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchItemImage"
+        app:layout_constraintTop_toBottomOf="@+id/searchItemRating" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

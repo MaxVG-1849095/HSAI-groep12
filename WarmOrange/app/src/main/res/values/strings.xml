@@ -62,10 +62,17 @@
     <string name="whatYouLookingFor">Waar ben je naar op zoek?</string>
     <string name="reviewBox">Laat een text achter bij je review (optioneel)</string>
     <string name="undo_string">undo</string>
+    <string name="added_to_wishlist">werd toegevoegd aan je wishlist</string>
+    <string name="removed_from_wishlist">werd uit je wishlist verwijderd</string>
+    <string name="in_comparison">In vergelijking</string>
+    <string name="log_in_to_add_to_wishlist">Log in om producten aan je wishlist toe te voegen.</string>
+    <string name="produts_list_category_title">%2$s - %1$d resultaten</string>
+    <string name="produts_list_title">%1$d resultaten</string>
     <string name="removedFromComparison"> is verwijderd uit de vergelijking!</string>
     <string name="comparisonFull">De vergelijking bevat al twee producten, verwijder één product alvorens een ander toe te voegen</string>
     <string name="revertChanges">Ongedaan maken</string>
-    <string name="bookDemo">Boek een nieuwe demo</string>
+    <string name="bookNewDemo">Boek een nieuwe demo</string>
+    <string name="bookDemo">Boek demo</string>
     <string name="bookDemoWizard">Boek een demo voor een keuzewizard</string>
     <string name="bookDemoProduct">Boek een demo over een product</string>
     <string name="bookedDemos">Geboekte demos</string>
@@ -85,5 +92,16 @@
     <string name="date">datum:</string>
     <string name="time">tijdstip:</string>
     <string name="book">Boek</string>
-
+    <string name="moveDemo">Verplaats demo</string>
+    <string name="wrongCompType">Je bent reeds een product van een ander type aan het vergelijken.</string>
+    <string name="videoString">Hier hoort een video met uitleg</string>
+    <string name="arString">De AR-functionaliteit laat u toe om producten te tonen in uw eigen woonkamer! Richt uw camera op een plat vlak en laat de applicatie de rest doen</string>
+    <string name="arStart">Augmented reality gestart!</string>
+    <string name="removeWishlist">Uit wishlist gehaald</string>
+    <string name="loginWishlist">Log in om producten aan uw persoonlijke wishlist toe te voegen.</string>
+    <string name="available">Beschikbaar in Hasselt</string>
+    <string name="notAvailable">Niet beschikbaar in Hasselt</string>
+    <string name="wizardLimit">Wizard enkel geimplementeerd voor televisies</string>
+    <string name="compareFull">Je bent al twee producten aan het vergelijken!</string>
+    <string name="emptyWarranty">Nog niets te vinden hier! Laat je klantenkaart zeker scannen wanneer je iets koopt!</string>
 </resources>

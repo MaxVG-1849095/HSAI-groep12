@@ -1,5 +1,6 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.search;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.warmorange.R;
 import com.example.warmorange.databinding.SearchCategoryLayoutBinding;
 import com.example.warmorange.model.Category;
-import com.example.warmorange.model.applicationData;
-import com.example.warmorange.databinding.WishlistItemLayoutBinding;
-import com.example.warmorange.model.Account;
-import com.example.warmorange.model.Product;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -31,7 +27,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             binding = SearchCategoryLayoutBinding.bind(view);
         }
 
-        public void setViewData(SearchAdapter adapter, Category category) {
+        public void setViewData(Category category) {
             binding.categoryName.setText(category.getDisplayName());
             binding.categoryImage.setImageResource(category.getImageId());
         }
@@ -61,9 +57,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         Category cat = categories.get(position);
 
-        viewHolder.setViewData(this, cat);
+        viewHolder.setViewData(cat);
         viewHolder.itemView.setOnClickListener(v -> {
-//            Navigation.findNavController(v).navigate(R.id.action_wishlistFragment_to_productPageFragment);
+            Bundle b = new Bundle();
+            b.putString(SearchListFragment.ARG_CATEGORY, cat.getName());
+            Navigation.findNavController(v).navigate(R.id.action_searchFragment_to_searchListFragment, b);
         });
     }
 

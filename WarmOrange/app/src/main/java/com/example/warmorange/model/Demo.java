@@ -26,6 +26,15 @@ public class Demo {
         this(wizzard.getResult(), false, day, month, year, hour, minute);
         this.wizzard = wizzard;
     }
+
+    public void setDate(int day, int month, int year, int hour, int minute) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.hour = hour;
+        this.minute = minute;
+    }
+
     public void setID(int id) { this.id = id; }
 
     public boolean isForProduct() { return forProduct; }

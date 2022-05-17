@@ -5,8 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.warmorange.R;
 import com.example.warmorange.databinding.BookDemoLayoutBinding;
 import com.example.warmorange.databinding.BookedDemoLayoutBinding;
+import com.example.warmorange.databinding.MoveDemoDateBinding;
 import com.example.warmorange.model.Demo;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.applicationData;
@@ -63,6 +62,9 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>  {
         BookedDemoLayoutBinding binding;
         Context context;
         AlertDialog.Builder alertDialog;
+        AlertDialog.Builder moveDialogBuilder;
+        AlertDialog moveDialog;
+        private int year, month, day, hour, minute;
 
         public ViewHolder(View view) {
             super(view);
@@ -77,10 +79,9 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>  {
                 alertDialog.show();
             });
             binding.moveDemoButton.setOnClickListener(view -> {
-                moveDemoDialog move = new moveDemoDialog(context);
-                move.showDialog(applicationData.getInstance().getProductData().getCurrentProduct());
-//                AlertDialog moveDialog = move.show();
-                //moveDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.round_dialog));
+                createMoveDialog(demo);
+                moveDialog = moveDialogBuilder.show();
+                moveDialog.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.drawable.round_dialog));
             });
         }
         private void createAlertDialog(Demo demo) {
@@ -101,6 +102,61 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>  {
                 }
             });
             alertDialog.setNegativeButton(R.string.no, null);
+        }
+        private void createMoveDialog(Demo demo) {
+            moveDialogBuilder = new AlertDialog.Builder(context);
+            moveDialogBuilder.setTitle(context.getResources().getString(R.string.moveDemo));
+            LayoutInflater inflater = LayoutInflater.from(context);
+            View view = inflater.inflate(R.layout.move_demo_date, null);
+            MoveDemoDateBinding binding;
+            binding = MoveDemoDateBinding.bind(view);
+            binding.bookDemoChooseDatetime.setText(R.string.chooseDateTime);
+            binding.bookDemoDate.setText(R.string.date);
+            binding.bookDemoTime.setText(R.string.time);
+            EditText dateText = binding.editWizardDate;
+            dateText.setOnClickListener(v ->{
+                DatePickerDialog datePicker;
+                final Calendar calendar = Calendar.getInstance();
+                int currDay = calendar.get(Calendar.DAY_OF_MONTH);
+                int currMonth = calendar.get(Calendar.MONTH);
+                int currYear = calendar.get(Calendar.YEAR);
+                datePicker = new DatePickerDialog(context,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int y, int m, int d) {
+                                dateText.setText(d + "/" + (m + 1) + "/" + y);
+                                day = d;
+                                month = m+1;
+                                year = y;
+                            }
+                        }, currYear, currMonth, currDay);
+                datePicker.show();
+            });
+
+            EditText timeText = binding.editWizardTime;
+            timeText.setOnClickListener(v -> {
+                TimePickerDialog timePicker;
+                final Calendar calendar = Calendar.getInstance();
+                int currHour = calendar.get(Calendar.HOUR_OF_DAY);
+                int currMinute = calendar.get(Calendar.MINUTE);
+                timePicker = new TimePickerDialog(context,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int h, int m) {
+                                timeText.setText(h + ":" + m);
+                                hour = h;
+                                minute = m;
+                            }
+                        }, currHour, currMinute, true);
+                timePicker.show();
+            });
+
+            binding.bookButton.setOnClickListener(v -> {
+                demo.setDate(day, month, year, hour, minute);
+                moveDialog.dismiss();
+                showLayout(demo);
+            });
+            moveDialogBuilder.setView(view);
         }
         private void showLayout(Demo demo) {
             String date = demo.getDay() + "/" + demo.getMonth() + "/" + demo.getYear();
@@ -144,6 +200,9 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>  {
         }
     }
 
+
+    // dialog for booking a demo
+    // -------------------------
     public static class moveDemoDialog extends AlertDialog.Builder {
         private boolean isProduct;
         private String name;
@@ -157,16 +216,16 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>  {
         int minute;
         AlertDialog dialog;
 
-        protected moveDemoDialog(Context context) {
+        public moveDemoDialog(Context context) {
             super(context);
         }
-        private void showDialog(Product product) {
+        public void showDialog(Product product) {
             this.product = product;
             isProduct = true;
             name = product.getName();
             showDialog();
         }
-        private void showDialog(wizardInstance wizard) {
+        public void showDialog(wizardInstance wizard) {
             this.wizard = wizard;
             isProduct = false;
             name = wizard.getResult();
@@ -206,7 +265,7 @@ public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder>  {
                             public void onDateSet(DatePicker view, int y, int m, int d) {
                                 dateText.setText(d + "/" + (m + 1) + "/" + y);
                                 day = d;
-                                month = m;
+                                month = m+1;
                                 year = y;
                             }
                         }, currYear, currMonth, currDay);

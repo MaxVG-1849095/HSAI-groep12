@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.warmorange.R;
 import com.example.warmorange.databinding.FragmentProductPageBinding;
@@ -27,6 +27,7 @@ import com.example.warmorange.model.Product;
 import com.example.warmorange.model.Review;
 import com.example.warmorange.model.applicationData;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.snackbar.SnackbarContentLayout;
 
 import java.text.DecimalFormat;
 import java.util.Vector;
@@ -105,7 +106,7 @@ public class ProductPageFragment extends Fragment {
                 // Assumes wishlist doesn't already contain the product
                 Account activeUser = appData.getLoginData().getActiveUser();
                 if (activeUser == null) {
-                    Toast.makeText(getActivity(),"Log in om producten aan uw persoonlijke wishlist toe te voegen.", Toast.LENGTH_LONG).show();
+                    Snackbar.make(getView(), R.string.loginWishlist, Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 activeUser.getWishlist().add(product);
@@ -114,7 +115,7 @@ public class ProductPageFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         applicationData.getInstance().getLoginData().getActiveUser().removeProduct(product.getName());
-                        Snackbar undoSnackbar = Snackbar.make(getView(), "Uit wishlist gehaald", Snackbar.LENGTH_SHORT);
+                        Snackbar undoSnackbar = Snackbar.make(getView(), R.string.removeWishlist, Snackbar.LENGTH_SHORT);
                         undoSnackbar.show();
                         binding.wishlistButton.setEnabled(true);
                         binding.wishlistButton.setText(R.string.add_to_wishlist);
@@ -129,9 +130,7 @@ public class ProductPageFragment extends Fragment {
         ARButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast toast=Toast.makeText(getActivity(),"Augmented reality gestart!", Toast.LENGTH_SHORT);
-                toast.setMargin(50,50);
-                toast.show();
+                Snackbar.make(getView(), R.string.arStart, Snackbar.LENGTH_SHORT).show();
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 startActivity(intent);
             }
@@ -141,7 +140,7 @@ public class ProductPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 TextView message = new TextView(getContext());
-                message.setText(HtmlCompat.fromHtml("De AR-functionaliteit laat u toe om producten te tonen in uw eigen woonkamer! Richt uw camera op een plat vlak en laat de applicatie de rest doen", HtmlCompat.FROM_HTML_MODE_COMPACT));
+                message.setText(HtmlCompat.fromHtml(getString(R.string.arString), HtmlCompat.FROM_HTML_MODE_COMPACT));
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 dialog.setTitle("AR-info");
                 dialog.setView(message);
@@ -168,18 +167,56 @@ public class ProductPageFragment extends Fragment {
         videoButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast toast=Toast.makeText(getActivity(),"Hier hoort een video met uitleg", Toast.LENGTH_SHORT);
-                toast.setMargin(50,50);
-                toast.show();
+                Snackbar.make(getView(),R.string.videoString, Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        Button compareButton = (Button) binding.compareButton;
+        if(product.isInComparison()){
+            compareButton.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.red));
+        }
+        else{
+            compareButton.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.green));
+        }
+        compareButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(product.isInComparison()){
+                    applicationData.getInstance().getProductData().removeFromComparison(product);
+                    compareButton.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.green));
+                    Snackbar snackbar = Snackbar.make(getView(), product.getName() + " " + getContext().getResources().getString(R.string.removedFromComparison), Snackbar.LENGTH_LONG);
+                    snackbar.setAction(R.string.revertChanges, s_v -> {
+                        applicationData.getInstance().getProductData().addToComparisonList(product);
+                        binding.compareButton.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.red));
+                    });
+                    snackbar.show();
+                }
+                else{
+                    if(applicationData.getInstance().getProductData().addToComparisonList(product)){
+                        compareButton.setBackgroundTintList(getContext().getResources().getColorStateList(R.color.red));
+                        if(applicationData.getInstance().getProductData().getComparisonList().size() == 2){
+                            Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_compareFragment);
+                        }
+                    }
+                    else{
+                        if(applicationData.getInstance().getProductData().getComparisonList().size() ==2){
+                            Snackbar.make(getView(), R.string.compareFull, Snackbar.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Snackbar.make(getView(), R.string.wrongCompType, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+
+                }
             }
         });
 
         TextView availableText = (TextView) binding.availableText;
         if(product.isAvailable()){
-            availableText.setText("Beschikbaar in Hasselt");
+            availableText.setText(R.string.available);
         }
         else{
-            availableText.setText("Niet beschikbaar in Hasselt");
+            availableText.setText(R.string.notAvailable);
         }
 
         TextView inclText = (TextView) binding.includedListText;
@@ -197,7 +234,9 @@ public class ProductPageFragment extends Fragment {
                 if(applicationData.getInstance().getProductData().getCurrentProduct().getType() == "Televisie"){
                     applicationData.getInstance().getwData().setWizardType(product.getType());
                     Navigation.findNavController(view).navigate(R.id.action_productPageFragment_to_navigation_wizardFragment);
-
+                }
+                else{
+                    Snackbar.make(getView(), R.string.wizardLimit, Snackbar.LENGTH_SHORT);
                 }
             }
         });
