@@ -36,9 +36,10 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder{
         HomeSuggestionLayoutBinding binding;
         Context context;
-
+        View v;
         public ViewHolder(View view) {
             super(view);
+            v = view;
             binding = HomeSuggestionLayoutBinding.bind(view);
             context = view.getContext();
         }
@@ -68,16 +69,28 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
                 if (product.isInComparison()) {
                     applicationData.getInstance().getProductData().removeFromComparison(product);
                     binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.green));
-                    Snackbar snackbar = Snackbar.make(v, product.getName() + context.getResources().getString(R.string.removedFromComparison), Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(v, product.getName() + " " +  context.getResources().getString(R.string.removedFromComparison), Snackbar.LENGTH_LONG);
                     snackbar.setAction(context.getResources().getString(R.string.revertChanges), s_v -> {
                         applicationData.getInstance().getProductData().addToComparisonList(product);
                         binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.red));
                     });
                     snackbar.show();
                 } else {
-                    applicationData.getInstance().getProductData().addToComparisonList(product);
-                    binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.red));
-                    Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_compareFragment);
+                    if(applicationData.getInstance().getProductData().addToComparisonList(product)){
+                        binding.compareButton.setBackgroundTintList(context.getResources().getColorStateList(R.color.red));
+                        if(applicationData.getInstance().getProductData().getComparisonList().size() == 2){
+                            Navigation.findNavController(v).navigate(R.id.action_navigation_home_to_compareFragment);
+                        }
+
+                    }
+                    else{
+                        if(applicationData.getInstance().getProductData().getComparisonList().size() ==2){
+                            Snackbar.make(v, R.string.compareFull, Snackbar.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Snackbar.make(v, R.string.wrongCompType, Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             });
         }

@@ -144,9 +144,16 @@ public class ProductData {
     }
     public boolean addToComparisonList(Product product) {
         if (comparisonList.size() < 2) {
-            comparisonList.addElement(product);
-            product.addToComparison();
-            return true;
+            if(comparisonList.isEmpty()){
+                comparisonList.addElement(product);
+                product.addToComparison();
+                return true;
+            }
+            else if(comparisonList.get(0).getType().equals(product.getType())){
+                comparisonList.addElement(product);
+                product.addToComparison();
+                return true;
+            }
         }
         return false;
     }

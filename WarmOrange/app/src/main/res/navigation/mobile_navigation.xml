@@ -114,6 +114,9 @@
         <action
             android:id="@+id/action_productPageFragment_to_warrantyFragment"
             app:destination="@id/warrantyFragment" />
+        <action
+            android:id="@+id/action_productPageFragment_to_compareFragment"
+            app:destination="@id/compareFragment" />
     </fragment>
     <fragment
       android:id="@+id/createAccountFragment"
