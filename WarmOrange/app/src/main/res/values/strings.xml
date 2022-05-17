@@ -66,7 +66,7 @@
     <string name="comparisonFull">De vergelijking bevat al twee producten, verwijder één product alvorens een ander toe te voegen</string>
     <string name="revertChanges">Ongedaan maken</string>
     <string name="bookDemo">Boek een nieuwe demo</string>
-    <string name="bookDemoWizzard">Boek een demo voor een keuzewizzard</string>
+    <string name="bookDemoWizard">Boek een demo voor een keuzewizard</string>
     <string name="bookDemoProduct">Boek een demo over een product</string>
     <string name="bookedDemos">Geboekte demos</string>
     <string name="cancel">Annuleer</string>
@@ -74,8 +74,16 @@
     <string name="move">Verplaats</string>
     <string name="cancelDemo">Annuleer demo</string>
     <string name="cancelDemoProductMessage">Weet u zeker dat u de demo voor het product %1$s wilt annuleren?</string>
-    <string name="cancelDemoWizzardMessage">Weet u zeker dat u de demo voor de wizzard %1$s wilt annuleren?</string>
+    <string name="cancelDemoWizardMessage">Weet u zeker dat u de demo voor de wizard %1$s wilt annuleren?</string>
     <string name="yes">ja</string>
     <string name="no">nee</string>
+    <string name="bookDemoProductTitle">Boek een demo over je keuzewizard:</string>
+    <string name="bookDemoWizardTitle">Boek een demo over dit product:</string>
+    <string name="result">Uitslag:</string>
+    <string name="wizardOf">wizard van %1$s</string>
+    <string name="chooseDateTime">Kies een datum en tijdstip:</string>
+    <string name="date">datum:</string>
+    <string name="time">tijdstip:</string>
+    <string name="book">Boek</string>
 
 </resources>
