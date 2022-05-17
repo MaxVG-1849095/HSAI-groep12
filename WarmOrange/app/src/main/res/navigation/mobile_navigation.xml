@@ -194,5 +194,8 @@
         <action
             android:id="@+id/action_searchListFragment_to_productPageFragment"
             app:destination="@id/productPageFragment" />
+        <action
+            android:id="@+id/action_searchListFragment_to_compareFragment"
+            app:destination="@id/compareFragment" />
     </fragment>
 </navigation>
