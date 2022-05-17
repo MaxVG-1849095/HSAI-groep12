@@ -65,7 +65,7 @@ public class WarrantyFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         if (applicationData.getInstance().getLoginData().getActiveUser().getOwnedProducts().isEmpty())
-            return inflater.inflate(R.layout.fragment_wishlist_empty, container, false);
+            return inflater.inflate(R.layout.fragment_warranty_empty, container, false);
 
         binding = FragmentWarrantyBinding.inflate(inflater, container, false);
 
