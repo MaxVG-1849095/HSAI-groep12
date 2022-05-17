@@ -46,13 +46,13 @@ public class SearchFilterAdapter extends RecyclerView.Adapter<SearchFilterAdapte
         public void setViewData(String groupName, List<String> groupFilters) {
             binding.filterGroupTitle.setText(groupName);
             for (String filterName : groupFilters) {
-                AppCompatCheckBox checkBox = buildCheckBox(itemView.getContext(), filterName);
+                AppCompatCheckBox checkBox = buildCheckBox(itemView.getContext(), filterName, groupName);
                 binding.filterGroupVerticalLayout.addView(checkBox);
             }
         }
 
         @SuppressLint("RestrictedApi")
-        public AppCompatCheckBox buildCheckBox(Context context, String filterName) {
+        public AppCompatCheckBox buildCheckBox(Context context, String filterName, String filterGroup) {
             AppCompatCheckBox checkBox = new AppCompatCheckBox(context);
             checkBox.setText(filterName);
             //https://stackoverflow.com/a/40016860
@@ -68,7 +68,7 @@ public class SearchFilterAdapter extends RecyclerView.Adapter<SearchFilterAdapte
             );
             checkBox.setSupportButtonTintList(colors);
             checkBox.setOnCheckedChangeListener((compoundButton, b) ->
-                    callback.updateFilter(filterName, b)
+                    callback.updateFilter(filterName, filterGroup, b)
             );
             return checkBox;
         }

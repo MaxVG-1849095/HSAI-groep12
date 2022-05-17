@@ -32,7 +32,7 @@ import java.util.Map;
  */
 public class SearchListFragment extends Fragment {
     public interface FilterUpdateCallback {
-        void updateFilter(String filterTag, boolean enabled);
+        void updateFilter(String filterTag, String filterGroup, boolean enabled);
     }
 
     private FragmentSearchListBinding binding;
@@ -46,7 +46,7 @@ public class SearchListFragment extends Fragment {
     private List<Product> categoryProducts;
     private List<Product> adapterList;
     private Map<String, List<String>> filterOptions;
-    private Map<String, List<String>> filters;
+    private final Map<String, List<String>> filters = new HashMap<>();
 
     public SearchListFragment() {
         // Required empty public constructor
@@ -144,8 +144,14 @@ public class SearchListFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void onUpdateFilter(String filterTag, boolean enabled) {
-        Log.d("hetwerkt", filterTag + enabled);
+    private void onUpdateFilter(String filterTag, String filterGroup, boolean enabled) {
+        if (!filters.containsKey(filterGroup))
+            filters.put(filterGroup, new ArrayList<>());
+        if (enabled)
+            filters.get(filterGroup).add(filterTag);
+        else
+            filters.get(filterGroup).remove(filterTag);
+        updateWithFilters();
     }
 
     private void updateHeader() {
@@ -179,12 +185,13 @@ public class SearchListFragment extends Fragment {
             );
 
         // contains attributes
-        if (filters != null)
-            for (Map.Entry<String, List<String>> tagGroup : filters.entrySet())
+        for (Map.Entry<String, List<String>> tagGroup : filters.entrySet()) {
+            if (!tagGroup.getValue().isEmpty())
                 adapterList.removeIf(p ->
                         !p.getAttributes().containsKey(tagGroup.getKey())
-                        || !tagGroup.getValue().contains(p.getAttributes().get(tagGroup.getKey()))
+                                || !tagGroup.getValue().contains(p.getAttributes().get(tagGroup.getKey()))
                 );
+        }
 
         // sort
         adapterList.sort((product, t1) -> 0);
