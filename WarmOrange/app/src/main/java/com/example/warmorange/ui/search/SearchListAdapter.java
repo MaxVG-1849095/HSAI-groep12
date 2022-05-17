@@ -26,6 +26,7 @@ import com.example.warmorange.model.Account;
 import com.example.warmorange.model.Category;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.applicationData;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -35,9 +36,10 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         SearchListLayoutBinding binding;
 
+        View view;
         public ViewHolder(View view) {
             super(view);
-
+            this.view = view;
             binding = SearchListLayoutBinding.bind(view);
         }
 
@@ -64,15 +66,44 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             }
 
             Button compareButton = binding.searchItemCompare;
-            if (applicationData.getInstance().getProductData().getComparisonList().contains(product)) {
-                compareButton.setText(R.string.in_comparison);
-                compareButton.setBackgroundColor(ContextCompat.getColor(compareButton.getContext(), R.color.orange1));
-                compareButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                compareButton.setOnClickListener(vw -> onDeleteComparison((Button)vw, product));
+            if(product.isInComparison()){
+                compareButton.setBackgroundTintList(view.getContext().getResources().getColorStateList(R.color.red));
             }
-            else {
-                compareButton.setOnClickListener(v -> onAddComparison((Button) v, product));
+            else{
+                compareButton.setBackgroundTintList(view.getContext().getResources().getColorStateList(R.color.green));
             }
+            compareButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    if(product.isInComparison()){
+                        applicationData.getInstance().getProductData().removeFromComparison(product);
+                        compareButton.setBackgroundTintList(view.getContext().getResources().getColorStateList(R.color.green));
+                        Snackbar snackbar = Snackbar.make(view, product.getName() + " " + view.getContext().getResources().getString(R.string.removedFromComparison), Snackbar.LENGTH_LONG);
+                        snackbar.setAction(R.string.revertChanges, s_v -> {
+                            applicationData.getInstance().getProductData().addToComparisonList(product);
+                            compareButton.setBackgroundTintList(view.getContext().getResources().getColorStateList(R.color.red));
+                        });
+                        snackbar.show();
+                    }
+                    else{
+                        if(applicationData.getInstance().getProductData().addToComparisonList(product)){
+                            compareButton.setBackgroundTintList(view.getContext().getResources().getColorStateList(R.color.red));
+                            if(applicationData.getInstance().getProductData().getComparisonList().size() == 2){
+                                Navigation.findNavController(view).navigate(R.id.action_searchListFragment_to_compareFragment);
+                            }
+                        }
+                        else{
+                            if(applicationData.getInstance().getProductData().getComparisonList().size() ==2){
+                                Snackbar.make(view, R.string.compareFull, Snackbar.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Snackbar.make(view, R.string.wrongCompType, Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+                }
+            });
         }
 
         private void onAddWishlist(ImageButton b, Product p) {
