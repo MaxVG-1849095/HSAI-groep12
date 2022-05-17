@@ -74,6 +74,7 @@
         <item quantity="one">%1$d resultaat</item>
         <item quantity="other">%1$d resultaten</item>
     </plurals>
+    <string name="filter_category">Filter %1$s</string>
     <string name="removedFromComparison"> is verwijderd uit de vergelijking!</string>
     <string name="comparisonFull">De vergelijking bevat al twee producten, verwijder één product alvorens een ander toe te voegen</string>
     <string name="revertChanges">Ongedaan maken</string>

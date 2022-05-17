@@ -1,10 +1,10 @@
 package com.example.warmorange.ui.search;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -20,6 +20,7 @@ import com.example.warmorange.model.Product;
 import com.example.warmorange.model.applicationData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -30,6 +31,10 @@ import java.util.Map;
  * create an instance of this fragment.
  */
 public class SearchListFragment extends Fragment {
+    public interface FilterUpdateCallback {
+        void updateFilter(String filterTag, boolean enabled);
+    }
+
     private FragmentSearchListBinding binding;
 
     public static final String ARG_CATEGORY = "category";
@@ -40,10 +45,23 @@ public class SearchListFragment extends Fragment {
     private String searchField;
     private List<Product> categoryProducts;
     private List<Product> adapterList;
-    private Map<String, List<String>> tags;
+    private Map<String, List<String>> filterOptions;
+    private Map<String, List<String>> filters;
 
     public SearchListFragment() {
         // Required empty public constructor
+
+        //temp, TODO: remove
+        filterOptions = new HashMap<>();
+        filterOptions.put("Diagonaal", new ArrayList<String>(){{
+            add("45 inch");
+            add("55 inch");
+            add("56 inch");
+        }});
+        filterOptions.put("Grootte", new ArrayList<String>(){{
+            add("Groot");
+            add("Klein");
+        }});
     }
 
     /**
@@ -52,7 +70,6 @@ public class SearchListFragment extends Fragment {
      *
      * @return A new instance of fragment SearchListFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static SearchListFragment newInstance(String category, String searchField) {
         SearchListFragment fragment = new SearchListFragment();
         Bundle args = new Bundle();
@@ -100,29 +117,57 @@ public class SearchListFragment extends Fragment {
             }
         });
 
+        binding.filterDrawerTitle.setText(getContext().getResources()
+                .getString(
+                        R.string.filter_category,
+                        category == null ? "" : category.getDisplayName()
+                ));
+
+        binding.filtersList.setAdapter(new SearchFilterAdapter(filterOptions, this::onUpdateFilter));
+        binding.filtersList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        binding.showFiltersButton.setOnClickListener(v -> {
+            int visibility = binding.filterDrawer.getVisibility() == View.VISIBLE
+                    ? View.GONE
+                    : View.VISIBLE;
+            binding.filterDrawer.setVisibility(visibility);
+            binding.greyOverlayView.setVisibility(visibility);
+        });
+
+        binding.greyOverlayView.setOnClickListener(v -> {
+            binding.filterDrawer.setVisibility(View.GONE);
+            binding.greyOverlayView.setVisibility(View.GONE);
+        });
+
         updateWithFilters();
+
         return binding.getRoot();
+    }
+
+    private void onUpdateFilter(String filterTag, boolean enabled) {
+        Log.d("hetwerkt", filterTag + enabled);
     }
 
     private void updateHeader() {
         if (category != null)
-            binding.searchTitle.setText(String.format(getContext().getResources()
+            binding.searchTitle.setText(getContext().getResources()
                     .getQuantityString(
                             R.plurals.produts_list_category_title,
                             adapterList.size(),
                             adapterList.size(),
                             category.getDisplayName()
-                    )));
+                    ));
         else
-            binding.searchTitle.setText(String.format(getContext().getResources()
+            binding.searchTitle.setText(getContext().getResources()
                     .getQuantityString(
                             R.plurals.produts_list_title,
                             adapterList.size(),
                             adapterList.size()
-                    )));
+                    ));
         binding.listSearchView.setQuery(searchField, false);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void updateWithFilters() {
         adapterList.clear();
         adapterList.addAll(categoryProducts);
@@ -133,17 +178,20 @@ public class SearchListFragment extends Fragment {
                             .contains(searchField.toLowerCase(Locale.ROOT))
             );
 
-        // contains tags
-        if (tags != null)
-            for (List<String> tags : tags.values())
-                adapterList.removeIf(p -> tags.stream().noneMatch(tag -> p.getTags().contains(tag)));
+        // contains attributes
+        if (filters != null)
+            for (Map.Entry<String, List<String>> tagGroup : filters.entrySet())
+                adapterList.removeIf(p ->
+                        !p.getAttributes().containsKey(tagGroup.getKey())
+                        || !tagGroup.getValue().contains(p.getAttributes().get(tagGroup.getKey()))
+                );
 
         // sort
         adapterList.sort((product, t1) -> 0);
 
         adapter.notifyDataSetChanged();
 
-        if (tags != null && tags.size() > 0) {
+        if (filterOptions != null && filterOptions.size() > 0) {
             binding.flexboxLayout.setVisibility(View.VISIBLE);
         }
         else

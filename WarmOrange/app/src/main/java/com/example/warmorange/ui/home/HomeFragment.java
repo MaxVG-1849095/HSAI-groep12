@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 Bundle b = new Bundle();
                 b.putString(SearchListFragment.ARG_SEARCHFIELD, query);
-                Navigation.findNavController(container).navigate(R.id.action_searchFragment_to_searchListFragment, b);
+                    Navigation.findNavController(container).navigate(R.id.action_navigation_home_to_searchListFragment, b);
                 return false;
             }
             @Override
@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+        binding.gotoCategoriesButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_searchFragment));
 
         return binding.getRoot();
     }
