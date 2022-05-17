@@ -3,13 +3,17 @@ package com.example.warmorange.ui.search;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.warmorange.R;
 import com.example.warmorange.databinding.FragmentSearchBinding;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.applicationData;
@@ -44,6 +48,22 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         binding.searchCategoriesList.setAdapter(new SearchAdapter(applicationData.getInstance().getProductData().getCategories()));
         binding.searchCategoriesList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Bundle b = new Bundle();
+                b.putString(SearchListFragment.ARG_SEARCHFIELD, query);
+                Navigation.findNavController(container).navigate(R.id.action_searchFragment_to_searchListFragment, b);
+                Log.d("ja", "zeker");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         return binding.getRoot();
     }

@@ -3,22 +3,26 @@ package com.example.warmorange.ui.search;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.warmorange.R;
-import com.example.warmorange.databinding.FragmentSearchBinding;
 import com.example.warmorange.databinding.FragmentSearchListBinding;
 import com.example.warmorange.model.Category;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.applicationData;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,9 +33,14 @@ public class SearchListFragment extends Fragment {
     private FragmentSearchListBinding binding;
 
     public static final String ARG_CATEGORY = "category";
+    public static final String ARG_SEARCHFIELD = "searchfield";
 
+    SearchListAdapter adapter;
     private Category category = null;
-    private String[] tags;
+    private String searchField;
+    private List<Product> categoryProducts;
+    private List<Product> adapterList;
+    private Map<String, List<String>> tags;
 
     public SearchListFragment() {
         // Required empty public constructor
@@ -44,10 +53,11 @@ public class SearchListFragment extends Fragment {
      * @return A new instance of fragment SearchListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SearchListFragment newInstance(String category) {
+    public static SearchListFragment newInstance(String category, String searchField) {
         SearchListFragment fragment = new SearchListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_CATEGORY, category);
+        args.putString(ARG_SEARCHFIELD, searchField);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,6 +70,7 @@ public class SearchListFragment extends Fragment {
                     .filter(c -> c.getName().equals(getArguments().getString(ARG_CATEGORY)))
                     .findFirst()
                     .ifPresent(c -> category = c);
+            searchField = getArguments().getString(ARG_SEARCHFIELD);
         }
     }
 
@@ -68,29 +79,84 @@ public class SearchListFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSearchListBinding.inflate(inflater, container, false);
 
-        List<Product> products = getFilteredProducts();
-        if (category != null)
-            binding.searchTitle.setText(String.format(getContext().getString(R.string.produts_list_category_title), products.size(), category.getDisplayName()));
-        else
-            binding.searchTitle.setText(String.format(getContext().getString(R.string.produts_list_title), products.size()));
-        binding.searchItemList.setAdapter(new SearchListAdapter(products));
+        categoryProducts = getCategoryProducts();
+
+        adapterList = new ArrayList<>();
+        adapter = new SearchListAdapter(adapterList);
+        binding.searchItemList.setAdapter(adapter);
         binding.searchItemList.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        binding.listSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                searchField = s;
+                updateWithFilters();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        updateWithFilters();
         return binding.getRoot();
     }
 
-    private List<Product> getFilteredProducts() {
+    private void updateHeader() {
+        if (category != null)
+            binding.searchTitle.setText(String.format(getContext().getResources()
+                    .getQuantityString(
+                            R.plurals.produts_list_category_title,
+                            adapterList.size(),
+                            adapterList.size(),
+                            category.getDisplayName()
+                    )));
+        else
+            binding.searchTitle.setText(String.format(getContext().getResources()
+                    .getQuantityString(
+                            R.plurals.produts_list_title,
+                            adapterList.size(),
+                            adapterList.size()
+                    )));
+        binding.listSearchView.setQuery(searchField, false);
+    }
+
+    private void updateWithFilters() {
+        adapterList.clear();
+        adapterList.addAll(categoryProducts);
+        // searchfield
+        if (searchField != null)
+            adapterList.removeIf(p ->
+                    !p.getName().toLowerCase(Locale.ROOT)
+                            .contains(searchField.toLowerCase(Locale.ROOT))
+            );
+
+        // contains tags
+        if (tags != null)
+            for (List<String> tags : tags.values())
+                adapterList.removeIf(p -> tags.stream().noneMatch(tag -> p.getTags().contains(tag)));
+
+        // sort
+        adapterList.sort((product, t1) -> 0);
+
+        adapter.notifyDataSetChanged();
+
+        if (tags != null && tags.size() > 0) {
+            binding.flexboxLayout.setVisibility(View.VISIBLE);
+        }
+        else
+            binding.flexboxLayout.setVisibility(View.GONE);
+        updateHeader();
+    }
+
+    private List<Product> getCategoryProducts() {
         List<Product> products = applicationData.getInstance().getProductData().getAllProducts();
 
         // same category
         if (category != null)
             products.removeIf(p -> !p.getType().equals(category.getName()));
-        // contains tags
-//        if (tags  != null)
-//            products.removeIf(p -> {
-//                for (String tag : p.getTags())
-//                    if (tag)
-//            })
 
         return products;
     }

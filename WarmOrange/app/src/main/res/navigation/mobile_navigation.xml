@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_home_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_searchListFragment"
+            app:destination="@id/searchListFragment" />
     </fragment>
 
     <fragment

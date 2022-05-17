@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.warmorange.R;
@@ -134,9 +135,10 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         Product product = products.get(position);
 
         viewHolder.setViewData(product);
-        viewHolder.itemView.setOnClickListener(v -> {
-//            Navigation.findNavController(v).navigate(R.id.action_wishlistFragment_to_productPageFragment);
-        });
+        applicationData.getInstance().getProductData().setCurrentProduct(product.getName());
+        viewHolder.itemView.setOnClickListener(v ->
+                Navigation.findNavController(v).navigate(R.id.action_searchListFragment_to_productPageFragment)
+        );
     }
 
     @Override

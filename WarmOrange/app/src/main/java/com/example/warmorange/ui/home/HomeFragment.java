@@ -1,9 +1,11 @@
 package com.example.warmorange.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.warmorange.R;
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.warmorange.model.applicationData;
 import com.example.warmorange.databinding.FragmentHomeBinding;
 import com.example.warmorange.model.Product;
+import com.example.warmorange.ui.search.SearchListFragment;
 
 import java.util.List;
 
@@ -41,8 +44,20 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
-        //temp
-        binding.searchbar.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_searchFragment));
+        binding.searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Bundle b = new Bundle();
+                b.putString(SearchListFragment.ARG_SEARCHFIELD, query);
+                Navigation.findNavController(container).navigate(R.id.action_searchFragment_to_searchListFragment, b);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         return binding.getRoot();
     }
 
