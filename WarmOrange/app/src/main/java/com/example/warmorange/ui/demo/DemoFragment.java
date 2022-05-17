@@ -1,12 +1,27 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.demo;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.warmorange.R;
+import com.example.warmorange.databinding.FragmentDemoBinding;
+import com.example.warmorange.databinding.FragmentHomeBinding;
+import com.example.warmorange.model.Demo;
+import com.example.warmorange.model.Product;
+import com.example.warmorange.model.applicationData;
+import com.example.warmorange.ui.home.HomeProductAdapter;
+import com.example.warmorange.ui.home.HomeViewModel;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +29,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class DemoFragment extends Fragment {
+    FragmentDemoBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +74,18 @@ public class DemoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_demo, container, false);
+        binding = FragmentDemoBinding.inflate(inflater, container, false);
+
+        List<Demo> demos = applicationData.getInstance().getDemoData().getAllDemos();
+
+        DemoAdapter adapter = new DemoAdapter(demos);
+
+        RecyclerView recyclerView = binding.bookingRecyclerView;
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
+
+        return binding.getRoot();
     }
 }

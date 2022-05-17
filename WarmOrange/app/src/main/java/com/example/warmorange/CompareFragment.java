@@ -154,6 +154,8 @@ public class CompareFragment extends Fragment {
     private void onProductDeleted(Product p, View v) {
         int i = products.indexOf(p);
         products.remove(i);
+        p.removeFromComparison();
+
 
         if (i <= 1)
             binding.compareTable.setColumnCollapsed(i + 1, true);

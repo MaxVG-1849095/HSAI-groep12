@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/demoFragment"
-        android:name="com.example.warmorange.DemoFragment"
+        android:name="com.example.warmorange.ui.demo.DemoFragment"
         android:label="Demo pagina"
         tools:layout="@layout/fragment_demo" />
     <fragment
@@ -114,6 +114,9 @@
         <action
             android:id="@+id/action_productPageFragment_to_warrantyFragment"
             app:destination="@id/warrantyFragment" />
+        <action
+            android:id="@+id/action_productPageFragment_to_compareFragment"
+            app:destination="@id/compareFragment" />
     </fragment>
     <fragment
       android:id="@+id/createAccountFragment"

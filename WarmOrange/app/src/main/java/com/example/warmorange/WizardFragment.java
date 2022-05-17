@@ -106,6 +106,9 @@ public class WizardFragment extends Fragment {
                                                dialog.setPositiveButton(R.string.wizard_confirm, new DialogInterface.OnClickListener() {
                                                    @Override
                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                       if(applicationData.getInstance().getLoginData().getActiveUser() != null){
+                                                           applicationData.getInstance().getLoginData().getActiveUser().addWizardOutcome(wInstance.calcResponse());
+                                                       }
                                                        applicationData.getInstance().getProductData().setCurrentProduct(wInstance.calcResponse());
                                                        Navigation.findNavController(view).navigate(R.id.action_navigation_wizardFragment_to_productPageFragment);
                                                    }

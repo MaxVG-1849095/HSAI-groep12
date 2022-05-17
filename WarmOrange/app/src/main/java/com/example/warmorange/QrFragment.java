@@ -85,14 +85,15 @@ public class QrFragment extends Fragment {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                 dialog.setTitle(getString(R.string.scan_qr_dialogtitle));
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam"), Html.FROM_HTML_MODE_LEGACY));
+                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "Samsung QLED 50Q64A (2021)"), Html.FROM_HTML_MODE_LEGACY));
                 } else {
-                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam")));
+                    dialog.setMessage(Html.fromHtml(getString(R.string.scan_qr_dialogmessage, "Samsung QLED 50Q64A (2021)")));
                 }
                 dialog.setPositiveButton(R.string.scan_qr_dialogoption_continue, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         applicationData.getInstance().getwData().setWizardType("Television");
+                        applicationData.getInstance().getProductData().setCurrentProduct("Samsung QLED 50Q64A (2021)");
                         Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_productPageFragment);
                     }
                 });
@@ -102,22 +103,5 @@ public class QrFragment extends Fragment {
         });
         System.out.println("Qr created");
         return binding.getRoot();
-    }
-
-    private void showDialog(LayoutInflater inflater, ViewGroup container) {
-        View view = inflater.inflate(R.layout.fragment_qr, container,false);
-
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle(getString(R.string.scan_qr_dialogtitle));
-        dialog.setMessage(HtmlCompat.fromHtml(getString(R.string.scan_qr_dialogmessage, "naam"), HtmlCompat.FROM_HTML_MODE_COMPACT));
-        dialog.setPositiveButton(R.string.scan_qr_dialogoption_continue, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                applicationData.getInstance().getwData().setWizardType("Television");
-                Navigation.findNavController(view).navigate(R.id.action_qrFragment_to_productPageFragment);
-            }
-        });
-        dialog.setNegativeButton(R.string.scan_qr_dialogoption_cancel, null);
-        dialog.show();
     }
 }

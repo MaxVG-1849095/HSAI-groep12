@@ -2,7 +2,9 @@ package com.example.warmorange.model;
 
 import com.example.warmorange.R;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -18,6 +20,7 @@ public class Product {
     private int totalWarranty;
     private int currentWarranty = 0;
     private boolean reviewed = false;
+    private boolean inComparison = false;
 
     public Product(String name, boolean available, int imageId, String type) {
         this.name = name;
@@ -61,6 +64,7 @@ public class Product {
     public Vector<String> getTags() {
         return tags;
     }
+    public List<String> getTagList() {return Collections.list(tags.elements());}
 
     public void addTag(String tag) {
         tags.add(tag);
@@ -122,6 +126,10 @@ public class Product {
         }
         return count;
     }
+
+    public boolean isInComparison() { return inComparison; }
+    public void addToComparison() { inComparison = true; }
+    public void removeFromComparison() { inComparison = false; }
 
     public Map<String, String> getAttributes() {
         return attributes;

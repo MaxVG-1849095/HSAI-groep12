@@ -12,6 +12,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#009E0F</color>
     <color name="red">#cf2a27</color>
+    <color name="yellow">#F4BE19</color>
+    <color name="grey">#dddddd</color>
+    <color name="darkgrey">#777777</color>
     <color name="table_accent1">#FFAE95</color>
     <color name="table_accent2">#FFD6C9</color>
 </resources>
