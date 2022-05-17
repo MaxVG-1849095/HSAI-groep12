@@ -7,7 +7,7 @@
     tools:context=".ui.search.SearchListFragment">
 
     <SearchView
-        android:id="@+id/searchView2"
+        android:id="@+id/listSearchView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,33 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="@+id/searchItemScrollView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+        app:layout_constraintTop_toBottomOf="@+id/listSearchView" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexboxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchTitle">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/applied_filters"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchTitle" />
+
+    </com.google.android.flexbox.FlexboxLayout>
 
     <ScrollView
         android:id="@+id/searchItemScrollView"
@@ -31,13 +57,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTitle">
+        app:layout_constraintTop_toBottomOf="@+id/flexboxLayout">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:paddingBottom="200dp"
             android:id="@+id/searchItemList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingBottom="200dp" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

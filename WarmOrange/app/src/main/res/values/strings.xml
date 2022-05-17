@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">WarmOrange</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -14,7 +14,7 @@
     <string name="account">Account</string>
     <string name="vorige">Vorige</string>
     <string name="email">Email</string>
-    <string name="email_label">Voer hier uw email adres in.</string>
+    <string name="email_label" tools:ignore="Typos">Voer hier uw email adres in.</string>
     <string name="name_label">Voer hier uw naam in.</string>
     <string name="login">Log in</string>
     <string name="name">Naam</string>
@@ -66,8 +66,14 @@
     <string name="removed_from_wishlist">werd uit je wishlist verwijderd</string>
     <string name="in_comparison">In vergelijking</string>
     <string name="log_in_to_add_to_wishlist">Log in om producten aan je wishlist toe te voegen.</string>
-    <string name="produts_list_category_title">%2$s - %1$d resultaten</string>
-    <string name="produts_list_title">%1$d resultaten</string>
+    <plurals name="produts_list_category_title">
+        <item quantity="one">%2$s - %1$d resultaat</item>
+        <item quantity="other">%2$s - %1$d resultaten</item>
+    </plurals>
+    <plurals name="produts_list_title">
+        <item quantity="one">%1$d resultaat</item>
+        <item quantity="other">%1$d resultaten</item>
+    </plurals>
     <string name="removedFromComparison"> is verwijderd uit de vergelijking!</string>
     <string name="comparisonFull">De vergelijking bevat al twee producten, verwijder één product alvorens een ander toe te voegen</string>
     <string name="revertChanges">Ongedaan maken</string>
@@ -93,4 +99,5 @@
     <string name="notAvailable">Niet beschikbaar in Hasselt</string>
     <string name="wizardLimit">Wizard enkel geimplementeerd voor televisies</string>
     <string name="compareFull">Je bent al twee producten aan het vergelijken!</string>
+    <string name="applied_filters">Toegepaste filters:</string>
 </resources>
