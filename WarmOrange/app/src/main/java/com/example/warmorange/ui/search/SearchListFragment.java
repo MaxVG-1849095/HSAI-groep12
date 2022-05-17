@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -47,6 +48,7 @@ public class SearchListFragment extends Fragment {
     private List<Product> adapterList;
     private Map<String, List<String>> filterOptions;
     private final Map<String, List<String>> filters = new HashMap<>();
+    private final List<AppCompatButton> filterIndicators = new ArrayList<>();
 
     public SearchListFragment() {
         // Required empty public constructor
@@ -147,11 +149,31 @@ public class SearchListFragment extends Fragment {
     private void onUpdateFilter(String filterTag, String filterGroup, boolean enabled) {
         if (!filters.containsKey(filterGroup))
             filters.put(filterGroup, new ArrayList<>());
-        if (enabled)
+        if (enabled) {
+            AppCompatButton button = buildIncicatorButton(filterTag, filterGroup);
+            filterIndicators.add(button);
+            binding.flexboxLayout.addView(button);
             filters.get(filterGroup).add(filterTag);
-        else
+        }
+        else {
+            filterIndicators.stream()
+                    .filter(b -> b.getText().equals(filterTag))
+                    .findFirst()
+                    .ifPresent(b -> {
+                        filterIndicators.remove(b);
+                        binding.flexboxLayout.removeView(b);
+                    });
             filters.get(filterGroup).remove(filterTag);
+        }
         updateWithFilters();
+    }
+
+    private AppCompatButton buildIncicatorButton(String tagName, String filterGroup) {
+        AppCompatButton button = new AppCompatButton(this.getContext());
+        button.setText(tagName);
+        button.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_close_24, 0);
+        button.setOnClickListener(b -> onUpdateFilter(tagName, filterGroup, false));
+        return button;
     }
 
     private void updateHeader() {
@@ -198,7 +220,7 @@ public class SearchListFragment extends Fragment {
 
         adapter.notifyDataSetChanged();
 
-        if (filterOptions != null && filterOptions.size() > 0) {
+        if (filterIndicators.size() > 0) {
             binding.flexboxLayout.setVisibility(View.VISIBLE);
         }
         else
