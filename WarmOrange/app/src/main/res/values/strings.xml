@@ -100,4 +100,5 @@
     <string name="wizardLimit">Wizard enkel geimplementeerd voor televisies</string>
     <string name="compareFull">Je bent al twee producten aan het vergelijken!</string>
     <string name="applied_filters">Toegepaste filters:</string>
+    <string name="emptyWarranty">Nog niets te vinden hier! Laat je klantenkaart zeker scannen wanneer je iets koopt!</string>
 </resources>

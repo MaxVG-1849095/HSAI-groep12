@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.warmorange.R;
 import com.example.warmorange.databinding.FragmentWarrantyBinding;
 import com.example.warmorange.model.applicationData;
 
@@ -62,6 +63,10 @@ public class WarrantyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        if (applicationData.getInstance().getLoginData().getActiveUser().getOwnedProducts().isEmpty())
+            return inflater.inflate(R.layout.fragment_warranty_empty, container, false);
+
         binding = FragmentWarrantyBinding.inflate(inflater, container, false);
 
         ListView lv = (ListView) binding.warrantyList;

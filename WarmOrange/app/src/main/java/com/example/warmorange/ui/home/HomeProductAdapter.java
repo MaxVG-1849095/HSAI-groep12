@@ -48,7 +48,10 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
             binding.productName.setText(product.getName());
             binding.productImage.setImageResource(product.getImageId());
             binding.ratingBar.setRating((float)product.getAverageReviewScore());
-            List<String> tags = product.getTagList();
+            List<String> tags = new ArrayList<>();
+            for(int i = 0; i<3;i++){
+                tags.add(product.getTagList().get(i));
+            }
 
             ProductTagAdapter tagAdapter = new ProductTagAdapter(tags);
 

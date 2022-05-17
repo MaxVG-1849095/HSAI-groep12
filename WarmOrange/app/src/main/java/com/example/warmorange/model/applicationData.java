@@ -9,10 +9,9 @@ public class applicationData {
     private final ProductData productData = new ProductData();
     private final DemoData demoData = new DemoData();
     private final LoginData loginData = new LoginData();
-    private final Account testAccount = new Account("testNaam","testNaam2", "test", "Test@test.test");
     private applicationData(){
-        testAccount.addProduct(productData.getProduct("Samsung QLED 50Q64A (2021)"));
-        testAccount.addProduct(productData.getProduct("Iphone 13"));
+        loginData.fillAdmin(productData.getProduct("Iphone 13"));
+        loginData.fillAdmin(productData.getProduct("Samsung QLED 50Q64A (2021)"));
     }
 
     public static applicationData getInstance(){
@@ -28,9 +27,7 @@ public class applicationData {
     public DemoData getDemoData() {return demoData;}
     public LoginData getLoginData() { return loginData; }
 
-    public Account getTestAccount() {
-        return testAccount;
-    }
+
 
     private static final Map<String, String> attributeExplanations = new HashMap<String, String>()
     {{
