@@ -1,7 +1,5 @@
-package com.example.warmorange;
+package com.example.warmorange.ui.search;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,17 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.CursorAdapter;
-import android.widget.SearchView;
-import android.widget.SimpleCursorAdapter;
 
 import com.example.warmorange.databinding.FragmentSearchBinding;
 import com.example.warmorange.model.Product;
 import com.example.warmorange.model.applicationData;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

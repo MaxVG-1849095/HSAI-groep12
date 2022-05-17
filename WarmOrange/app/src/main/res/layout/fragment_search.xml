@@ -5,14 +5,13 @@
     android:id="@+id/frameLayout7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment" >
+    tools:context=".ui.search.SearchFragment" >
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="409dp"
-        android:layout_height="65dp"
+        android:layout_height="0dp"
         android:layout_margin="10dp"
-        android:layout_marginBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
