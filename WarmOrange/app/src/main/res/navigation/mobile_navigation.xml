@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/navigation_wizardFragment"
         android:name="com.example.warmorange.WizardFragment"
-        android:label="fragment_wizard"
+        android:label="@string/title_wizard"
         tools:layout="@layout/fragment_wizard" >
         <action
             android:id="@+id/action_navigation_wizardFragment_to_productPageFragment"
@@ -180,7 +180,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.warmorange.ui.search.SearchFragment"
-        android:label="fragment_search"
+        android:label="Zoek op categorie"
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_searchListFragment"
@@ -189,7 +189,7 @@
     <fragment
         android:id="@+id/searchListFragment"
         android:name="com.example.warmorange.ui.search.SearchListFragment"
-        android:label="fragment_search_list"
+        android:label="Zoeken"
         tools:layout="@layout/fragment_search_list" >
         <action
             android:id="@+id/action_searchListFragment_to_productPageFragment"
